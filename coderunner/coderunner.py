@@ -80,7 +80,9 @@ class Test(object):
 
 class TestScript(Test):
     def run(self):
-        file(self.filename, "w").write(self.code)
+        if not self.is_file:
+            file(self.filename, "w").write(self.code)
+
         ret = self.subproc(self.bin.split() + [self.filename])
         self.check_expect(ret)
 
