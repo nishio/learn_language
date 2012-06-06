@@ -186,7 +186,7 @@ class Cpp(Test):
     temp_filename = "tmp.cpp"
 
     def run(self):
-        if self.is_file:
+        if not self.is_file:
             file(self.filename, "w").write(self.code)
 
         cmd = ("g++ -Wall -W -Wformat=2 -Wcast-qual -Wcast-align "
