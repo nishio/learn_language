@@ -195,6 +195,7 @@ class Java(Test):
 class LangC(Test):
     comment = "/* C */"
     temp_filename = "tmp.c"
+    embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) \*/"
 
     def run(self):
         if not self.is_file:

@@ -23,3 +23,8 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+
+/* output (checked by coderunner)
+Hexadecimal value 0x40500000 in memory, read as integer variable is 1078984704
+Hexadecimal value 0x40500000 in memory, read as float variable is 3.250000
+ */
