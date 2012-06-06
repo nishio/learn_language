@@ -27,6 +27,8 @@ tests = []
 
 
 class Test(object):
+    embedded_output_pattern = None
+
     def subproc(self, cmd):
         p = subprocess.Popen(
             cmd,
@@ -85,9 +87,11 @@ class Test(object):
 
         if is_embed_output:
             assert is_file
+            if not self.embedded_output_pattern:
+                raise NotImplementedError
             self.expect = self.get_embedded_output()
             self.code = re.sub(
-                self.embedded_output, "",
+                self.embedded_output_pattern, "",
                 self.code).strip("\n")
         else:
             self.expect = expect.strip("\n")
@@ -95,7 +99,13 @@ class Test(object):
         self.to_run = to_run
 
     def get_embedded_output(self):
-        raise NotImplementedError
+        data = file(self.filename).read()
+        m = re.search(
+            self.embedded_output_pattern,
+            data, re.DOTALL)
+        assert m
+        return m.groups()[0].strip("\n")
+
 
 
 class TestScript(Test):
@@ -200,7 +210,7 @@ class LangC(Test):
 class Cpp(Test):
     comment = "// C++"
     temp_filename = "tmp.cpp"
-    embedded_output = r"/\* output \(checked by coderunner\)(.*) \*/"
+    embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) \*/"
 
     def run(self):
         if not self.is_file:
@@ -215,13 +225,6 @@ class Cpp(Test):
             ret += self.subproc(["env", "./a.out"])
         self.check_expect(ret)
 
-    def get_embedded_output(self):
-        data = file(self.filename).read()
-        m = re.search(
-            self.embedded_output,
-            data, re.DOTALL)
-        assert m
-        return m.groups()[0].strip("\n")
 
 def test(lang, *args, **kw):
     "register tests"
