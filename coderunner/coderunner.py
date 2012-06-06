@@ -180,6 +180,7 @@ class Clojure(TestScript):
     bin = "java -cp clojure-1.4.0.jar:. clojure.main"
     temp_filename = "tmp.clj"
     comment = "// Clojure"
+    embedded_output_pattern = r"\(comment \(output checked by coderunner\)(.*)\(end of comment\)\)"
 
 
 class Java(Test):
