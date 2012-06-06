@@ -19,3 +19,10 @@ folders
 
 - <topic_name>
   何らかのトピックについてのコード
+
+TODO
+====
+
+- int_as_flaotにREADME.rstを足してfinish
+- Clojureのコードの末尾にそれの出力を埋め込めないか
+
