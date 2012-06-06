@@ -129,7 +129,7 @@ class Perl(Perl5):
     comment = "# Perl"
 
 class Clojure(TestScript):
-    bin = "java -jar bin/clojure-1.4.0.jar"
+    bin = "java -cp clojure-1.4.0.jar:. clojure.main"
     temp_filename = "tmp.clj"
     comment = "// Clojure"
 
