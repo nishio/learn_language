@@ -20,6 +20,8 @@ test(Java,
 '''
 import subprocess
 import os
+import re
+
 STOP_ON_MISMATCH = True
 tests = []
 
@@ -63,11 +65,13 @@ class Test(object):
         print indent(self.expect)
         print "\n"
 
-    def __init__(self, code, expect="", is_file=False, to_run=True):
+    def __init__(self, code, expect="", is_file=False, to_run=True, is_embed_output=False):
         """
         is_file: when code is large you can put it in the other file
-        to_run: when you want to compile, but not want to run
-                (especially Java, C++)
+        to_run: False when you don't want to run
+                (especially in Java, C++, you may want to check
+                 the code fail to compile)
+        is_embed_output: whether output is embedded in the given code
         """
         if is_file:
             self.filename = code
@@ -78,8 +82,20 @@ class Test(object):
             self.filename = self.temp_filename
             self.code = code.strip("\n")
             self.is_file = False
-        self.expect = expect.strip("\n")
+
+        if is_embed_output:
+            assert is_file
+            self.expect = self.get_embedded_output()
+            self.code = re.sub(
+                self.embedded_output, "",
+                self.code).strip("\n")
+        else:
+            self.expect = expect.strip("\n")
+
         self.to_run = to_run
+
+    def get_embedded_output(self):
+        raise NotImplementedError
 
 
 class TestScript(Test):
@@ -184,6 +200,7 @@ class LangC(Test):
 class Cpp(Test):
     comment = "// C++"
     temp_filename = "tmp.cpp"
+    embedded_output = r"/\* output \(checked by coderunner\)(.*) \*/"
 
     def run(self):
         if not self.is_file:
@@ -198,6 +215,13 @@ class Cpp(Test):
             ret += self.subproc(["env", "./a.out"])
         self.check_expect(ret)
 
+    def get_embedded_output(self):
+        data = file(self.filename).read()
+        m = re.search(
+            self.embedded_output,
+            data, re.DOTALL)
+        assert m
+        return m.groups()[0].strip("\n")
 
 def test(lang, *args, **kw):
     "register tests"
