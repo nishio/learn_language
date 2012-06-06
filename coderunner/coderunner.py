@@ -137,7 +137,7 @@ class Java(Test):
     comment = "// Java"
     temp_filename = "Tmp.java"
     def run(self):
-        if self.is_file == False:
+        if not self.is_file:
             file(self.filename, "w").write(self.code)
 
         ret = self.subproc(
@@ -152,7 +152,7 @@ class LangC(Test):
     comment = "/* C */"
     temp_filename = "tmp.c"
     def run(self):
-        if self.is_file == False:
+        if not self.is_file:
             file(self.filename, "w").write(self.code)
 
         cmd = ("gcc").split() + [self.filename]
@@ -165,7 +165,7 @@ class Cpp(Test):
     comment = "// C++"
     temp_filename = "tmp.cpp"
     def run(self):
-        if self.is_file == False:
+        if self.is_file:
             file(self.filename, "w").write(self.code)
 
         cmd = ("g++ -Wall -W -Wformat=2 -Wcast-qual -Wcast-align "
