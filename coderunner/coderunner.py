@@ -67,13 +67,13 @@ class Test(object):
         print indent(self.expect)
         print "\n"
 
-    def __init__(self, code, expect="", is_file=False, to_run=True, is_embed_output=False):
+    def __init__(self, code, expect="", is_file=False, to_run=True, is_embedded_output=False):
         """
         is_file: when code is large you can put it in the other file
         to_run: False when you don't want to run
                 (especially in Java, C++, you may want to check
                  the code fail to compile)
-        is_embed_output: whether output is embedded in the given code
+        is_embedded_output: whether output is embedded in the given code
         """
         if is_file:
             self.filename = code
@@ -85,7 +85,7 @@ class Test(object):
             self.code = code.strip("\n")
             self.is_file = False
 
-        if is_embed_output:
+        if is_embedded_output:
             assert is_file
             if not self.embedded_output_pattern:
                 raise NotImplementedError
