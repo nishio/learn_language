@@ -90,9 +90,9 @@ class Test(object):
             if not self.embedded_output_pattern:
                 raise NotImplementedError
             self.expect = self.get_embedded_output()
+            pat = re.compile(self.embedded_output_pattern, re.DOTALL)
             self.code = re.sub(
-                self.embedded_output_pattern, "",
-                self.code).strip("\n")
+                pat, "", self.code).strip("\n")
         else:
             self.expect = expect.strip("\n")
 
