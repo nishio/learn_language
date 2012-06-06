@@ -18,6 +18,7 @@ ZeroDivisionError: integer division or modulo by zero
 test(Java,
 "exception.java", is_file=True, to_run=False)
 '''
+import argparse
 import subprocess
 import os
 import re
@@ -55,7 +56,13 @@ class Test(object):
             if STOP_ON_MISMATCH:
                 raise AssertionError
 
-    def show(self):
+    def show(self, args):
+        if args.format == "rest":
+            self.show_in_rest(args)
+        else:
+            raise NotImplementedError
+
+    def show_in_rest(self, args):
         """
         show code. currently output ReST (for my book)
         """
@@ -242,15 +249,26 @@ def indent(s):
     return "\n".join("  " + line for line in s.split("\n"))
 
 
-def show_tests():
+def show_tests(args):
     for test in tests:
-        test.show()
+        test.show(args)
 
 
 def main():
-    # TODO: use optparse to choose run/show test
-    run_tests()
-    show_tests()
+    parser = argparse.ArgumentParser(description='run codes and check output')
+    parser.add_argument(
+        '--format', dest='format', action='store',
+        help=(
+            "Print codes and expected outputs in specified format. "
+            "When it is specified, not run codes. "
+            "(supported: rest)"))
+
+    args = parser.parse_args()
+    if not args.format:
+        run_tests()
+        print "ok."
+    else:
+        show_tests(args)
 
 if __name__ == "__main__":
     main()
