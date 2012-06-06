@@ -20,11 +20,15 @@ test(Java,
 '''
 import subprocess
 import os
+import re
+
 STOP_ON_MISMATCH = True
 tests = []
 
 
 class Test(object):
+    embedded_output_pattern = None
+
     def subproc(self, cmd):
         p = subprocess.Popen(
             cmd,
@@ -63,11 +67,13 @@ class Test(object):
         print indent(self.expect)
         print "\n"
 
-    def __init__(self, code, expect="", is_file=False, to_run=True):
+    def __init__(self, code, expect="", is_file=False, to_run=True, is_embedded_output=False):
         """
         is_file: when code is large you can put it in the other file
-        to_run: when you want to compile, but not want to run
-                (especially Java, C++)
+        to_run: False when you don't want to run
+                (especially in Java, C++, you may want to check
+                 the code fail to compile)
+        is_embedded_output: whether output is embedded in the given code
         """
         if is_file:
             self.filename = code
@@ -78,8 +84,28 @@ class Test(object):
             self.filename = self.temp_filename
             self.code = code.strip("\n")
             self.is_file = False
-        self.expect = expect.strip("\n")
+
+        if is_embedded_output:
+            assert is_file
+            if not self.embedded_output_pattern:
+                raise NotImplementedError
+            self.expect = self.get_embedded_output()
+            self.code = re.sub(
+                self.embedded_output_pattern, "",
+                self.code).strip("\n")
+        else:
+            self.expect = expect.strip("\n")
+
         self.to_run = to_run
+
+    def get_embedded_output(self):
+        data = file(self.filename).read()
+        m = re.search(
+            self.embedded_output_pattern,
+            data, re.DOTALL)
+        assert m
+        return m.groups()[0].strip("\n")
+
 
 
 class TestScript(Test):
@@ -184,9 +210,10 @@ class LangC(Test):
 class Cpp(Test):
     comment = "// C++"
     temp_filename = "tmp.cpp"
+    embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) \*/"
 
     def run(self):
-        if self.is_file:
+        if not self.is_file:
             file(self.filename, "w").write(self.code)
 
         cmd = ("g++ -Wall -W -Wformat=2 -Wcast-qual -Wcast-align "
