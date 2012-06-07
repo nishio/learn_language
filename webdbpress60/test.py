@@ -56,7 +56,7 @@ global
 
 
 
-test(LangC, "for.c", """
+test(LangC, "no_for.c", """
 use_for
 0
 1
@@ -69,6 +69,21 @@ not_use_for
 2
 3
 4
+""", is_file=True)
+
+test(LangC, "no_while.c", """
+use_while
+5
+4
+3
+2
+1
+not_use_while
+5
+4
+3
+2
+1
 """, is_file=True)
 
 test(LangC, "no_if.c", """
