@@ -1,51 +1,48 @@
 ;
 ; STMの挙動を観察する2
-
-
-; スレッドを作るマクロ
-; http://code.google.com/p/javaee-study/source/browse/trunk/clojure-concurrency/concurrency.clj?r=5
-(import '(java.lang Thread))
-(defmacro with-new-thread [& body]
-  `(.start (Thread. (fn [] ~@body))))
-
-; 指定された値がTrueになるまでブロックするチェックポイント
-(def dict (new java.util.Hashtable))
-
-(defn checkpoint [key]
-  (while (not (.get dict key))
-    (Thread/sleep 100)))
-
-(defn open [key]
-  (.put dict key true)
-  (println "open" key))
+(require 'util)
 
 ; STM
 (def rx (ref 0))
 
+(setThreadName "t0")
+
 (with-new-thread
+ (setThreadName "t1")
+
  (dosync
-  (println "start transaction")
-  (checkpoint "1")
+  (println "**start transaction")
+  (gate "1")
   (ref-set rx 1)
-  (println "modified ref rx: 1")
-  (checkpoint "2")
-  (println "finish transaction 1")
-  ))
+  (println "**modified ref rx = 1")
+  (open-wait "wrote_rx" "2")
+  (println "**finish transaction")
+  )
+ (open "end_transaction")
+ )
 
-(Thread/sleep 500)
-(println "----------")
-(println @rx)
-(Thread/sleep 500)
+(println "**before modification rx is" @rx)
+(open-wait "1" "wrote_rx")
 
-(open "1")
+(println "**after modification but not end of transaction rx is" @rx)
+(open-wait "2" "end_transaction")
 
-(Thread/sleep 500)
-(println "----------")
-(println @rx)
-(Thread/sleep 500)
+(println "**after end of transaction rx is" @rx)
 
-(open "2")
 
-(Thread/sleep 500)
-(println "----------")
-(println @rx)
+(comment (output checked by coderunner)
+**start transaction
+**before modification rx is 0
+thread t0 opened gate 1 and waiting until gate wrote_rx is open
+thread t1 passed the gate 1
+**modified ref rx = 1
+thread t1 opened gate wrote_rx and waiting until gate 2 is open
+thread t0 passed the gate wrote_rx
+**after modification but not end of transaction rx is 0
+thread t0 opened gate 2 and waiting until gate end_transaction is open
+thread t1 passed the gate 2
+**finish transaction
+thread t1 opened gate end_transaction
+thread t0 passed the gate end_transaction
+**after end of transaction rx is 1
+(end of comment))
