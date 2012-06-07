@@ -23,6 +23,12 @@ D2
 base
 """, is_file=True)
 
+test(Python, "pack.py", """
+スズメ: 1匹
+スズメ: 2匹
+カラス: 1匹
+スズメ: 3匹
+""", is_file=True)
 
 test(LangC, "syntax/no_for.c", """
 use_for
