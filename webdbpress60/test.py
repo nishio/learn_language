@@ -1,9 +1,20 @@
 # -*- encoding: utf-8 -*-
 import sys
 sys.path.insert(0, "../coderunner")
-from coderunner import test, Perl, LangC, Python, main
+from coderunner import test, Perl, LangC, Python, Ruby, main
 
 
+test(Ruby, "module_inheritance.rb", """
+hello
+hello
+""", is_file=True)
+
+
+test(Python, "oldclass.py", """
+base
+D2
+base
+""", is_file=True)
 
 
 test(LangC, "syntax/no_for.c", """
