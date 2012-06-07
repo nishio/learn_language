@@ -9,6 +9,9 @@ hello
 hello
 """, is_file=True)
 
+test(Perl, "reenter.pl", """
+0
+""", is_file=True)
 
 test(Python, "oldclass.py", """
 base
