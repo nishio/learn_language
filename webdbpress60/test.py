@@ -71,4 +71,13 @@ not_use_for
 4
 """, is_file=True)
 
+test(LangC, "no_if.c", """
+負の数
+ゼロ
+正の数
+負の数
+ゼロ
+正の数
+""", is_file=True)
+
 main()
