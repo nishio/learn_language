@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import sys
 sys.path.insert(0, "../coderunner")
-from coderunner import test, Perl, LangC, main
+from coderunner import test, Perl, LangC, Python, main
 
 '''
 test(Perl, "bless.pl", """
@@ -45,6 +45,15 @@ test(Perl, "counter_3.pl", """
 1匹
 2匹
 """, is_file=True)
+
+test(Perl, "dynamic.pl", """
+yobu-local
+""", is_file=True)
+
+test(Perl, "static.pl", """
+global
+""", is_file=True)
+
 
 
 test(LangC, "for.c", """
