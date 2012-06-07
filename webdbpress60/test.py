@@ -63,13 +63,6 @@ test(Perl, "pack2.pl", """
 """, is_file=True)
 
 
-test(Perl, "dynamic.pl", """
-yobu-local
-""", is_file=True)
-
-test(Perl, "static.pl", """
-global
-""", is_file=True)
 
 
 
