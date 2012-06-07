@@ -20,6 +20,7 @@ test(Java,
 '''
 import argparse
 import subprocess
+import difflib
 import os
 import re
 
@@ -46,15 +47,30 @@ class Test(object):
         if ret != self.expect:
             print
             print "ERROR"
-            print "code " + "=" * 35
-            print self.code
-            print "expected " + "=" * 31
-            print self.expect
-            print "got " + "=" * 36
-            print ret
-            print "=" * 40
+            if self.is_file:
+                print "file:", self.filename
+            else:
+                print "code " + "=" * 35
+                print self.code
+                print "=" * 40
+
+            expectlines = self.expect.split("\n")
+            gotlines = ret.split("\n")
+            difflines = list(difflib.unified_diff(
+                    expectlines, gotlines, "expected", "got"))
+            if len(difflines) < len(expectlines) + len(gotlines):
+                print "diff " + "=" * 35
+                print "\n".join(difflines)
+                print "=" * 40
+            else:
+                print "expected " + "=" * 31
+                print self.expect
+                print "got " + "=" * 36
+                print ret
+                print "=" * 40
             if STOP_ON_MISMATCH:
                 raise AssertionError
+
 
     def show(self, args):
         if args.format == "rest":
