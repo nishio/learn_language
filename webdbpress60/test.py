@@ -46,6 +46,23 @@ test(Perl, "counter_3.pl", """
 2匹
 """, is_file=True)
 
+test(Perl, "pack.pl", """
+スズメ: 1匹
+スズメ: 2匹
+スズメ: 3匹
+スズメ: リセット
+スズメ: 1匹
+""", is_file=True)
+
+test(Perl, "pack2.pl", """
+スズメ: 1匹
+スズメ: 2匹
+スズメ: 3匹
+スズメ: リセット
+スズメ: 4匹
+""", is_file=True)
+
+
 test(Perl, "dynamic.pl", """
 yobu-local
 """, is_file=True)
