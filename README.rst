@@ -23,6 +23,8 @@ folders
 TODO
 ====
 
-- int_as_flaotにREADME.rstを足してfinish
-- Clojureのコードの末尾にそれの出力を埋め込めないか
-
+- README.rstを英語にする
+- 前回の雑誌記事のサンプルコードを持ってくる
+- 書きかけ原稿のサンプルコードも持ってくる
+- README.rst, foo/README.rst, bar/README.rstをindex.rst, foo.rst, bar.rstって名前でコピーして
+  適切なtoctree要素を突っ込んでSphinxでビルドしてくれるようなスクリプト
