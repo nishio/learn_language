@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import sys
 sys.path.insert(0, "../coderunner")
-from coderunner import test, Perl, LangC, Python, Ruby, main
+from coderunner import test, Perl, LangC, Python, Ruby, Cpp, main
 
 
 test(Ruby, "module_inheritance.rb", """
@@ -28,6 +28,17 @@ test(Python, "pack.py", """
 スズメ: 2匹
 カラス: 1匹
 スズメ: 3匹
+""", is_file=True)
+
+test(Cpp, "iter.cpp", """
+loop with pointer
+1
+2
+3
+loop with iterator
+1
+2
+3
 """, is_file=True)
 
 main()
