@@ -92,9 +92,9 @@ class Test(object):
         print "::"
         print
         print indent(self.comment)
-        print indent(self.code)
+        print indent(self.code.strip("\n"))
         print "  " + "-" * 20
-        print indent(self.expect)
+        print indent(self.expect.strip("\n"))
         print "\n"
 
     def __init__(self, code, expect="", is_file=False,
