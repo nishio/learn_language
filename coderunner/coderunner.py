@@ -29,6 +29,7 @@ tests = []
 
 class Test(object):
     embedded_output_pattern = None
+    dontcare_pattern = None
 
     def subproc(self, cmd):
         p = subprocess.Popen(
@@ -43,6 +44,14 @@ class Test(object):
         """
         check whether ret == self.expect and show if not.
         """
+        if self.dontcare_pattern:
+            self.expect = re.sub(
+                self.dontcare_pattern,
+                "..dontcare..", self.expect)
+            ret = re.sub(
+                self.dontcare_pattern,
+                "..dontcare..", ret)
+
         if ret != self.expect:
             print
             print "ERROR"
@@ -69,7 +78,6 @@ class Test(object):
                 print "=" * 40
             if not args.nonstop:
                 raise AssertionError
-
 
     def show(self, args):
         if args.format == "rest":
@@ -130,7 +138,6 @@ class Test(object):
         return m.groups()[0].strip("\n")
 
 
-
 class TestScript(Test):
     def run(self):
         if not self.is_file:
@@ -182,24 +189,43 @@ class JS(Rhino):
     comment = "// JS"
 
 
+def _pattern(prefix, body, suffix):
+    """
+    generate regular pattern, which match with
+    *body* sandwiched between *prefix* and *suffix*
+    but not include *prefix* and *suffix*.
+    """
+    pre = "(?<=%s)" % prefix  # positive lookbehind assertion
+    suf = "(?=%s)" % suffix  # lookahead assertion
+    return pre + body + suf
+
+
 class Perl5(TestScript):
     bin = "perl5"
     comment = "# Perl5"
     temp_filename = "tmp.pl"
+    dontcare_pattern = _pattern(r"HASH\(", "0x[0-9a-fX]+", r"\)")
 
 
 class Perl(Perl5):
     comment = "# Perl"
 
-_clojure_path = os.path.join(os.path.dirname(__file__), 'bin', 'clojure-1.4.0.jar')
+_clojure_path = os.path.join(
+    os.path.dirname(__file__),
+    'bin', 'clojure-1.4.0.jar')
 if not os.path.isfile(_clojure_path):
     raise RuntimeError("required: %s" % _clojure_path)
+
 
 class Clojure(TestScript):
     bin = "java -cp %s:. clojure.main" % _clojure_path
     temp_filename = "tmp.clj"
     comment = "// Clojure"
-    embedded_output_pattern = r"\(comment \(output checked by coderunner\)(.*)\(end of comment\)\)"
+    embedded_output_pattern = (
+        r"\(comment \(output checked by coderunner\)"
+        r"(.*)"
+        r"\(end of comment\)\)")
+
 
 class Gauche(TestScript):
     bin = "gosh"
@@ -209,6 +235,7 @@ class Gauche(TestScript):
 
 class Scheme(Gauche):
     comment = "; Scheme"
+
 
 class Java(Test):
     comment = "// Java"
