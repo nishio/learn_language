@@ -178,4 +178,228 @@ Traceback (most recent call last):
 ImportError: No module named x
 """)
 
+test(Python, r"""
+int("a")
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 1, in <module>
+    int("a")
+ValueError: invalid literal for int() with base 10: 'a'
+""")
+
+test(Python, r"""
+"%s %s %s" % (1, 2)
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 1, in <module>
+    "%s %s %s" % (1, 2)
+TypeError: not enough arguments for format string
+""")
+
+test(Python, r"""
+"%s %s" % [1, 2]
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 1, in <module>
+    "%s %s" % [1, 2]
+TypeError: not enough arguments for format string
+""")
+
+test(Python, r"""
+1 / 0
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 1, in <module>
+    1 / 0
+ZeroDivisionError: integer division or modulo by zero
+""")
+
+test(Python, r"""
+def foo():
+    return
+
+foo() + 1
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 4, in <module>
+    foo() + 1
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'
+""")
+
+test(Python, r"""
+class Foo(object):
+    def say(self):
+        pass
+
+Foo.say()
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 5, in <module>
+    Foo.say()
+TypeError: unbound method say() must be called with Foo instance as first argument (got nothing instead)
+""")
+
+test(Python, r"""
+class A(object): pass
+class B(object): pass
+class AB(A, B): pass
+class BA(B, A): pass
+class C(AB, BA): pass
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 5, in <module>
+    class C(AB, BA): pass
+TypeError: Error when calling the metaclass bases
+    Cannot create a consistent method resolution
+order (MRO) for bases B, A
+""")
+
+test(Python, """
+def func(a=[]):
+    a.append(1)
+    return a
+
+print func()
+print func()
+print func()
+""", """
+[1]
+[1, 1]
+[1, 1, 1]
+""")
+
+test(Python, """
+def f():
+    print "called"
+
+def func(x=f()):
+    pass
+""", """
+called
+""")
+
+test(Python, """
+# assignment in bar doesn't affect outside
+def foo():
+    x = 0
+    def bar():
+        x = 1
+
+    bar()
+    print x
+
+foo()
+""", """
+0
+""")
+
+test(Python, """
+# list comprehension doesn't make scope
+funcs = [(lambda: x) for x in range(3)]
+print funcs[0]()
+print funcs[1]()
+""", """
+2
+2
+""")
+
+test(Python, """
+x = 0
+def foo():
+    x += 1
+
+foo()
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 5, in <module>
+    foo()
+  File "tmp.py", line 3, in foo
+    x += 1
+UnboundLocalError: local variable 'x' referenced before assignment
+""")
+
+test(Python, """
+x = 0
+def foo():
+    global x
+    x += 1
+
+foo()
+print x
+""", """
+1
+""")
+
+
+test(Python, """
+# class variable is not a global variable
+class Foo(object):
+    x = 1
+    def foo(self):
+        print x
+
+Foo().foo()
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 7, in <module>
+    Foo().foo()
+  File "tmp.py", line 5, in foo
+    print x
+NameError: global name 'x' is not defined
+""")
+
+test(Python, """
+class Foo(object):
+    x = 1
+    def foo(self):
+        print self.x
+
+Foo().foo()
+""", """
+1
+""")
+
+test(Python, """
+# class variable is shared by instances
+class Foo(object):
+    x = []
+    def foo(self):
+        self.x.append(1)
+        print self.x
+
+Foo().foo()
+Foo().foo()
+""", """
+[1]
+[1, 1]
+""")
+
+test(Python, """
+def foo(a=1, b): pass
+""", """
+  File "tmp.py", line 1
+    def foo(a=1, b): pass
+SyntaxError: non-default argument follows default argument
+""")
+
+test(Python, """
+def foo(a=1, b): pass
+""", """
+  File "tmp.py", line 1
+    def foo(a=1, b): pass
+SyntaxError: non-default argument follows default argument
+""")
+
+test(Python, """
+object.a = 1
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 1, in <module>
+    object.a = 1
+TypeError: can't set attributes of built-in/extension type 'object'
+""")
+
+
 main()
+
+
