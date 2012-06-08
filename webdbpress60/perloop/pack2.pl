@@ -22,9 +22,3 @@ Counter::push($value1); #-> スズメ: 2匹
 Counter::push($value1); #-> スズメ: 3匹
 Counter::reset($value1); #-> スズメ: リセット
 Counter::push($value1); #-> スズメ: 1匹
-
-
-
-
-
-
