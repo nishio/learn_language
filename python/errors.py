@@ -399,7 +399,36 @@ Traceback (most recent call last):
 TypeError: can't set attributes of built-in/extension type 'object'
 """)
 
+test(Python, """
+class MetaFoo(type): pass
+class MetaBar(type): pass
+class Foo(object):
+    __metaclass__ = MetaFoo
+
+class Bar(Foo):
+    __metaclass__ = MetaBar
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 6, in <module>
+    class Bar(Foo):
+TypeError: Error when calling the metaclass bases
+    metaclass conflict: the metaclass of a derived class must be a (non-strict) subclass of the metaclasses of all its bases
+""")
+
+
+test(Python, """
+class Foo(object):
+    @property
+    def foo(self):
+        return self.foo
+
+f = Foo()
+f.foo = 1
+""", """
+Traceback (most recent call last):
+  File "tmp.py", line 7, in <module>
+    f.foo = 1
+AttributeError: can't set attribute
+""")
 
 main()
-
-
