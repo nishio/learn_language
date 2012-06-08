@@ -27,7 +27,25 @@ import re
 tests = []
 
 
+def _pattern(prefix, body, suffix):
+    """
+    generate regular pattern, which match with
+    *body* sandwiched between *prefix* and *suffix*
+    but not include *prefix* and *suffix*.
+    """
+    pre = "(?<=%s)" % prefix  # positive lookbehind assertion
+    suf = "(?=%s)" % suffix  # lookahead assertion
+    return pre + body + suf
+
+
 class Test(object):
+    """
+    embedded_output_pattern:
+      regular expression to find output desctiption
+
+    dontcare_pattern:
+      regular expression to ignore part of output
+    """
     embedded_output_pattern = None
     dontcare_pattern = None
 
@@ -187,17 +205,6 @@ class Rhino(TestScript):
 
 class JS(Rhino):
     comment = "// JS"
-
-
-def _pattern(prefix, body, suffix):
-    """
-    generate regular pattern, which match with
-    *body* sandwiched between *prefix* and *suffix*
-    but not include *prefix* and *suffix*.
-    """
-    pre = "(?<=%s)" % prefix  # positive lookbehind assertion
-    suf = "(?=%s)" % suffix  # lookahead assertion
-    return pre + body + suf
 
 
 class Perl5(TestScript):
