@@ -19,9 +19,3 @@ Counter::push; #-> スズメ: 2匹
 Counter::push; #-> スズメ: 3匹
 Counter::reset; #-> スズメ: リセット
 Counter::push; #-> スズメ: 1匹
-
-
-
-
-
-

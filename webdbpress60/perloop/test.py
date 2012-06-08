@@ -3,14 +3,13 @@ import sys
 sys.path.insert(0, "../../coderunner")
 from coderunner import test, Perl, LangC, Python, main
 
-'''
+#TODO: is_embedded_output=True
 test(Perl, "bless.pl", """
 HASH(0x7fe511803ea0)
 Counter=HASH(0x7fe511803ea0)
 1匹
 2匹
-""", is_file=True) #TODO: is_embedded_output=True
-#TODO HASH(0x7fce6a003ea0) will change its output
+""", is_file=True)
 
 test(Perl, "counter.pl", """
 HASH(0x7f91a0803ea0)
@@ -31,9 +30,6 @@ Counter=HASH(0x7fbd3a803ea0)
 test(Perl, "inherit.pl", """
 Bar=HASH(0x7fd981810a90)
 """, is_file=True)
-
-'''
-
 
 test(Perl, "counter_1.pl", """
 1匹
@@ -64,7 +60,5 @@ test(Perl, "pack2.pl", """
 スズメ: リセット
 スズメ: 4匹
 """, is_file=True)
-
-
 
 main()
