@@ -24,7 +24,6 @@ import difflib
 import os
 import re
 
-STOP_ON_MISMATCH = True
 tests = []
 
 
@@ -68,7 +67,7 @@ class Test(object):
                 print "got " + "=" * 36
                 print ret
                 print "=" * 40
-            if STOP_ON_MISMATCH:
+            if not args.nonstop:
                 raise AssertionError
 
 
@@ -283,6 +282,7 @@ def show_tests(args):
 
 
 def main():
+    global args
     parser = argparse.ArgumentParser(description='run codes and check output')
     parser.add_argument(
         '--format', dest='format', action='store',
@@ -290,6 +290,10 @@ def main():
             "Print codes and expected outputs in specified format. "
             "When it is specified, not run codes. "
             "(supported: rest)"))
+    parser.add_argument(
+        '--nonstop', dest='nonstop', action='store_true',
+        help=(
+            "Don't stop on failure and run all tests."))
 
     args = parser.parse_args()
     if not args.format:
