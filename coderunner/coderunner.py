@@ -89,7 +89,8 @@ class Test(object):
         print indent(self.expect)
         print "\n"
 
-    def __init__(self, code, expect="", is_file=False, to_run=True, is_embedded_output=False):
+    def __init__(self, code, expect="", is_file=False,
+                 to_run=True, is_embedded_output=False):
         """
         is_file: when code is large you can put it in the other file
         to_run: False when you don't want to run
@@ -247,17 +248,24 @@ class Cpp(Test):
     temp_filename = "tmp.cpp"
     embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) \*/"
 
+    def __init__(self, code, expect="", extra_option=[], **kw):
+        self.extra_option = extra_option
+        super(Cpp, self).__init__(code, expect, **kw)
+
     def run(self):
         if not self.is_file:
             file(self.filename, "w").write(self.code)
 
-        cmd = ("env LC_ALL=en g++ -Wall -W -Wformat=2 -Wcast-qual -Wcast-align "
-               "-Wwrite-strings -Wconversion -Wfloat-equal "
-               "-Wpointer-arith -Woverloaded-virtual -Wnon-virtual-dtor "
-               "-I/opt/local/include/ -O3").split() + [self.filename]
+        cmd = (
+            ("env LC_ALL=en g++ -Wall -W -Wformat=2 -Wcast-qual -Wcast-align "
+             "-Wwrite-strings -Wconversion -Wfloat-equal "
+             "-Wpointer-arith -Woverloaded-virtual -Wnon-virtual-dtor "
+             "-I/opt/local/include/ -O3").split()
+            + self.extra_option + [self.filename])
         ret = self.subproc(cmd)
         if self.to_run:
-            ret += self.subproc(["env", "./a.out"])
+            #TODO: (assert not ret) should be test failure
+            ret = self.subproc(["env", "./a.out"])
         self.check_expect(ret)
 
 
