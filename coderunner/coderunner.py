@@ -27,7 +27,41 @@ import re
 tests = []
 
 
+def _pattern(prefix, body, suffix):
+    """
+    generate regular pattern, which match with
+    *body* sandwiched between *prefix* and *suffix*
+    but not include *prefix* and *suffix*.
+
+    >>> _pattern("<", "([^>]+)", ">")
+    '(?<=<)([^>]+)(?=>)'
+
+    >>> re.findall(_, "aa<abc>de<foo>bar")
+    ['abc', 'foo']
+    """
+    pre = "(?<=%s)" % prefix  # positive lookbehind assertion
+    suf = "(?=%s)" % suffix  # lookahead assertion
+    return pre + body + suf
+
+def _multi_pattern(*patterns):
+    """
+    combine multiple rgular expression
+    >>> _multi_pattern("(A+)", "(B+)")
+    '(?:(A+)|(B+))'
+    >>> re.findall(_, "AAABBBAAA")
+    [('AAA', ''), ('', 'BBB'), ('AAA', '')]
+    """
+    return "(?:%s)" % "|".join(patterns)
+
+
 class Test(object):
+    """
+    embedded_output_pattern:
+      regular expression to find output desctiption
+
+    dontcare_pattern:
+      regular expression to ignore part of output
+    """
     embedded_output_pattern = None
     dontcare_pattern = None
 
@@ -131,11 +165,16 @@ class Test(object):
 
     def get_embedded_output(self):
         data = file(self.filename).read()
-        m = re.search(
-            self.embedded_output_pattern,
-            data, re.DOTALL)
-        assert m
-        return m.groups()[0].strip("\n")
+        pat = re.compile(self.embedded_output_pattern, re.DOTALL)
+        buf = []
+        for match in re.findall(pat, data):
+            for group in match:
+                if group: # not empty string
+                    buf.append(group.strip("\n"))
+
+        assert buf, "no embedded output found"
+        return "\n".join(buf)
+
 
 
 class TestScript(Test):
@@ -187,17 +226,6 @@ class Rhino(TestScript):
 
 class JS(Rhino):
     comment = "// JS"
-
-
-def _pattern(prefix, body, suffix):
-    """
-    generate regular pattern, which match with
-    *body* sandwiched between *prefix* and *suffix*
-    but not include *prefix* and *suffix*.
-    """
-    pre = "(?<=%s)" % prefix  # positive lookbehind assertion
-    suf = "(?=%s)" % suffix  # lookahead assertion
-    return pre + body + suf
 
 
 class Perl5(TestScript):
@@ -269,11 +297,12 @@ class LangC(Test):
             ret += self.subproc(["env", "./a.out"])
         self.check_expect(ret)
 
-
 class Cpp(Test):
     comment = "// C++"
     temp_filename = "tmp.cpp"
-    embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) \*/"
+    embedded_output_pattern = _multi_pattern(
+        r"/\* output \(checked by coderunner\)(.*) \*/",
+        r"//-> ([^\n]+)\n")
 
     def __init__(self, code, expect="", extra_option=[], **kw):
         self.extra_option = extra_option
@@ -337,5 +366,10 @@ def main():
     else:
         show_tests(args)
 
+
+def _test():
+    import doctest
+    doctest.testmod()
+
 if __name__ == "__main__":
-    main()
+    _test()
