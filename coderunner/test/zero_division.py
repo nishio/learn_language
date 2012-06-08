@@ -77,4 +77,10 @@ Exception in thread "main" java.lang.ArithmeticException: Divide by zero
 	at clojure.main.main(main.java:37)
 """)
 
+test(Scheme, r"""
+(display (/ 1 0))
+""", """
++inf.0
+""")
+
 main()

@@ -201,6 +201,14 @@ class Clojure(TestScript):
     comment = "// Clojure"
     embedded_output_pattern = r"\(comment \(output checked by coderunner\)(.*)\(end of comment\)\)"
 
+class Gauche(TestScript):
+    bin = "gosh"
+    comment = "; Gauche"
+    temp_filename = "tmp.scm"
+
+
+class Scheme(Gauche):
+    comment = "; Scheme"
 
 class Java(Test):
     comment = "// Java"

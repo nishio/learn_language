@@ -57,5 +57,12 @@ test(Clojure, """
 Hello
 """)
 
+test(Scheme, r"""
+(display "Hello")
+""", """
+Hello
+""")
+
+
 
 main()
