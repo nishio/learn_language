@@ -244,7 +244,7 @@ class Cpp(Test):
         if not self.is_file:
             file(self.filename, "w").write(self.code)
 
-        cmd = ("g++ -Wall -W -Wformat=2 -Wcast-qual -Wcast-align "
+        cmd = ("env LC_ALL=en g++ -Wall -W -Wformat=2 -Wcast-qual -Wcast-align "
                "-Wwrite-strings -Wconversion -Wfloat-equal "
                "-Wpointer-arith -Woverloaded-virtual -Wnon-virtual-dtor "
                "-I/opt/local/include/ -O3").split() + [self.filename]
