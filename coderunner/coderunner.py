@@ -27,6 +27,16 @@ import re
 tests = []
 
 
+def _indent(s):
+    r"""
+    >>> _indent("aaa")
+    '  aaa'
+    >>> _indent("aaa\nbbb")
+    '  aaa\n  bbb'
+    """
+    return "\n".join("  " + line for line in s.split("\n"))
+
+
 def _pattern(prefix, body, suffix):
     """
     generate regular pattern, which match with
@@ -42,6 +52,7 @@ def _pattern(prefix, body, suffix):
     pre = "(?<=%s)" % prefix  # positive lookbehind assertion
     suf = "(?=%s)" % suffix  # lookahead assertion
     return pre + body + suf
+
 
 def _multi_pattern(*patterns):
     """
@@ -125,10 +136,10 @@ class Test(object):
         """
         print "::"
         print
-        print indent(self.comment)
-        print indent(self.code.strip("\n"))
+        print _indent(self.comment)
+        print _indent(self.code.strip("\n"))
         print "  " + "-" * 20
-        print indent(self.expect.strip("\n"))
+        print _indent(self.expect.strip("\n"))
         print "\n"
 
     def __init__(self, code, expect="", is_file=False,
@@ -339,10 +350,6 @@ def test(lang, *args, **kw):
 def run_tests():
     for test in tests:
         test.run()
-
-
-def indent(s):
-    return "\n".join("  " + line for line in s.split("\n"))
 
 
 def show_tests(args):
