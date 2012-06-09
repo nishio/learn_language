@@ -212,6 +212,7 @@ class Ruby19(TestScript):
 
 
 class Ruby(Ruby19):
+    # on Rackhub bin = "ruby"
     comment = "# Ruby"
 
 
@@ -233,6 +234,7 @@ class JS(Rhino):
 
 class Perl5(TestScript):
     bin = "perl5"
+    # on Rackhub bin = "perl5.14.2"
     comment = "# Perl5"
     temp_filename = "tmp.pl"
     dontcare_pattern = _pattern(r"HASH\(", "0x[0-9a-fX]+", r"\)")
