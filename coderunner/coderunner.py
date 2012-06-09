@@ -168,9 +168,12 @@ class Test(object):
         pat = re.compile(self.embedded_output_pattern, re.DOTALL)
         buf = []
         for match in re.findall(pat, data):
-            for group in match:
-                if group: # not empty string
-                    buf.append(group.strip("\n"))
+            if isinstance(match, str):
+                buf.append(match.strip("\n"))
+            else:
+                for group in match:
+                    if group: # not empty string
+                        buf.append(group.strip("\n"))
 
         assert buf, "no embedded output found"
         return "\n".join(buf)
