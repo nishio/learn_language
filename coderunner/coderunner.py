@@ -75,6 +75,7 @@ class Test(object):
     """
     embedded_output_pattern = None
     dontcare_pattern = None
+    pygments_name = 'none'
 
     def subproc(self, cmd):
         p = subprocess.Popen(
@@ -126,11 +127,27 @@ class Test(object):
 
     def show(self):
         if args.format == "rest":
-            self.show_in_rest(args)
+            self.show_in_rest()
+        elif args.format == "mybook":
+            self.show_for_mybook()
         else:
             raise NotImplementedError
 
-    def show_in_rest(self, args):
+    def show_in_rest(self):
+        """
+        show code. currently output ReST (for my book)
+        """
+        print ".. code-block:: %s" % self.pygments_name
+        print
+        print _indent(self.comment)
+        print _indent(self.code.strip("\n"))
+        print
+        print "::"
+        print
+        print _indent(self.expect.strip("\n"))
+        print "\n"
+
+    def show_for_mybook(self):
         """
         show code. currently output ReST (for my book)
         """
@@ -138,7 +155,7 @@ class Test(object):
         print
         print _indent(self.comment)
         print _indent(self.code.strip("\n"))
-        print "  " + "-" * 20
+        print _indent("-" * 20)
         print _indent(self.expect.strip("\n"))
         print "\n"
 
@@ -207,6 +224,7 @@ class Python27(TestScript):
 
 
 class Python(Python27):
+    pygments_name = "python"
     comment = "# Python"
 
 
@@ -224,6 +242,7 @@ class Ruby19(TestScript):
 
 class Ruby(Ruby19):
     # on Rackhub bin = "ruby"
+    pygments_name = "ruby"
     comment = "# Ruby"
 
 
@@ -241,6 +260,7 @@ class Rhino(TestScript):
 
 class JS(Rhino):
     comment = "// JS"
+    pygments_name = "javascript"
 
 
 class Perl5(TestScript):
@@ -253,6 +273,7 @@ class Perl5(TestScript):
 
 class Perl(Perl5):
     comment = "# Perl"
+    pygments_name = "perl"
 
 _clojure_path = os.path.join(
     os.path.dirname(__file__),
@@ -265,6 +286,7 @@ class Clojure(TestScript):
     bin = "java -cp %s:. clojure.main" % _clojure_path
     temp_filename = "tmp.clj"
     comment = "// Clojure"
+    pygments_name = "clojure"
     embedded_output_pattern = (
         r"\(comment \(output checked by coderunner\)"
         r"(.*)"
@@ -279,11 +301,13 @@ class Gauche(TestScript):
 
 class Scheme(Gauche):
     comment = "; Scheme"
+    pygments_name = "scheme"
 
 
 class Java(Test):
     comment = "// Java"
     temp_filename = "Tmp.java"
+    pygments_name = "java"
 
     def run(self):
         if not self.is_file:
@@ -302,6 +326,7 @@ class LangC(Test):
     comment = "/* C */"
     temp_filename = "tmp.c"
     embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) \*/"
+    pygments_name = "c"
 
     def run(self):
         if not self.is_file:
@@ -319,6 +344,7 @@ class Cpp(Test):
     embedded_output_pattern = _multi_pattern(
         r"/\* output \(checked by coderunner\)(.*) \*/",
         r"//-> ([^\n]+)\n")
+    pygments_name = "cpp"
 
     def __init__(self, code, expect="", extra_option=[], **kw):
         self.extra_option = extra_option
