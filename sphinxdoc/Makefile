@@ -154,3 +154,10 @@ doctest:
 
 source:
 	python make_source.py
+
+deploy:
+	cp -r _build/html/* learn_language
+	cd learn_language; \
+	git add .; \
+	git commit -v; \
+	git push origin gh-pages

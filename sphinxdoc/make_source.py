@@ -18,7 +18,7 @@ def process(testfile, title, outputfile, option=[]):
 def generate_index():
     fo = file("index.rst", "w")
     fo.write("""
-Welcome to LearnLanguage's documentation!
+Welcome to Learn Language's documentation!
 =========================================
 
 Contents:
