@@ -34,6 +34,9 @@ int main(int argc, char *argv[])
   show(1.0);
   show(2.0);
   show(1.5);
+  show(1.75);
+  show(3.5);
+  show(7);
   show(-0.0);
   show(1.0 / 0.0);
   show(-1.0 / 0.0);
@@ -58,6 +61,18 @@ Hexadecimal value 0x3FC00000 in memory,
   00111111110000000000000000000000 as binary,
   1.500000 as float
   1069547520 as unsigned int
+Hexadecimal value 0x3FE00000 in memory,
+  00111111111000000000000000000000 as binary,
+  1.750000 as float
+  1071644672 as unsigned int
+Hexadecimal value 0x40600000 in memory,
+  01000000011000000000000000000000 as binary,
+  3.500000 as float
+  1080033280 as unsigned int
+Hexadecimal value 0x40E00000 in memory,
+  01000000111000000000000000000000 as binary,
+  7.000000 as float
+  1088421888 as unsigned int
 Hexadecimal value 0x80000000 in memory,
   10000000000000000000000000000000 as binary,
   -0.000000 as float
