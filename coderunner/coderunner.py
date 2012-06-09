@@ -137,14 +137,17 @@ class Test(object):
         """
         show code. currently output ReST (for my book)
         """
+        print self.human_name
+        print "=" * len(self.human_name)
+        print
         print ".. code-block:: %s" % self.pygments_name
         print
-        print _indent(self.comment)
         print _indent(self.code.strip("\n"))
-        print
-        print "::"
-        print
-        print _indent(self.expect.strip("\n"))
+        if not args.suppress_expected:
+            print
+            print "::"
+            print
+            print _indent(self.expect.strip("\n"))
         print "\n"
 
     def show_for_mybook(self):
@@ -153,7 +156,6 @@ class Test(object):
         """
         print "::"
         print
-        print _indent(self.comment)
         print _indent(self.code.strip("\n"))
         print _indent("-" * 20)
         print _indent(self.expect.strip("\n"))
@@ -217,63 +219,72 @@ class TestScript(Test):
         self.check_expect(ret)
 
 
-class Python27(TestScript):
-    bin = "python2.7"
-    comment = "# Python2.7"
+class _Python(TestScript):
+    pygments_name = "python"
     temp_filename = "tmp.py"
 
 
+class Python27(_Python):
+    bin = "python2.7"
+    human_name = "Python2.7"
+
+
 class Python(Python27):
-    pygments_name = "python"
-    comment = "# Python"
+    human_name = "Python"
 
 
-class Ruby18(TestScript):
+class _Ruby(TestScript):
+    temp_filename = "tmp.rb"
+    pygments_name = "ruby"
+
+
+class Ruby18(_Ruby):
     bin = "ruby1.8"
-    comment = "# Ruby1.8"
-    temp_filename = "tmp.rb"
+    human_name = "Ruby1.8"
 
 
-class Ruby19(TestScript):
+class Ruby19(_Ruby):
     bin = "ruby1.9"
-    comment = "# Ruby1.9"
-    temp_filename = "tmp.rb"
+    human_name = "Ruby1.9"
 
 
 class Ruby(Ruby19):
     # on Rackhub bin = "ruby"
-    pygments_name = "ruby"
-    comment = "# Ruby"
+    human_name = "Ruby"
 
 
-class NodeJS(TestScript):
+class _JS(TestScript):
+    temp_filename = "tmp.js"
+    pygments_name = "javascript"
+
+class NodeJS(_JS):
     bin = "node"
-    comment = "// Node.js"
-    temp_filename = "tmp.js"
+    human_name = "Node.js"
 
 
-class Rhino(TestScript):
+class Rhino(_JS):
     bin = "rhino"
-    comment = "// Rhino"
-    temp_filename = "tmp.js"
+    human_name = "Rhino"
 
 
 class JS(Rhino):
-    comment = "// JS"
-    pygments_name = "javascript"
+    human_name = "JavaScript"
 
 
-class Perl5(TestScript):
-    bin = "perl5"
-    # on Rackhub bin = "perl5.14.2"
-    comment = "# Perl5"
+class _Perl(TestScript):
     temp_filename = "tmp.pl"
     dontcare_pattern = _pattern(r"HASH\(", "0x[0-9a-fX]+", r"\)")
+    pygments_name = "perl"
+
+class Perl5(_Perl):
+    bin = "perl5"
+    # on Rackhub bin = "perl5.14.2"
+    human_name = "Perl5"
 
 
 class Perl(Perl5):
-    comment = "# Perl"
-    pygments_name = "perl"
+    human_name = "Perl"
+
 
 _clojure_path = os.path.join(
     os.path.dirname(__file__),
@@ -285,7 +296,7 @@ if not os.path.isfile(_clojure_path):
 class Clojure(TestScript):
     bin = "java -cp %s:. clojure.main" % _clojure_path
     temp_filename = "tmp.clj"
-    comment = "// Clojure"
+    human_name = "Clojure"
     pygments_name = "clojure"
     embedded_output_pattern = (
         r"\(comment \(output checked by coderunner\)"
@@ -293,19 +304,22 @@ class Clojure(TestScript):
         r"\(end of comment\)\)")
 
 
-class Gauche(TestScript):
-    bin = "gosh"
-    comment = "; Gauche"
+class _Scheme(TestScript):
     temp_filename = "tmp.scm"
-
-
-class Scheme(Gauche):
-    comment = "; Scheme"
     pygments_name = "scheme"
 
 
+class Gauche(_Scheme):
+    bin = "gosh"
+    human_name = "Gauche"
+
+
+class Scheme(Gauche):
+    human_name = "Scheme"
+
+
 class Java(Test):
-    comment = "// Java"
+    human_name = "Java"
     temp_filename = "Tmp.java"
     pygments_name = "java"
 
@@ -323,7 +337,7 @@ class Java(Test):
 
 
 class LangC(Test):
-    comment = "/* C */"
+    human_name = "C"
     temp_filename = "tmp.c"
     embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) \*/"
     pygments_name = "c"
@@ -339,7 +353,7 @@ class LangC(Test):
         self.check_expect(ret)
 
 class Cpp(Test):
-    comment = "// C++"
+    human_name = "C++"
     temp_filename = "tmp.cpp"
     embedded_output_pattern = _multi_pattern(
         r"/\* output \(checked by coderunner\)(.*) \*/",
@@ -381,7 +395,11 @@ def main():
         help=(
             "Print codes and expected outputs in specified format. "
             "When it is specified, not run codes. "
-            "(supported: rest)"))
+            "(supported: rest, mybook)"))
+    parser.add_argument(
+        '--suppress-expected', dest='suppress_expected', action='store_true',
+        help=(
+            "For --format=rest. Don't show expected output."))
     parser.add_argument(
         '--nonstop', dest='nonstop', action='store_true',
         help=(
