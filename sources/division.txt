@@ -1,0 +1,120 @@
+=====
+1 / 2
+=====
+
+Python
+======
+
+.. code-block:: python
+
+  print 1 / 2
+
+::
+
+  0
+
+
+Python
+======
+
+.. code-block:: python
+
+  from __future__ import division
+  print 1 / 2
+
+::
+
+  0.5
+
+
+Ruby
+====
+
+.. code-block:: ruby
+
+  puts 1 / 2
+
+::
+
+  0
+
+
+JavaScript
+==========
+
+.. code-block:: javascript
+
+  print(1 / 2);
+
+::
+
+  0.5
+
+
+Perl
+====
+
+.. code-block:: perl
+
+  print 1 / 2;
+
+::
+
+  0.5
+
+
+Java
+====
+
+.. code-block:: java
+
+  public class Tmp {
+      public static void main(String[] args){
+          System.out.println(1 / 2);
+      }
+  }
+
+::
+
+  0
+
+
+C++
+===
+
+.. code-block:: cpp
+
+  #include <stdio.h>
+  int main(){
+    printf("%d\n", 1 / 2);
+  }
+
+::
+
+  0
+
+
+Clojure
+=======
+
+.. code-block:: clojure
+
+  (print (/ 1 2))
+
+::
+
+  1/2
+
+
+Scheme
+======
+
+.. code-block:: scheme
+
+  (display (/ 1 2))
+
+::
+
+  1/2
+
+

@@ -1,0 +1,12 @@
+
+Welcome to LearnLanguage's documentation!
+=========================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   hello.rst
+   zero_division.rst
+   division.rst
