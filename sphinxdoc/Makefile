@@ -153,11 +153,4 @@ doctest:
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
 source:
-	echo "=====" > hello.rst
-	echo "hello" >> hello.rst
-	echo "=====" >> hello.rst
-	cd ../coderunner/test; python hello.py --format=rest --suppress-expected >> ../../sphinxdoc/hello.rst
-	echo "=====" > zero_division.rst
-	echo "1 / 0" >> zero_division.rst
-	echo "=====" >> zero_division.rst
-	cd ../coderunner/test; python zero_division.py --format=rest >> ../../sphinxdoc/zero_division.rst
+	python make_source.py
