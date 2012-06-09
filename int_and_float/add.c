@@ -49,14 +49,14 @@ int main(int argc, char *argv[])
 /* output (checked by coderunner)
 Hexadecimal value 0x40400000 in memory,
   01000000010000000000000000000000 as binary,
-  3.000000 as float
-  1077936128 as int
+  3 as float
+  1077936128 as uint
 Hexadecimal value 0x40E00000 in memory,
   01000000111000000000000000000000 as binary,
-  7.000000 as float
-  1088421888 as int
+  7 as float
+  1088421888 as uint
 Hexadecimal value 0x81200000 in memory,
   10000001001000000000000000000000 as binary,
-  -0.000000 as float
-  -2128609280 as int
+  -2.93874e-38 as float
+  2166358016 as uint
  */
