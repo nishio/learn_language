@@ -124,7 +124,7 @@ class Test(object):
             if not args.nonstop:
                 raise AssertionError
 
-    def show(self, args):
+    def show(self):
         if args.format == "rest":
             self.show_in_rest(args)
         else:
@@ -347,16 +347,6 @@ def test(lang, *args, **kw):
         lang(*args, **kw))
 
 
-def run_tests():
-    for test in tests:
-        test.run()
-
-
-def show_tests(args):
-    for test in tests:
-        test.show(args)
-
-
 def main():
     global args
     parser = argparse.ArgumentParser(description='run codes and check output')
@@ -373,10 +363,12 @@ def main():
 
     args = parser.parse_args()
     if not args.format:
-        run_tests()
+        for test in tests:
+            test.run()
         print "ok."
     else:
-        show_tests(args)
+        for test in tests:
+            test.show()
 
 
 def _test():
