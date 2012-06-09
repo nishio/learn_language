@@ -1,3 +1,5 @@
 a.out
 tmp.*
 Tmp.java
+*.pyc
+*.class
