@@ -45,4 +45,8 @@ process(
     "../coderunner/test/division.py",
     "1 / 2", "division.rst")
 
+process(
+    "../python/errors.py",
+    "Python Errors", "python_errors.rst")
+
 generate_index()
