@@ -41,7 +41,8 @@ How to contribute
 =================
 
 I greatly appreciate your contribution.
-You can contact me by e-mail: nishio (dot) hirokazu (at) gmain (dot) com
+You can contact me by e-mail: nishio (dot) hirokazu (at) gmain (dot) com.
+Or simply use pull-request of github.
 
 
 Thanks
