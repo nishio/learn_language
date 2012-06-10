@@ -230,7 +230,7 @@ class Python27(_Python):
 
 
 class Python30(_Python):
-    bin = "python3.0"
+    bin = "python3"
     human_name = "Python3.0"
 
 
@@ -254,7 +254,6 @@ class Ruby19(_Ruby):
 
 
 class Ruby(Ruby19):
-    # on Rackhub bin = "ruby"
     human_name = "Ruby"
 
 
@@ -283,7 +282,6 @@ class _Perl(TestScript):
 
 class Perl5(_Perl):
     bin = "perl5"
-    # on Rackhub bin = "perl5.14.2"
     human_name = "Perl5"
 
 
@@ -327,6 +325,7 @@ class Java(Test):
     human_name = "Java"
     temp_filename = "Tmp.java"
     pygments_name = "java"
+    bin = "javac"
 
     def run(self):
         if not self.is_file:
@@ -346,6 +345,7 @@ class LangC(Test):
     temp_filename = "tmp.c"
     embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) \*/"
     pygments_name = "c"
+    bin = "gcc"
 
     def run(self):
         if not self.is_file:
@@ -364,6 +364,7 @@ class Cpp(Test):
         r"/\* output \(checked by coderunner\)(.*) \*/",
         r"//-> ([^\n]+)\n")
     pygments_name = "cpp"
+    bin = "g++"
 
     def __init__(self, code, expect="", extra_option=[], **kw):
         self.extra_option = extra_option
@@ -424,5 +425,19 @@ def _test():
     import doctest
     doctest.testmod()
 
+def _test_executables():
+    print "check whether expected executables exist:"
+    bin_path = os.path.join(os.path.dirname(__file__), 'bin')
+    for lang in [Python, Ruby, Perl, JS, Scheme, Java, LangC, Cpp]:
+        cmd = "env PATH=%s:$PATH which %s" % (bin_path, lang.bin)
+        ret = subprocess.call(cmd, shell=True)
+        if ret != 0:
+            print (
+                "Test '%s' expected executable named '%s' in $PATH. " % (
+                lang.__name__, lang.bin))
+            print "  install it or make symbolic link to it in coderunner/bin/"
+
+
 if __name__ == "__main__":
     _test()
+    _test_executables()
