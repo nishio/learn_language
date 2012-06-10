@@ -229,6 +229,11 @@ class Python27(_Python):
     human_name = "Python2.7"
 
 
+class Python30(_Python):
+    bin = "python3.0"
+    human_name = "Python3.0"
+
+
 class Python(Python27):
     human_name = "Python"
 
