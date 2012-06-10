@@ -69,7 +69,7 @@ TypeError: unorderable types: NoneType() < NoneType()
 """)
 
 """
-Ordering Comparisons
+Division
 """
 
 test(Python27, """
