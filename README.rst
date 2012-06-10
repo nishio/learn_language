@@ -19,9 +19,32 @@ Contents
   tool to make html files on
   http://nishio.github.com/learn_language/
   from test codes
+  (it should be changed to better name)
 
 
-THANKS
+License
+=======
+
+All small test codes are under these license:
+
+- If no arthor are specified, it is public domain.
+- If some arthor are specified, it is CC-BY 2.0.
+
+Its purpose is not to disturb reader's work.
+
+Tools (coderunner, sphinxdoc) are under GPLv3.
+It is to ensure reusability of codes
+even if I give up to maintain this projects.
+
+
+How to contribute
+=================
+
+I greatly appreciate your contribution.
+You can contact me by e-mail: nishio (dot) hirokazu (at) gmain (dot) com
+
+
+Thanks
 ======
 
 tokibito, aodag, moriyoshi, Dragan Zivkovic
