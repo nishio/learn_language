@@ -1,0 +1,653 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python Errors &mdash; LearnLanguage 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="LearnLanguage 1.0 documentation" href="index.html" />
+    <link rel="prev" title="1 / 2" href="division.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="division.html" title="1 / 2"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">LearnLanguage 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="python-errors">
+<h1>Python Errors<a class="headerlink" href="#python-errors" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>if true:
+print 1</pre>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 2
+    print 1
+        ^
+IndentationError: expected an indented block</pre>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Python<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>if true:
+    print 1
+   print 2</pre>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 3
+    print 2
+          ^
+IndentationError: unindent does not match any outer indentation level</pre>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Python<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre># -*- encoding: utf-8 -*-
+if true:
+　print 1 # unicode space character</pre>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 3
+    　print 1 # unicode space character
+    ^
+SyntaxError: invalid syntax</pre>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>Python<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;こんにちは&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+SyntaxError: Non-ASCII character '\xe3' in file tmp.py on line 1, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details</pre>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>Python<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># -*- encoding: utf-8 -*-</span>
+<span class="k">print</span> <span class="s">&quot;こんにちは&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>こんにちは</pre>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>Python<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span> <span class="k">pass</span>
+
+<span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 3, in &lt;module&gt;
+    foo(1)
+TypeError: foo() takes no arguments (1 given)</pre>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>Python<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span> <span class="k">pass</span>
+
+<span class="n">foo</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 3, in &lt;module&gt;
+    foo(y=1)
+TypeError: foo() got an unexpected keyword argument 'y'</pre>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>Python<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span> <span class="k">pass</span>
+
+<span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 3, in &lt;module&gt;
+    foo(1, z=1)
+TypeError: foo() takes at least 2 arguments (2 given)</pre>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>Python<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">x</span><span class="p">,</span> <span class="n">kw</span>
+
+<span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 4, in &lt;module&gt;
+    foo(1, x=2)
+TypeError: foo() got multiple values for keyword argument 'x'</pre>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>Python<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;&#39;</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    ''[0]
+IndexError: string index out of range</pre>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>Python<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;&#39;</span> <span class="o">+</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    '' + 0
+TypeError: cannot concatenate 'str' and 'int' objects</pre>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>Python<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">0</span> <span class="o">+</span> <span class="s">&#39;&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    0 + ''
+TypeError: unsupported operand type(s) for +: 'int' and 'str'</pre>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>Python<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">-</span><span class="s">&#39;&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    -''
+TypeError: bad operand type for unary -: 'str'</pre>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>Python<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    x
+NameError: name 'x' is not defined</pre>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>Python<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">u&#39;&#39;</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\xFF</span><span class="s">&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    u'' + '\xFF'
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xff in position 0: ordinal not in range(128)</pre>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>Python<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{}[</span><span class="s">&#39;x&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    {}['x']
+KeyError: 'x'</pre>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>Python<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[]</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    [].x
+AttributeError: 'list' object has no attribute 'x'</pre>
+</div>
+</div>
+<div class="section" id="id17">
+<h2>Python<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">x</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    import x
+ImportError: No module named x</pre>
+</div>
+</div>
+<div class="section" id="id18">
+<h2>Python<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">int</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    int("a")
+ValueError: invalid literal for int() with base 10: 'a'</pre>
+</div>
+</div>
+<div class="section" id="id19">
+<h2>Python<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    "%s %s %s" % (1, 2)
+TypeError: not enough arguments for format string</pre>
+</div>
+</div>
+<div class="section" id="id20">
+<h2>Python<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    "%s %s" % [1, 2]
+TypeError: not enough arguments for format string</pre>
+</div>
+</div>
+<div class="section" id="id21">
+<h2>Python<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    1 / 0
+ZeroDivisionError: integer division or modulo by zero</pre>
+</div>
+</div>
+<div class="section" id="id22">
+<h2>Python<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">return</span>
+
+<span class="n">foo</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 4, in &lt;module&gt;
+    foo() + 1
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'</pre>
+</div>
+</div>
+<div class="section" id="id23">
+<h2>Python<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="n">Foo</span><span class="o">.</span><span class="n">say</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 5, in &lt;module&gt;
+    Foo.say()
+TypeError: unbound method say() must be called with Foo instance as first argument (got nothing instead)</pre>
+</div>
+</div>
+<div class="section" id="id24">
+<h2>Python<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">AB</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">BA</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">AB</span><span class="p">,</span> <span class="n">BA</span><span class="p">):</span> <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 5, in &lt;module&gt;
+    class C(AB, BA): pass
+TypeError: Error when calling the metaclass bases
+    Cannot create a consistent method resolution
+order (MRO) for bases B, A</pre>
+</div>
+</div>
+<div class="section" id="id25">
+<h2>Python<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="k">print</span> <span class="n">func</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">func</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">func</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id26">
+<h2>Python<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;called&quot;</span>
+
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">()):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">called</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id27">
+<h2>Python<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># assignment in bar doesn&#39;t affect outside</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">def</span> <span class="nf">bar</span><span class="p">():</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">bar</span><span class="p">()</span>
+    <span class="k">print</span> <span class="n">x</span>
+
+<span class="n">foo</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id28">
+<h2>Python<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># list comprehension doesn&#39;t make scope</span>
+<span class="n">funcs</span> <span class="o">=</span> <span class="p">[(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="k">print</span> <span class="n">funcs</span><span class="p">[</span><span class="mi">0</span><span class="p">]()</span>
+<span class="k">print</span> <span class="n">funcs</span><span class="p">[</span><span class="mi">1</span><span class="p">]()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">2</span>
+<span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id29">
+<h2>Python<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">foo</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 5, in &lt;module&gt;
+    foo()
+  File "tmp.py", line 3, in foo
+    x += 1
+UnboundLocalError: local variable 'x' referenced before assignment</pre>
+</div>
+</div>
+<div class="section" id="id30">
+<h2>Python<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">foo</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id31">
+<h2>Python<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># class variable is not a global variable</span>
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="n">x</span>
+
+<span class="n">Foo</span><span class="p">()</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 7, in &lt;module&gt;
+    Foo().foo()
+  File "tmp.py", line 5, in foo
+    print x
+NameError: global name 'x' is not defined</pre>
+</div>
+</div>
+<div class="section" id="id32">
+<h2>Python<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span>
+
+<span class="n">Foo</span><span class="p">()</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id33">
+<h2>Python<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># class variable is shared by instances</span>
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span>
+
+<span class="n">Foo</span><span class="p">()</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>
+<span class="n">Foo</span><span class="p">()</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id34">
+<h2>Python<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span> <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+    def foo(a=1, b): pass
+SyntaxError: non-default argument follows default argument</pre>
+</div>
+</div>
+<div class="section" id="id35">
+<h2>Python<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span> <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+    def foo(a=1, b): pass
+SyntaxError: non-default argument follows default argument</pre>
+</div>
+</div>
+<div class="section" id="id36">
+<h2>Python<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">object</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    object.a = 1
+TypeError: can't set attributes of built-in/extension type 'object'</pre>
+</div>
+</div>
+<div class="section" id="id37">
+<h2>Python<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MetaFoo</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">MetaBar</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">MetaFoo</span>
+
+<span class="k">class</span> <span class="nc">Bar</span><span class="p">(</span><span class="n">Foo</span><span class="p">):</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">MetaBar</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 6, in &lt;module&gt;
+    class Bar(Foo):
+TypeError: Error when calling the metaclass bases
+    metaclass conflict: the metaclass of a derived class must be a (non-strict) subclass of the metaclasses of all its bases</pre>
+</div>
+</div>
+<div class="section" id="id38">
+<h2>Python<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">foo</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 7, in &lt;module&gt;
+    f.foo = 1
+AttributeError: can't set attribute</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Python Errors</a><ul>
+<li><a class="reference internal" href="#python">Python</a></li>
+<li><a class="reference internal" href="#id1">Python</a></li>
+<li><a class="reference internal" href="#id2">Python</a></li>
+<li><a class="reference internal" href="#id3">Python</a></li>
+<li><a class="reference internal" href="#id4">Python</a></li>
+<li><a class="reference internal" href="#id5">Python</a></li>
+<li><a class="reference internal" href="#id6">Python</a></li>
+<li><a class="reference internal" href="#id7">Python</a></li>
+<li><a class="reference internal" href="#id8">Python</a></li>
+<li><a class="reference internal" href="#id9">Python</a></li>
+<li><a class="reference internal" href="#id10">Python</a></li>
+<li><a class="reference internal" href="#id11">Python</a></li>
+<li><a class="reference internal" href="#id12">Python</a></li>
+<li><a class="reference internal" href="#id13">Python</a></li>
+<li><a class="reference internal" href="#id14">Python</a></li>
+<li><a class="reference internal" href="#id15">Python</a></li>
+<li><a class="reference internal" href="#id16">Python</a></li>
+<li><a class="reference internal" href="#id17">Python</a></li>
+<li><a class="reference internal" href="#id18">Python</a></li>
+<li><a class="reference internal" href="#id19">Python</a></li>
+<li><a class="reference internal" href="#id20">Python</a></li>
+<li><a class="reference internal" href="#id21">Python</a></li>
+<li><a class="reference internal" href="#id22">Python</a></li>
+<li><a class="reference internal" href="#id23">Python</a></li>
+<li><a class="reference internal" href="#id24">Python</a></li>
+<li><a class="reference internal" href="#id25">Python</a></li>
+<li><a class="reference internal" href="#id26">Python</a></li>
+<li><a class="reference internal" href="#id27">Python</a></li>
+<li><a class="reference internal" href="#id28">Python</a></li>
+<li><a class="reference internal" href="#id29">Python</a></li>
+<li><a class="reference internal" href="#id30">Python</a></li>
+<li><a class="reference internal" href="#id31">Python</a></li>
+<li><a class="reference internal" href="#id32">Python</a></li>
+<li><a class="reference internal" href="#id33">Python</a></li>
+<li><a class="reference internal" href="#id34">Python</a></li>
+<li><a class="reference internal" href="#id35">Python</a></li>
+<li><a class="reference internal" href="#id36">Python</a></li>
+<li><a class="reference internal" href="#id37">Python</a></li>
+<li><a class="reference internal" href="#id38">Python</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="division.html"
+                        title="previous chapter">1 / 2</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/python_errors.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="division.html" title="1 / 2"
+             >previous</a> |</li>
+        <li><a href="index.html">LearnLanguage 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, NISHIO Hirokazu.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
