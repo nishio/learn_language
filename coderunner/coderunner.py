@@ -25,7 +25,9 @@ import os
 import re
 
 tests = []
-
+BIN_PATH = os.path.join(os.path.abspath(
+        os.path.dirname(__file__)), 'bin')
+PATH = ":".join([BIN_PATH] + os.environ.get('PATH', '').split(":"))
 
 def _indent(s):
     r"""
@@ -81,7 +83,8 @@ class Test(object):
         p = subprocess.Popen(
             cmd,
             stderr=subprocess.STDOUT,
-            stdout=subprocess.PIPE)
+            stdout=subprocess.PIPE,
+            env={"PATH": PATH})
         ret, _dummy = p.communicate("")
         ret = ret.strip("\n")
         return ret
@@ -230,11 +233,11 @@ class Python27(_Python):
 
 
 class Python30(_Python):
-    bin = "python3"
+    bin = "python3.0"
     human_name = "Python3.0"
 
 
-class Python(Python27):
+class Python(Python30):
     human_name = "Python"
 
 
@@ -427,10 +430,9 @@ def _test():
 
 def _test_executables():
     print "check whether expected executables exist:"
-    bin_path = os.path.join(os.path.dirname(__file__), 'bin')
     for lang in [Python, Ruby, Perl, JS, Scheme, Java, LangC, Cpp]:
-        cmd = "env PATH=%s:$PATH which %s" % (bin_path, lang.bin)
-        ret = subprocess.call(cmd, shell=True)
+        cmd = "which %s" % lang.bin
+        ret = subprocess.call(cmd, shell=True, env={"PATH": PATH})
         if ret != 0:
             print (
                 "Test '%s' expected executable named '%s' in $PATH. " % (
