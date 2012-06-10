@@ -19,18 +19,21 @@ def generate_index():
     fo = file("index.rst", "w")
     fo.write("""
 Welcome to Learn Language's documentation!
-=========================================
+==========================================
+
+This project is currently storing small test codes and its output.
 
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
 """)
     for page in pages:
         fo.write("   %s\n" % page)
 
     fo.close()
+
 
 process(
     "../coderunner/test/hello.py",
