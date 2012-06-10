@@ -2,47 +2,18 @@
  Learn Language
 ================
 
-言語を学ぶ過程で書いた短いテストコードとか
-言語を教えるときに書いたサンプルコードとかは
-「こういうコードでこういう出力が出るはず」という「テスト」なのだから
-動作を確認した後放置したり消したりするのではなく、
-回帰テストできるようにしておくべきではないか。
-そうすれば例えばバージョンアップで挙動が変わったことにも気づくことが出来る。
+When you learn/teach programming languages
+you will write small codes.
+
+Pairs of those codes and outputs are *tests*.
+To store them and run them helps to know what is changed.
 
 
-folders
-=======
+Contents
+========
 
-- <language_name>
-  その言語を勉強するためのワークツリー
-  もろもろの細かい学習用コードとか処理系バイナリとかを置く
-
-- <topic_name>
-  何らかのトピックについてのコード
-
-TODO
-====
-
-- README.rstを英語にする
-- README.rst, foo/README.rst, bar/README.rstをindex.rst, foo.rst, bar.rstって名前でコピーして
-  適切なtoctree要素を突っ込んでSphinxでビルドしてくれるようなスクリプトがあるとよい？
-- README_JA.rstも同様に収拾するスクリプトがあるといい
-- テストコードからReSTを出力してSphinxでビルドしたら見栄え良くなるんじゃないか？
-  http://sphinx.pocoo.org/markup/code.html
-  →現状とてもラフな実装になっている(sphinxdoc/Makefile の sourceターゲット)
-  hello.rstは出力をサプレスしたい。言語の名前はコメントとして埋め込むのではなくセクションにしたい。
-  →それ実装した。多言語のページはそれでいいけど、Python Errorsのページなんかは全部Pythonだから
-  セクションの表示をサプレスするか、なんか指定する方法が必要か。
-- 書きかけ原稿のサンプルコードも持ってくる
-- 出力をしないことを期待しているコードがセグフォで死んだ場合、
-  エラー出力に書いているわけではないので出力をしてなくてテストが成功する。
-- 行単位で期待する出力を埋め込むことができたほうが見やすいケースがある(例 webdbpress60/scope.php)
-  行単位の出力埋め込みはサポートしたのでテストコードの方を修正。
-- 環境によってはインストールされているバイナリの名前が違ったりする(当たり前)
-  現状それでコケた時に原因や修正すべき場所がわかりにくすぎる。どうする？
-- sys.pathをカレントディレクトリからの相対パスにしているけど__file__からの計算にするべき
-- sys.pathを__file__からにすると、スクリプトの置かれているディレクトリ以外から起動できるようになるが、
-  相対パスで別のファイルを指して実行しているプログラムはファイルを見つけられない。どうする？
+- coderunner:
+  tool to run codes and check their output
 
 
 THANKS
