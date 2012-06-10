@@ -15,6 +15,11 @@ Contents
 - coderunner:
   tool to run codes and check their output
 
+- sphinxdoc:
+  tool to make html files on
+  http://nishio.github.com/learn_language/
+  from test codes
+
 
 THANKS
 ======
