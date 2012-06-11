@@ -25,7 +25,12 @@ import sys, os
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinxtogithub']
+
+# $ easy_install -ZU sphinxtogithub
+# $ easy_install -ZU sphinxcontrib-googleanalytics
+extensions = ['sphinxtogithub', 'sphinxcontrib.googleanalytics']
+
+googleanalytics_id = 'UA-668701-12'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
