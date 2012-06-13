@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# LearnLanguage documentation build configuration file, created by
+# Learn Languages documentation build configuration file, created by
 # sphinx-quickstart on Sat Jun  9 22:23:29 2012.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'LearnLanguage'
+project = u'Learn Languages'
 copyright = u'2012, NISHIO Hirokazu'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -64,7 +64,7 @@ release = '1.0'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = []
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -164,7 +164,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'LearnLanguagedoc'
+htmlhelp_basename = 'LearnLanguagesdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -183,7 +183,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'LearnLanguage.tex', u'LearnLanguage Documentation',
+  ('index', 'LearnLanguages.tex', u'Learn Languages Documentation',
    u'NISHIO Hirokazu', 'manual'),
 ]
 
@@ -213,7 +213,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'learnlanguage', u'LearnLanguage Documentation',
+    ('index', 'learnlanguages', u'Learn Languages Documentation',
      [u'NISHIO Hirokazu'], 1)
 ]
 
@@ -227,8 +227,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'LearnLanguage', u'LearnLanguage Documentation',
-   u'NISHIO Hirokazu', 'LearnLanguage', 'One line description of project.',
+  ('index', 'LearnLanguages', u'Learn Languages Documentation',
+   u'NISHIO Hirokazu', 'LearnLanguages', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -245,7 +245,7 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'LearnLanguage'
+epub_title = u'Learn Languages'
 epub_author = u'NISHIO Hirokazu'
 epub_publisher = u'NISHIO Hirokazu'
 epub_copyright = u'2012, NISHIO Hirokazu'

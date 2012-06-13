@@ -1,11 +1,12 @@
 import subprocess
+import os
 
 pages = []
 
 def process(testfile, title, outputfile, option=[]):
     ret = subprocess.check_output([
             "python", testfile, "--format=rest"] + option)
-    fo = file(outputfile, "w")
+    fo = file(os.path.join("source", outputfile) , "w")
     fo.write("=" * len(title))
     fo.write("\n%s\n" % title)
     fo.write("=" * len(title))
@@ -16,7 +17,7 @@ def process(testfile, title, outputfile, option=[]):
 
 
 def generate_index():
-    fo = file("index.rst", "w")
+    fo = file(os.path.join("source", "index.rst"), "w")
     fo.write("""
 Welcome to Learn Language's documentation!
 ==========================================
