@@ -1,23 +1,57 @@
+================
+ Learn Language
+================
 
-Welcome to Learn Language's documentation!
-==========================================
+To run and read codes helps you to learn language's core concept.
 
-This project is currently storing small test codes and its output.
+Project
+=======
 
-.. raw:: html
+- coderunner:
+  tool to run codes and check their output
 
-   For detail, visit my repository:
-   <a href="https://github.com/nishio/learn_language/"
-      onclick="pageTracker._trackPageview('/github')">
-      https://github.com/nishio/learn_language/
-   </a>
+- doc:
+  tool to make html files on
+  http://nishio.github.com/learn_language/
+  from test codes
 
-Contents:
+for detail visit each project page
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
-   hello.rst
-   zero_division.rst
-   division.rst
-   python_errors.rst
+   coderunner
+   doc
+   test_index
+
+
+
+License
+=======
+
+All test codes for coderunner are under these license:
+
+- If no arthor are specified, it is public domain.
+- If some arthor are specified, it is CC-BY 2.0.
+
+Its purpose is not to disturb reader's work.
+
+Tools (coderunner, sphinxdoc) are under GPLv3.
+It is to ensure reusability of codes
+even if I give up to maintain this projects.
+
+
+How to contribute
+=================
+
+I greatly appreciate your contribution.
+You can contact me by e-mail: nishio (dot) hirokazu (at) gmain (dot) com.
+Or simply use pull-request of github.
+
+
+Thanks
+======
+
+tokibito, aodag, moriyoshi, Dragan Zivkovic
+
+
