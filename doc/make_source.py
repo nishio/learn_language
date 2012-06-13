@@ -24,6 +24,14 @@ Welcome to Learn Language's documentation!
 
 This project is currently storing small test codes and its output.
 
+.. raw:: html
+
+   For detail, visit my repository:
+   <a href="https://github.com/nishio/learn_language/"
+      onclick="pageTracker._trackPageview('/github')">
+      https://github.com/nishio/learn_language/
+   </a>
+
 Contents:
 
 .. toctree::
