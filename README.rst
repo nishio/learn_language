@@ -4,8 +4,8 @@
 
 To run and read codes helps you to learn language's core concept.
 
-Contents
-========
+Project
+=======
 
 - coderunner:
   tool to run codes and check their output
@@ -14,6 +14,10 @@ Contents
   tool to make html files on
   http://nishio.github.com/learn_language/
   from test codes
+
+for detail visit each project page
+
+.. toctree::
 
 
 
