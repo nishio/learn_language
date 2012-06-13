@@ -17,12 +17,10 @@ def process(testfile, title, outputfile, option=[]):
 
 
 def generate_index():
-    fo = file(os.path.join("source", "index.rst"), "w")
+    fo = file(os.path.join("source", "test_index.rst"), "w")
     fo.write("""
-Welcome to Learn Language's documentation!
-==========================================
-
-This project is currently storing small test codes and its output.
+tests and outputs
+=================
 
 .. raw:: html
 
