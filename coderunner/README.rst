@@ -2,7 +2,13 @@
  coderunner
 ============
 
-This is a tool to run test codes and check outputs.
+This is a tool to run codes and check outputs.
+
+When you learn/teach programming languages
+you will write small codes.
+
+Pairs of those codes and outputs are *tests*.
+To store and run them helps to know what is changed.
 
 Usage
 =====

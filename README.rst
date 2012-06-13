@@ -2,12 +2,7 @@
  Learn Language
 ================
 
-When you learn/teach programming languages
-you will write small codes.
-
-Pairs of those codes and outputs are *tests*.
-To store them and run them helps to know what is changed.
-
+To run and read codes helps you to learn language's core concept.
 
 Contents
 ========
@@ -15,17 +10,17 @@ Contents
 - coderunner:
   tool to run codes and check their output
 
-- sphinxdoc:
+- doc:
   tool to make html files on
   http://nishio.github.com/learn_language/
   from test codes
-  (it should be changed to better name)
+
 
 
 License
 =======
 
-All small test codes are under these license:
+All test codes for coderunner are under these license:
 
 - If no arthor are specified, it is public domain.
 - If some arthor are specified, it is CC-BY 2.0.
