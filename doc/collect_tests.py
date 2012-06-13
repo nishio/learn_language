@@ -1,7 +1,9 @@
 import subprocess
 import os
+import shutil
+import collect_readme
 
-pages = []
+toc = []
 
 def process(testfile, title, outputfile, option=[]):
     ret = subprocess.check_output([
@@ -12,36 +14,14 @@ def process(testfile, title, outputfile, option=[]):
     fo.write("=" * len(title))
     fo.write("\n\n")
     fo.write(ret)
-    pages.append(outputfile)
+    toc.append(outputfile)
     print title, "done"
 
 
 def generate_index():
-    fo = file(os.path.join("source", "index.rst"), "w")
-    fo.write("""
-Welcome to Learn Language's documentation!
-==========================================
-
-This project is currently storing small test codes and its output.
-
-.. raw:: html
-
-   For detail, visit my repository:
-   <a href="https://github.com/nishio/learn_language/"
-      onclick="pageTracker._trackPageview('/github')">
-      https://github.com/nishio/learn_language/
-   </a>
-
-Contents:
-
-.. toctree::
-   :maxdepth: 1
-
-""")
-    for page in pages:
-        fo.write("   %s\n" % page)
-
-    fo.close()
+    INDEX = "source/test_index.rst"
+    shutil.copy("rst_template/test_index.rst", INDEX)
+    collect_readme.update_toc(toc, target=INDEX, maxdepth=1)
 
 
 process(
