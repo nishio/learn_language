@@ -153,7 +153,8 @@ doctest:
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
 source:
-	python make_source.py
+	python collect_readme.py
+	python collect_tests.py
 
 deploy:
 	cp -r build/html/* gh-pages
