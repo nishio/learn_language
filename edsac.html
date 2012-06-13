@@ -19,7 +19,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-    <title>tests and outputs &mdash; Learn Languages 1.0 documentation</title>
+    <title>EDSAC Simulator on browser &mdash; Learn Languages 1.0 documentation</title>
     
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -37,8 +37,8 @@
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="Learn Languages 1.0 documentation" href="index.html" />
-    <link rel="next" title="hello" href="hello.html" />
-    <link rel="prev" title="LISP on browser" href="LISP-on-browser.html" /> 
+    <link rel="next" title="LISP on browser" href="LISP-on-browser.html" />
+    <link rel="prev" title="learn_language/doc" href="doc.html" /> 
   </head>
   <body>
     <div class="related">
@@ -48,10 +48,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="hello.html" title="hello"
+          <a href="LISP-on-browser.html" title="LISP on browser"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="LISP-on-browser.html" title="LISP on browser"
+          <a href="doc.html" title="learn_language/doc"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Learn Languages 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -62,20 +62,45 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="tests-and-outputs">
-<h1>tests and outputs<a class="headerlink" href="#tests-and-outputs" title="Permalink to this headline">¶</a></h1>
-For detail, visit my repository:
-<a href="https://github.com/nishio/learn_language/"
-   onclick="pageTracker._trackPageview('/github')">
-   https://github.com/nishio/learn_language/
-</a><p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="hello.html">hello</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zero_division.html">1 / 0</a></li>
-<li class="toctree-l1"><a class="reference internal" href="division.html">1 / 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_errors.html">Python Errors</a></li>
+  <div class="section" id="edsac-simulator-on-browser">
+<h1>EDSAC Simulator on browser<a class="headerlink" href="#edsac-simulator-on-browser" title="Permalink to this headline">¶</a></h1>
+<p>I think EDSAC is good to learn machine language,
+because recent CPU is complex.</p>
+<p>My goal is to make a Python version to run on console,
+and a JavaScript version to run on browser.</p>
+<p><strong>NOTICE</strong></p>
+<p>This code is not complete yet.</p>
+<div class="section" id="design">
+<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
+<p>We now have plenty of memory than 1950s.
+For easy learning and inspectation,
+use memories in human-readable way.</p>
+</div>
+<div class="section" id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>most high bit of tape is complemented. write test.</li>
+<li>complete &#8220;_test_initial_order()&#8221; (now on line 13)</li>
 </ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>MIT License</p>
+<p>by NISHIO Hirokazu (c)2012</p>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://www.cl.cam.ac.uk/~mr/edsacposter.pdf">http://www.cl.cam.ac.uk/~mr/edsacposter.pdf</a>
+code of initial order and square are come from this poster.
+&#8220;11100 0 0000100010 0 62 S34S&#8221; seems typo of &#8220;01100 ...&#8221;</li>
+<li><a class="reference external" href="http://www.cl.cam.ac.uk/users/mr/Edsac/edsac.tgz">http://www.cl.cam.ac.uk/users/mr/Edsac/edsac.tgz</a></li>
+<li><a class="reference external" href="http://www.cs.clemson.edu/~mark/edsac.html">http://www.cs.clemson.edu/~mark/edsac.html</a></li>
+</ul>
+</div>
+<div class="section" id="thanks">
+<h2>Thanks<a class="headerlink" href="#thanks" title="Permalink to this headline">¶</a></h2>
+<p>Artem Smirnov, Mustafa Karimi, Yoni Tresina Purbasari, Dariane Joy Papa</p>
 </div>
 </div>
 
@@ -85,15 +110,27 @@ For detail, visit my repository:
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">EDSAC Simulator on browser</a><ul>
+<li><a class="reference internal" href="#design">Design</a></li>
+<li><a class="reference internal" href="#todo">TODO</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+<li><a class="reference internal" href="#reference">Reference</a></li>
+<li><a class="reference internal" href="#thanks">Thanks</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="LISP-on-browser.html"
-                        title="previous chapter">LISP on browser</a></p>
+  <p class="topless"><a href="doc.html"
+                        title="previous chapter">learn_language/doc</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="hello.html"
-                        title="next chapter">hello</a></p>
+  <p class="topless"><a href="LISP-on-browser.html"
+                        title="next chapter">LISP on browser</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="sources/test_index.txt"
+    <li><a href="sources/edsac.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -120,10 +157,10 @@ For detail, visit my repository:
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="hello.html" title="hello"
+          <a href="LISP-on-browser.html" title="LISP on browser"
              >next</a> |</li>
         <li class="right" >
-          <a href="LISP-on-browser.html" title="LISP on browser"
+          <a href="doc.html" title="learn_language/doc"
              >previous</a> |</li>
         <li><a href="index.html">Learn Languages 1.0 documentation</a> &raquo;</li> 
       </ul>

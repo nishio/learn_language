@@ -19,7 +19,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-    <title>tests and outputs &mdash; Learn Languages 1.0 documentation</title>
+    <title>LISP on browser &mdash; Learn Languages 1.0 documentation</title>
     
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -37,8 +37,8 @@
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="Learn Languages 1.0 documentation" href="index.html" />
-    <link rel="next" title="hello" href="hello.html" />
-    <link rel="prev" title="LISP on browser" href="LISP-on-browser.html" /> 
+    <link rel="next" title="tests and outputs" href="test_index.html" />
+    <link rel="prev" title="EDSAC Simulator on browser" href="edsac.html" /> 
   </head>
   <body>
     <div class="related">
@@ -48,10 +48,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="hello.html" title="hello"
+          <a href="test_index.html" title="tests and outputs"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="LISP-on-browser.html" title="LISP on browser"
+          <a href="edsac.html" title="EDSAC Simulator on browser"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Learn Languages 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -62,20 +62,36 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="tests-and-outputs">
-<h1>tests and outputs<a class="headerlink" href="#tests-and-outputs" title="Permalink to this headline">¶</a></h1>
-For detail, visit my repository:
-<a href="https://github.com/nishio/learn_language/"
-   onclick="pageTracker._trackPageview('/github')">
-   https://github.com/nishio/learn_language/
-</a><p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="hello.html">hello</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zero_division.html">1 / 0</a></li>
-<li class="toctree-l1"><a class="reference internal" href="division.html">1 / 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_errors.html">Python Errors</a></li>
+  <div class="section" id="lisp-on-browser">
+<h1>LISP on browser<a class="headerlink" href="#lisp-on-browser" title="Permalink to this headline">¶</a></h1>
+<p>This is small implementation of LISP,
+which written in JavaScript and run on browsers.</p>
+<p>I think it helps you to understand what goint on in programming languages
+by using it and reading its source codes.</p>
+<div class="section" id="design">
+<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
+<p>Readability counts.</p>
+<p>My goal is not to make complete features of Lisp.
+It makes source codes huge and makes difficult to read.</p>
+</div>
+<div class="section" id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Milestone1: S-expression Parser<ul>
+<li>given string such like &#8220;(* 1 (+ 2 3))&#8221; and return syntax trees</li>
+<li>in this point forget about reader macros such as &#8220;&#8217;(1 2 3)&#8221;</li>
 </ul>
+</li>
+<li>Make further milestones</li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>GPL</p>
+</div>
+<div class="section" id="thanks">
+<h2>Thanks<a class="headerlink" href="#thanks" title="Permalink to this headline">¶</a></h2>
+<p>(coming soon)</p>
 </div>
 </div>
 
@@ -85,15 +101,26 @@ For detail, visit my repository:
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">LISP on browser</a><ul>
+<li><a class="reference internal" href="#design">Design</a></li>
+<li><a class="reference internal" href="#todo">TODO</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+<li><a class="reference internal" href="#thanks">Thanks</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="LISP-on-browser.html"
-                        title="previous chapter">LISP on browser</a></p>
+  <p class="topless"><a href="edsac.html"
+                        title="previous chapter">EDSAC Simulator on browser</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="hello.html"
-                        title="next chapter">hello</a></p>
+  <p class="topless"><a href="test_index.html"
+                        title="next chapter">tests and outputs</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="sources/test_index.txt"
+    <li><a href="sources/LISP-on-browser.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -120,10 +147,10 @@ For detail, visit my repository:
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="hello.html" title="hello"
+          <a href="test_index.html" title="tests and outputs"
              >next</a> |</li>
         <li class="right" >
-          <a href="LISP-on-browser.html" title="LISP on browser"
+          <a href="edsac.html" title="EDSAC Simulator on browser"
              >previous</a> |</li>
         <li><a href="index.html">Learn Languages 1.0 documentation</a> &raquo;</li> 
       </ul>

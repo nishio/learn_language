@@ -22,6 +22,8 @@ for detail visit each project page
 
    coderunner
    doc
+   edsac
+   LISP-on-browser
    test_index
 
 
