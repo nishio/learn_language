@@ -1,0 +1,118 @@
+==============
+Python 2 and 3
+==============
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print "hello"
+
+::
+
+  hello
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print "hello"
+
+::
+
+    File "tmp.py", line 1
+      print "hello"
+                  ^
+  SyntaxError: invalid syntax
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print("hello")
+
+::
+
+  hello
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print {}.keys()
+
+::
+
+  []
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print({}.keys())
+
+::
+
+  <dict_keys object at 0x385f50>
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print None < None
+
+::
+
+  False
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(None < None)
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      print(None < None)
+  TypeError: unorderable types: NoneType() < NoneType()
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print 1 / 2
+
+::
+
+  0
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(1 / 2)
+
+::
+
+  0.5
+
+

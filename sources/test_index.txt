@@ -18,3 +18,4 @@ Contents:
    zero_division.rst
    division.rst
    python_errors.rst
+   python_2and3.rst

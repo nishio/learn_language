@@ -43,3 +43,10 @@ It can fix as follow::
    coderunner/bin$ ln -s /home/rackhuber/.rvm/rubies/ruby-1.9.2-p320/bin/ruby ruby1.9
    coderunner/bin$ ln -s /usr/bin/perl5.14.2 perl5
    coderunner/bin$ sudo apt-get install gauche
+
+
+TODO
+====
+
+- To make output better, add heading between test? Add description to tests?
+  http://nishio.github.com/learn_language/test_index.html
