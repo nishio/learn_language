@@ -20,17 +20,17 @@ def copy_readme(src, dst=None):
 
     shutil.copy(src, "source/%s.rst" % dst)
 
-def make_toc(xs):
-    buf = [".. toctree::", "   :maxdepth: 2\n"]
-    for x in xs:
+def update_toc(toc=toc, target=INDEX, maxdepth=2):
+    print toc
+    buf = [".. toctree::", "   :maxdepth: %d\n" % maxdepth]
+    for x in toc:
         buf.append("   %s" % x)
-    return "\n".join(buf)
+    tocstr = "\n".join(buf)
 
-def update_toc():
-    data = file(INDEX).read()
+    data = file(target).read()
     data = data.replace(
-        ".. toctree::", make_toc(toc))
-    file(INDEX, "w").write(data)
+        ".. toctree::", tocstr)
+    file(target, "w").write(data)
 
 def main():
     shutil.copy("../README.rst", INDEX)
