@@ -41,4 +41,8 @@ process(
     "../python/errors.py",
     "Python Errors", "python_errors.rst")
 
+process(
+    "../python/2and3.py",
+    "Python 2 and 3", "python_2and3.rst")
+
 generate_index()
