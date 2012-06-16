@@ -126,6 +126,11 @@ class Test(object):
                 print ret
                 print "=" * 40
             if not args.nonstop:
+                if args.copy_got_output:
+                    # TODO: support other OS (now Mac only)
+                    p = subprocess.Popen(["pbcopy"], stdin=subprocess.PIPE)
+                    p.stdin.write(ret)
+                    p.stdin.close()
                 raise AssertionError
 
     def show(self):
@@ -413,6 +418,10 @@ def main():
         '--nonstop', dest='nonstop', action='store_true',
         help=(
             "Don't stop on failure and run all tests."))
+    parser.add_argument(
+        '--copy', dest='copy_got_output', action='store_true',
+        help=(
+            "Copy got output into clipboard. (Mac only)"))
 
     args = parser.parse_args()
     if not args.format:
