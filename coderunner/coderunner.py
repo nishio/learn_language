@@ -126,6 +126,11 @@ class Test(object):
                 print ret
                 print "=" * 40
             if not args.nonstop:
+                if args.copy_got_output:
+                    # TODO: support other OS (now Mac only)
+                    p = subprocess.Popen(["pbcopy"], stdin=subprocess.PIPE)
+                    p.stdin.write(ret)
+                    p.stdin.close()
                 raise AssertionError
 
     def show(self):
@@ -147,10 +152,12 @@ class Test(object):
         print
         print _indent(self.code.strip("\n"))
         if not args.suppress_expected:
+            expected = self.expect.strip("\n")
+            if expected == "": expected = "(no output)"
             print
             print "::"
             print
-            print _indent(self.expect.strip("\n"))
+            print _indent(expected)
         print "\n"
 
     def show_for_mybook(self):
@@ -225,6 +232,7 @@ class TestScript(Test):
 class _Python(TestScript):
     pygments_name = "python"
     temp_filename = "tmp.py"
+    dontcare_pattern = _pattern(r" at ", "0x[0-9a-fX]+", r">")
 
 
 class Python27(_Python):
@@ -395,6 +403,11 @@ def test(lang, *args, **kw):
     tests.append(
         lang(*args, **kw))
 
+def drop_tests():
+    """delete already registered tests.
+    It is useful when you are writing a lot of tests"""
+    global tests
+    tests = []
 
 def main():
     global args
@@ -413,6 +426,10 @@ def main():
         '--nonstop', dest='nonstop', action='store_true',
         help=(
             "Don't stop on failure and run all tests."))
+    parser.add_argument(
+        '--copy', dest='copy_got_output', action='store_true',
+        help=(
+            "Copy got output into clipboard. (Mac only)"))
 
     args = parser.parse_args()
     if not args.format:

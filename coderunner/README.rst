@@ -2,7 +2,13 @@
  coderunner
 ============
 
-This is a tool to run test codes and check outputs.
+This is a tool to run codes and check outputs.
+
+When you learn/teach programming languages
+you will write small codes.
+
+Pairs of those codes and outputs are *tests*.
+To store and run them helps to know what is changed.
 
 Usage
 =====
@@ -37,3 +43,10 @@ It can fix as follow::
    coderunner/bin$ ln -s /home/rackhuber/.rvm/rubies/ruby-1.9.2-p320/bin/ruby ruby1.9
    coderunner/bin$ ln -s /usr/bin/perl5.14.2 perl5
    coderunner/bin$ sudo apt-get install gauche
+
+
+TODO
+====
+
+- To make output better, add heading between test? Add description to tests?
+  http://nishio.github.com/learn_language/test_index.html
