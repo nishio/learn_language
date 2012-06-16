@@ -168,15 +168,15 @@ long is replaced by int
 test(Python27, """
 print long(987654321*987654321)
 """, """
-975461057789971041L
+975461057789971041
 """)
 
 test(Python30, """
 print(long(987654321*987654321))
 """, """
 Traceback (most recent call last):
-  File "<pyshell#12>", line 1, in <module>
-    long(987654321*987654321)
+  File "tmp.py", line 1, in <module>
+    print(long(987654321*987654321))
 NameError: name 'long' is not defined
 """)
 
@@ -199,6 +199,9 @@ $
 test(Python30, """
 print(u"\u0024")
 """, """
+  File "tmp.py", line 1
+    print(u"\u0024")
+                  ^
 SyntaxError: invalid syntax
 """)
 
@@ -224,8 +227,8 @@ if (isinstance("string", basestring)):
   print("True")
 """, """
 Traceback (most recent call last):
-  File "<pyshell#29>", line 1, in <module>
-    isinstance("string", basestring)
+  File "tmp.py", line 1, in <module>
+    if (isinstance("string", basestring)):
 NameError: name 'basestring' is not defined
 """)
 
@@ -248,6 +251,8 @@ True = "True"
 test(Python30, """
 True = "True"
 """, """
+  File "tmp.py", line 1
+    True = "True"
 SyntaxError: assignment to keyword
 """)
 
@@ -259,6 +264,8 @@ False = "False"
 test(Python30, """
 False = "False"
 """, """
+  File "tmp.py", line 1
+    False = "False"
 SyntaxError: assignment to keyword
 """)
 
@@ -281,8 +288,11 @@ test(Python30, """
 try:
   print(1+1)
 except ValueError, err:
-
+  pass
 """, """
+  File "tmp.py", line 3
+    except ValueError, err:
+                     ^
 SyntaxError: invalid syntax
 """)
 
@@ -310,6 +320,9 @@ print [x for x in 1, 2, 3]
 test(Python30, """
 print([x for x in 1, 2, 3])
 """, """
+  File "tmp.py", line 1
+    print([x for x in 1, 2, 3])
+                       ^
 SyntaxError: invalid syntax
 """)
 
@@ -332,6 +345,9 @@ print ''.join([`x` for x in (1,2,3)])
 test(Python30, """
 print(''.join([`x` for x in (1,2,3)]))
 """, """
+  File "tmp.py", line 1
+    print(''.join([`x` for x in (1,2,3)]))
+                   ^
 SyntaxError: invalid syntax
 """)
 
@@ -354,6 +370,9 @@ True
 test(Python30, """
 print(1 <> 2)
 """, """
+  File "tmp.py", line 1
+    print(1 <> 2)
+             ^
 SyntaxError: invalid syntax
 """)
 
@@ -370,6 +389,9 @@ exec no longer a keyword
 test(Python27, """
 exec = "exec"
 """, """
+  File "tmp.py", line 1
+    exec = "exec"
+         ^
 SyntaxError: invalid syntax
 """)
 
@@ -392,16 +414,18 @@ test(Python30, """
 print(buffer("Hello world", 6, 5))
 """, """
 Traceback (most recent call last):
-  File "<pyshell#55>", line 1, in <module>
-    buffer("Hello world", 6, 5)
+  File "tmp.py", line 1, in <module>
+    print(buffer("Hello world", 6, 5))
 NameError: name 'buffer' is not defined
 """)
 
+''' TODO add ignore pattern
 test(Python30, """
-print(memoryview(b"Hello world"))
+print(repr(memoryview(b"Hello world")))
 """, """
-<memory at 0x00000000031B68C8>
+<memory at 0x3c3660>
 """)
+'''
 
 """
 dictionary's has_key is gone
@@ -417,8 +441,8 @@ test(Python30, """
 print({"a":1}.has_key("a"))
 """, """
 Traceback (most recent call last):
-  File "<pyshell#64>", line 1, in <module>
-    {"a":1}.has_key("a")
+  File "tmp.py", line 1, in <module>
+    print({"a":1}.has_key("a"))
 AttributeError: 'dict' object has no attribute 'has_key'
 """)
 
@@ -440,24 +464,28 @@ repr --> reprlib
 test.test_support --> test.support
 """
 
+''' not on Mac
 test(Python27, """
 import _winreg
 """, """
 """)
+'''
 
 test(Python30, """
-_winreg
+import _winreg
 """, """
 Traceback (most recent call last):
-  File "<pyshell#66>", line 1, in <module>
+  File "tmp.py", line 1, in <module>
     import _winreg
 ImportError: No module named _winreg
 """)
 
+''' not on Mac
 test(Python30, """
 import winreg
 """, """
 """)
+'''
 
 test(Python27, """
 import ConfigParser
@@ -465,10 +493,10 @@ import ConfigParser
 """)
 
 test(Python30, """
-ConfigParser
+import ConfigParser
 """, """
 Traceback (most recent call last):
-  File "<pyshell#66>", line 1, in <module>
+  File "tmp.py", line 1, in <module>
     import ConfigParser
 ImportError: No module named ConfigParser
 """)
@@ -484,10 +512,10 @@ import copy_reg
 """)
 
 test(Python30, """
-copy_reg
+import copy_reg
 """, """
 Traceback (most recent call last):
-  File "<pyshell#66>", line 1, in <module>
+  File "tmp.py", line 1, in <module>
     import copy_reg
 ImportError: No module named copy_reg
 """)
@@ -503,10 +531,10 @@ import Queue
 """)
 
 test(Python30, """
-Queue
+import Queue
 """, """
 Traceback (most recent call last):
-  File "<pyshell#66>", line 1, in <module>
+  File "tmp.py", line 1, in <module>
     import Queue
 ImportError: No module named Queue
 """)
@@ -522,10 +550,10 @@ import SocketServer
 """)
 
 test(Python30, """
-SocketServer
+import SocketServer
 """, """
 Traceback (most recent call last):
-  File "<pyshell#66>", line 1, in <module>
+  File "tmp.py", line 1, in <module>
     import SocketServer
 ImportError: No module named SocketServer
 """)
@@ -541,10 +569,10 @@ import markupbase
 """)
 
 test(Python30, """
-markupbase
+import markupbase
 """, """
 Traceback (most recent call last):
-  File "<pyshell#66>", line 1, in <module>
+  File "tmp.py", line 1, in <module>
     import markupbase
 ImportError: No module named markupbase
 """)
@@ -560,10 +588,10 @@ import repr
 """)
 
 test(Python30, """
-repr
+import repr
 """, """
 Traceback (most recent call last):
-  File "<pyshell#66>", line 1, in <module>
+  File "tmp.py", line 1, in <module>
     import repr
 ImportError: No module named repr
 """)
@@ -579,10 +607,10 @@ import test.test_support
 """)
 
 test(Python30, """
-test.test_support
+import test.test_support
 """, """
 Traceback (most recent call last):
-  File "<pyshell#66>", line 1, in <module>
+  File "tmp.py", line 1, in <module>
     import test.test_support
 ImportError: No module named test.test_support
 """)
@@ -595,60 +623,65 @@ import test.support
 """
 string.letters, string.uppercase and string.lowercase is gone
 """
+from coderunner.coderunner import drop_tests
+drop_tests()
 
 test(Python27, """
 import string
-string.letters
-""", """
-'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\x83\x8a\x8c\x8e\x9a\x9c\x9e\x9f\xaa\xb5\xba\xc0\xc1\xc2\xc3\xc4\xc5\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd0\xd1\xd2\xd3\xd4\xd5\xd6\xd8\xd9\xda\xdb\xdc\xdd\xde\xdf\xe0\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf0\xf1\xf2\xf3\xf4\xf5\xf6\xf8\xf9\xfa\xfb\xfc\xfd\xfe\xff'
+print string.letters
+""", r"""
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 """)
+
 
 test(Python30, """
 import string
 string.letters
 """, """
 Traceback (most recent call last):
-  File "<pyshell#87>", line 1, in <module>
+  File "tmp.py", line 2, in <module>
     string.letters
 AttributeError: 'module' object has no attribute 'letters'
 """)
 
 test(Python30, """
 import string
-string.ascii_letters
+print(string.ascii_letters)
 """, """
-'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 """)
+
 
 test(Python27, """
 import string
-string.uppercase
-""", """
-'ABCDEFGHIJKLMNOPQRSTUVWXYZ\x8a\x8c\x8e\x9f\xc0\xc1\xc2\xc3\xc4\xc5\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd0\xd1\xd2\xd3\xd4\xd5\xd6\xd8\xd9\xda\xdb\xdc\xdd\xde'
+print string.uppercase
+""", r"""
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
 """)
+
 
 test(Python30, """
 import string
 string.uppercase
 """, """
 Traceback (most recent call last):
-  File "<pyshell#91>", line 1, in <module>
+  File "tmp.py", line 2, in <module>
     string.uppercase
 AttributeError: 'module' object has no attribute 'uppercase'
 """)
 
 test(Python30, """
 import string
-string.ascii_uppercase
+print(string.ascii_uppercase)
 """, """
-'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
 """)
 
 test(Python27, """
 import string
-string.lowercase
+print string.lowercase
 """, """
-'abcdefghijklmnopqrstuvwxyz\x83\x9a\x9c\x9e\xaa\xb5\xba\xdf\xe0\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf0\xf1\xf2\xf3\xf4\xf5\xf6\xf8\xf9\xfa\xfb\xfc\xfd\xfe\xff'
+abcdefghijklmnopqrstuvwxyz
 """)
 
 test(Python30, """
@@ -656,16 +689,16 @@ import string
 string.lowercase
 """, """
 Traceback (most recent call last):
-  File "<pyshell#93>", line 1, in <module>
+  File "tmp.py", line 2, in <module>
     string.lowercase
 AttributeError: 'module' object has no attribute 'lowercase'
 """)
 
 test(Python30, """
 import string
-string.ascii_lowercase
+print(string.ascii_lowercase)
 """, """
-'abcdefghijklmnopqrstuvwxyz'
+abcdefghijklmnopqrstuvwxyz
 """)
 
 main()
