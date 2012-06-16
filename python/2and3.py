@@ -42,12 +42,13 @@ print {}.keys()
 []
 """)
 
+''' TODO add ignore pattern for 'object at 0x385f50>'
 test(Python30, """
 print({}.keys())
 """, """
 <dict_keys object at 0x385f50>
 """)
-
+'''
 
 """
 Ordering Comparisons
@@ -84,6 +85,8 @@ print(1 / 2)
 0.5
 """)
 
+
+''' TODO can way to handle I/O ? stdin?
 """
 Raw Input and Input
 """
@@ -131,6 +134,7 @@ eval(input("Please enter a Python command: "))
 Please enter a Python command: 1+2
 3
 """)
+'''
 
 """
 Octal Literal is required 0o -- already in Python 2.6
@@ -145,6 +149,9 @@ print 055
 test(Python30, """
 print(055)
 """, """
+  File "tmp.py", line 1
+    print(055)
+            ^
 SyntaxError: invalid token
 """)
 
