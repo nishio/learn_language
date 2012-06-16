@@ -623,8 +623,6 @@ import test.support
 """
 string.letters, string.uppercase and string.lowercase is gone
 """
-from coderunner.coderunner import drop_tests
-drop_tests()
 
 test(Python27, """
 import string
