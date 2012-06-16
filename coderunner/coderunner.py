@@ -152,10 +152,12 @@ class Test(object):
         print
         print _indent(self.code.strip("\n"))
         if not args.suppress_expected:
+            expected = self.expect.strip("\n")
+            if expected == "": expected = "(no output)"
             print
             print "::"
             print
-            print _indent(self.expect.strip("\n"))
+            print _indent(expected)
         print "\n"
 
     def show_for_mybook(self):
