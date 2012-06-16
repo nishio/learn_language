@@ -400,6 +400,11 @@ def test(lang, *args, **kw):
     tests.append(
         lang(*args, **kw))
 
+def drop_tests():
+    """delete already registered tests.
+    It is useful when you are writing a lot of tests"""
+    global tests
+    tests = []
 
 def main():
     global args
