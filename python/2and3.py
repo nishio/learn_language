@@ -42,13 +42,12 @@ print {}.keys()
 []
 """)
 
-''' TODO add ignore pattern for 'object at 0x385f50>'
 test(Python30, """
 print({}.keys())
 """, """
 <dict_keys object at 0x385f50>
 """)
-'''
+
 
 """
 Ordering Comparisons
@@ -419,13 +418,12 @@ Traceback (most recent call last):
 NameError: name 'buffer' is not defined
 """)
 
-''' TODO add ignore pattern
 test(Python30, """
 print(repr(memoryview(b"Hello world")))
 """, """
 <memory at 0x3c3660>
 """)
-'''
+
 
 """
 dictionary's has_key is gone
@@ -612,7 +610,7 @@ import test.test_support
 Traceback (most recent call last):
   File "tmp.py", line 1, in <module>
     import test.test_support
-ImportError: No module named test.test_support
+ImportError: No module named test_support
 """)
 
 test(Python30, """
