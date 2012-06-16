@@ -146,6 +146,653 @@ TypeError: unorderable types: NoneType() &lt; NoneType()</pre>
 </pre></div>
 </div>
 </div>
+<div class="section" id="id8">
+<h2>Python2.7<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="mo">055</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">45</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>Python3.0<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="mo">055</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+    print(055)
+            ^
+SyntaxError: invalid token</pre>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>Python3.0<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="mi">0</span><span class="n">o55</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">45</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>Python2.7<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="nb">long</span><span class="p">(</span><span class="mi">987654321</span><span class="o">*</span><span class="mi">987654321</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">975461057789971041</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>Python3.0<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="nb">long</span><span class="p">(</span><span class="mi">987654321</span><span class="o">*</span><span class="mi">987654321</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    print(long(987654321*987654321))
+NameError: name 'long' is not defined</pre>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>Python3.0<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">987654321</span><span class="o">*</span><span class="mi">987654321</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">975461057789971041</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>Python2.7<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">u&quot;</span><span class="se">\u0024</span><span class="s">&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>$</pre>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>Python3.0<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="s">u&quot;</span><span class="se">\u0024</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+    print(u"\u0024")
+                  ^
+SyntaxError: invalid syntax</pre>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>Python3.0<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\u0024</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>$</pre>
+</div>
+</div>
+<div class="section" id="id17">
+<h2>Python2.7<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">)):</span>
+  <span class="k">print</span> <span class="s">&quot;True&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h2>Python3.0<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">)):</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">&quot;True&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    if (isinstance("string", basestring)):
+NameError: name 'basestring' is not defined</pre>
+</div>
+</div>
+<div class="section" id="id19">
+<h2>Python3.0<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">&quot;True&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h2>Python2.7<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span> <span class="o">=</span> <span class="s">&quot;True&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id21">
+<h2>Python3.0<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span> <span class="o">=</span> <span class="s">&quot;True&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+    True = "True"
+SyntaxError: assignment to keyword</pre>
+</div>
+</div>
+<div class="section" id="id22">
+<h2>Python2.7<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span> <span class="o">=</span> <span class="s">&quot;False&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id23">
+<h2>Python3.0<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span> <span class="o">=</span> <span class="s">&quot;False&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+    False = "False"
+SyntaxError: assignment to keyword</pre>
+</div>
+</div>
+<div class="section" id="id24">
+<h2>Python2.7<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+  <span class="k">print</span> <span class="mi">1</span><span class="o">+</span><span class="mi">1</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="n">err</span><span class="p">:</span>
+  <span class="k">print</span> <span class="n">err</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id25">
+<h2>Python3.0<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="n">err</span><span class="p">:</span>
+  <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 3
+    except ValueError, err:
+                     ^
+SyntaxError: invalid syntax</pre>
+</div>
+</div>
+<div class="section" id="id26">
+<h2>Python3.0<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id27">
+<h2>Python2.7<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id28">
+<h2>Python3.0<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+    print([x for x in 1, 2, 3])
+                       ^
+SyntaxError: invalid syntax</pre>
+</div>
+</div>
+<div class="section" id="id29">
+<h2>Python3.0<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id30">
+<h2>Python2.7<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sb">`x`</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">123</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id31">
+<h2>Python3.0<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sb">`x`</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)]))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+    print(''.join([`x` for x in (1,2,3)]))
+                   ^
+SyntaxError: invalid syntax</pre>
+</div>
+</div>
+<div class="section" id="id32">
+<h2>Python3.0<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)]))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">123</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id33">
+<h2>Python2.7<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="mi">1</span> <span class="o">&lt;&gt;</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id34">
+<h2>Python3.0<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&gt;</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+    print(1 &lt;&gt; 2)
+             ^
+SyntaxError: invalid syntax</pre>
+</div>
+</div>
+<div class="section" id="id35">
+<h2>Python3.0<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="mi">1</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id36">
+<h2>Python2.7<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>exec = "exec"</pre>
+</div>
+<div class="highlight-python"><pre>  File "tmp.py", line 1
+    exec = "exec"
+         ^
+SyntaxError: invalid syntax</pre>
+</div>
+</div>
+<div class="section" id="id37">
+<h2>Python3.0<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>exec = "exec"</pre>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id38">
+<h2>Python2.7<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="nb">buffer</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Hello world</pre>
+</div>
+</div>
+<div class="section" id="id39">
+<h2>Python3.0<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="nb">buffer</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    print(buffer("Hello world", 6, 5))
+NameError: name 'buffer' is not defined</pre>
+</div>
+</div>
+<div class="section" id="id40">
+<h2>Python3.0<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">memoryview</span><span class="p">(</span><span class="n">b</span><span class="s">&quot;Hello world&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>&lt;memory at 0x3c3660&gt;</pre>
+</div>
+</div>
+<div class="section" id="id41">
+<h2>Python2.7<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="p">{</span><span class="s">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id42">
+<h2>Python3.0<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">({</span><span class="s">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    print({"a":1}.has_key("a"))
+AttributeError: 'dict' object has no attribute 'has_key'</pre>
+</div>
+</div>
+<div class="section" id="id43">
+<h2>Python3.0<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="s">&quot;a&quot;</span> <span class="ow">in</span> <span class="p">{</span><span class="s">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id44">
+<h2>Python3.0<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">_winreg</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    import _winreg
+ImportError: No module named _winreg</pre>
+</div>
+</div>
+<div class="section" id="id45">
+<h2>Python2.7<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ConfigParser</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id46">
+<h2>Python3.0<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ConfigParser</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    import ConfigParser
+ImportError: No module named ConfigParser</pre>
+</div>
+</div>
+<div class="section" id="id47">
+<h2>Python3.0<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">configparser</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id48">
+<h2>Python2.7<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">copy_reg</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id49">
+<h2>Python3.0<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">copy_reg</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    import copy_reg
+ImportError: No module named copy_reg</pre>
+</div>
+</div>
+<div class="section" id="id50">
+<h2>Python3.0<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">copyreg</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id51">
+<h2>Python2.7<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">Queue</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id52">
+<h2>Python3.0<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">Queue</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    import Queue
+ImportError: No module named Queue</pre>
+</div>
+</div>
+<div class="section" id="id53">
+<h2>Python3.0<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">queue</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id54">
+<h2>Python2.7<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">SocketServer</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id55">
+<h2>Python3.0<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">SocketServer</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    import SocketServer
+ImportError: No module named SocketServer</pre>
+</div>
+</div>
+<div class="section" id="id56">
+<h2>Python3.0<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">socketserver</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id57">
+<h2>Python2.7<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">markupbase</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id58">
+<h2>Python3.0<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">markupbase</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    import markupbase
+ImportError: No module named markupbase</pre>
+</div>
+</div>
+<div class="section" id="id59">
+<h2>Python3.0<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">_markupbase</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id60">
+<h2>Python2.7<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">repr</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id61">
+<h2>Python3.0<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">repr</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    import repr
+ImportError: No module named repr</pre>
+</div>
+</div>
+<div class="section" id="id62">
+<h2>Python3.0<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">reprlib</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id63">
+<h2>Python2.7<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">test.test_support</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id64">
+<h2>Python3.0<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">test.test_support</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 1, in &lt;module&gt;
+    import test.test_support
+ImportError: No module named test_support</pre>
+</div>
+</div>
+<div class="section" id="id65">
+<h2>Python3.0<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">test.support</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>(no output)</pre>
+</div>
+</div>
+<div class="section" id="id66">
+<h2>Python2.7<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
+<span class="k">print</span> <span class="n">string</span><span class="o">.</span><span class="n">letters</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id67">
+<h2>Python3.0<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
+<span class="n">string</span><span class="o">.</span><span class="n">letters</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 2, in &lt;module&gt;
+    string.letters
+AttributeError: 'module' object has no attribute 'letters'</pre>
+</div>
+</div>
+<div class="section" id="id68">
+<h2>Python3.0<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
+<span class="k">print</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id69">
+<h2>Python2.7<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
+<span class="k">print</span> <span class="n">string</span><span class="o">.</span><span class="n">uppercase</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id70">
+<h2>Python3.0<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
+<span class="n">string</span><span class="o">.</span><span class="n">uppercase</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 2, in &lt;module&gt;
+    string.uppercase
+AttributeError: 'module' object has no attribute 'uppercase'</pre>
+</div>
+</div>
+<div class="section" id="id71">
+<h2>Python3.0<a class="headerlink" href="#id71" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
+<span class="k">print</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id72">
+<h2>Python2.7<a class="headerlink" href="#id72" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
+<span class="k">print</span> <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">abcdefghijklmnopqrstuvwxyz</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id73">
+<h2>Python3.0<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
+<span class="n">string</span><span class="o">.</span><span class="n">lowercase</span>
+</pre></div>
+</div>
+<div class="highlight-python"><pre>Traceback (most recent call last):
+  File "tmp.py", line 2, in &lt;module&gt;
+    string.lowercase
+AttributeError: 'module' object has no attribute 'lowercase'</pre>
+</div>
+</div>
+<div class="section" id="id74">
+<h2>Python3.0<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span>
+<span class="k">print</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">abcdefghijklmnopqrstuvwxyz</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -166,6 +813,73 @@ TypeError: unorderable types: NoneType() &lt; NoneType()</pre>
 <li><a class="reference internal" href="#id5">Python3.0</a></li>
 <li><a class="reference internal" href="#id6">Python2.7</a></li>
 <li><a class="reference internal" href="#id7">Python3.0</a></li>
+<li><a class="reference internal" href="#id8">Python2.7</a></li>
+<li><a class="reference internal" href="#id9">Python3.0</a></li>
+<li><a class="reference internal" href="#id10">Python3.0</a></li>
+<li><a class="reference internal" href="#id11">Python2.7</a></li>
+<li><a class="reference internal" href="#id12">Python3.0</a></li>
+<li><a class="reference internal" href="#id13">Python3.0</a></li>
+<li><a class="reference internal" href="#id14">Python2.7</a></li>
+<li><a class="reference internal" href="#id15">Python3.0</a></li>
+<li><a class="reference internal" href="#id16">Python3.0</a></li>
+<li><a class="reference internal" href="#id17">Python2.7</a></li>
+<li><a class="reference internal" href="#id18">Python3.0</a></li>
+<li><a class="reference internal" href="#id19">Python3.0</a></li>
+<li><a class="reference internal" href="#id20">Python2.7</a></li>
+<li><a class="reference internal" href="#id21">Python3.0</a></li>
+<li><a class="reference internal" href="#id22">Python2.7</a></li>
+<li><a class="reference internal" href="#id23">Python3.0</a></li>
+<li><a class="reference internal" href="#id24">Python2.7</a></li>
+<li><a class="reference internal" href="#id25">Python3.0</a></li>
+<li><a class="reference internal" href="#id26">Python3.0</a></li>
+<li><a class="reference internal" href="#id27">Python2.7</a></li>
+<li><a class="reference internal" href="#id28">Python3.0</a></li>
+<li><a class="reference internal" href="#id29">Python3.0</a></li>
+<li><a class="reference internal" href="#id30">Python2.7</a></li>
+<li><a class="reference internal" href="#id31">Python3.0</a></li>
+<li><a class="reference internal" href="#id32">Python3.0</a></li>
+<li><a class="reference internal" href="#id33">Python2.7</a></li>
+<li><a class="reference internal" href="#id34">Python3.0</a></li>
+<li><a class="reference internal" href="#id35">Python3.0</a></li>
+<li><a class="reference internal" href="#id36">Python2.7</a></li>
+<li><a class="reference internal" href="#id37">Python3.0</a></li>
+<li><a class="reference internal" href="#id38">Python2.7</a></li>
+<li><a class="reference internal" href="#id39">Python3.0</a></li>
+<li><a class="reference internal" href="#id40">Python3.0</a></li>
+<li><a class="reference internal" href="#id41">Python2.7</a></li>
+<li><a class="reference internal" href="#id42">Python3.0</a></li>
+<li><a class="reference internal" href="#id43">Python3.0</a></li>
+<li><a class="reference internal" href="#id44">Python3.0</a></li>
+<li><a class="reference internal" href="#id45">Python2.7</a></li>
+<li><a class="reference internal" href="#id46">Python3.0</a></li>
+<li><a class="reference internal" href="#id47">Python3.0</a></li>
+<li><a class="reference internal" href="#id48">Python2.7</a></li>
+<li><a class="reference internal" href="#id49">Python3.0</a></li>
+<li><a class="reference internal" href="#id50">Python3.0</a></li>
+<li><a class="reference internal" href="#id51">Python2.7</a></li>
+<li><a class="reference internal" href="#id52">Python3.0</a></li>
+<li><a class="reference internal" href="#id53">Python3.0</a></li>
+<li><a class="reference internal" href="#id54">Python2.7</a></li>
+<li><a class="reference internal" href="#id55">Python3.0</a></li>
+<li><a class="reference internal" href="#id56">Python3.0</a></li>
+<li><a class="reference internal" href="#id57">Python2.7</a></li>
+<li><a class="reference internal" href="#id58">Python3.0</a></li>
+<li><a class="reference internal" href="#id59">Python3.0</a></li>
+<li><a class="reference internal" href="#id60">Python2.7</a></li>
+<li><a class="reference internal" href="#id61">Python3.0</a></li>
+<li><a class="reference internal" href="#id62">Python3.0</a></li>
+<li><a class="reference internal" href="#id63">Python2.7</a></li>
+<li><a class="reference internal" href="#id64">Python3.0</a></li>
+<li><a class="reference internal" href="#id65">Python3.0</a></li>
+<li><a class="reference internal" href="#id66">Python2.7</a></li>
+<li><a class="reference internal" href="#id67">Python3.0</a></li>
+<li><a class="reference internal" href="#id68">Python3.0</a></li>
+<li><a class="reference internal" href="#id69">Python2.7</a></li>
+<li><a class="reference internal" href="#id70">Python3.0</a></li>
+<li><a class="reference internal" href="#id71">Python3.0</a></li>
+<li><a class="reference internal" href="#id72">Python2.7</a></li>
+<li><a class="reference internal" href="#id73">Python3.0</a></li>
+<li><a class="reference internal" href="#id74">Python3.0</a></li>
 </ul>
 </li>
 </ul>

@@ -116,3 +116,898 @@ Python3.0
   0.5
 
 
+Python2.7
+=========
+
+.. code-block:: python
+
+  print 055
+
+::
+
+  45
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(055)
+
+::
+
+    File "tmp.py", line 1
+      print(055)
+              ^
+  SyntaxError: invalid token
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(0o55)
+
+::
+
+  45
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print long(987654321*987654321)
+
+::
+
+  975461057789971041
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(long(987654321*987654321))
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      print(long(987654321*987654321))
+  NameError: name 'long' is not defined
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(int(987654321*987654321))
+
+::
+
+  975461057789971041
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print u"\u0024"
+
+::
+
+  $
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(u"\u0024")
+
+::
+
+    File "tmp.py", line 1
+      print(u"\u0024")
+                    ^
+  SyntaxError: invalid syntax
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print("\u0024")
+
+::
+
+  $
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  if (isinstance("string", basestring)):
+    print "True"
+
+::
+
+  True
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  if (isinstance("string", basestring)):
+    print("True")
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      if (isinstance("string", basestring)):
+  NameError: name 'basestring' is not defined
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  if (isinstance("string", str)):
+    print("True")
+
+::
+
+  True
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  True = "True"
+
+::
+
+  (no output)
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  True = "True"
+
+::
+
+    File "tmp.py", line 1
+      True = "True"
+  SyntaxError: assignment to keyword
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  False = "False"
+
+::
+
+  (no output)
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  False = "False"
+
+::
+
+    File "tmp.py", line 1
+      False = "False"
+  SyntaxError: assignment to keyword
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  try:
+    print 1+1
+  except ValueError, err:
+    print err 
+
+::
+
+  2
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  try:
+    print(1+1)
+  except ValueError, err:
+    pass
+
+::
+
+    File "tmp.py", line 3
+      except ValueError, err:
+                       ^
+  SyntaxError: invalid syntax
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  try:
+    print(1+1)
+  except ValueError as err:
+    print(err)
+
+::
+
+  2
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print [x for x in 1, 2, 3]
+
+::
+
+  [1, 2, 3]
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print([x for x in 1, 2, 3])
+
+::
+
+    File "tmp.py", line 1
+      print([x for x in 1, 2, 3])
+                         ^
+  SyntaxError: invalid syntax
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print([x for x in (1, 2, 3)])
+
+::
+
+  [1, 2, 3]
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print ''.join([`x` for x in (1,2,3)])
+
+::
+
+  123
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(''.join([`x` for x in (1,2,3)]))
+
+::
+
+    File "tmp.py", line 1
+      print(''.join([`x` for x in (1,2,3)]))
+                     ^
+  SyntaxError: invalid syntax
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(''.join([repr(x) for x in (1,2,3)]))
+
+::
+
+  123
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print 1 <> 2
+
+::
+
+  True
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(1 <> 2)
+
+::
+
+    File "tmp.py", line 1
+      print(1 <> 2)
+               ^
+  SyntaxError: invalid syntax
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(1 != 2)
+
+::
+
+  True
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  exec = "exec"
+
+::
+
+    File "tmp.py", line 1
+      exec = "exec"
+           ^
+  SyntaxError: invalid syntax
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  exec = "exec"
+
+::
+
+  (no output)
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print buffer("Hello world")
+
+::
+
+  Hello world
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(buffer("Hello world", 6, 5))
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      print(buffer("Hello world", 6, 5))
+  NameError: name 'buffer' is not defined
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print(repr(memoryview(b"Hello world")))
+
+::
+
+  <memory at 0x3c3660>
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  print {"a":1}.has_key("a")
+
+::
+
+  True
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print({"a":1}.has_key("a"))
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      print({"a":1}.has_key("a"))
+  AttributeError: 'dict' object has no attribute 'has_key'
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  print("a" in {"a":1})
+
+::
+
+  True
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import _winreg
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      import _winreg
+  ImportError: No module named _winreg
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  import ConfigParser
+
+::
+
+  (no output)
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import ConfigParser
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      import ConfigParser
+  ImportError: No module named ConfigParser
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import configparser
+
+::
+
+  (no output)
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  import copy_reg
+
+::
+
+  (no output)
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import copy_reg
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      import copy_reg
+  ImportError: No module named copy_reg
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import copyreg
+
+::
+
+  (no output)
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  import Queue
+
+::
+
+  (no output)
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import Queue
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      import Queue
+  ImportError: No module named Queue
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import queue
+
+::
+
+  (no output)
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  import SocketServer
+
+::
+
+  (no output)
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import SocketServer
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      import SocketServer
+  ImportError: No module named SocketServer
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import socketserver
+
+::
+
+  (no output)
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  import markupbase
+
+::
+
+  (no output)
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import markupbase
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      import markupbase
+  ImportError: No module named markupbase
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import _markupbase
+
+::
+
+  (no output)
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  import repr
+
+::
+
+  (no output)
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import repr
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      import repr
+  ImportError: No module named repr
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import reprlib
+
+::
+
+  (no output)
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  import test.test_support
+
+::
+
+  (no output)
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import test.test_support
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 1, in <module>
+      import test.test_support
+  ImportError: No module named test_support
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import test.support
+
+::
+
+  (no output)
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  import string
+  print string.letters
+
+::
+
+  abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import string
+  string.letters
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 2, in <module>
+      string.letters
+  AttributeError: 'module' object has no attribute 'letters'
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import string
+  print(string.ascii_letters)
+
+::
+
+  abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  import string
+  print string.uppercase
+
+::
+
+  ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import string
+  string.uppercase
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 2, in <module>
+      string.uppercase
+  AttributeError: 'module' object has no attribute 'uppercase'
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import string
+  print(string.ascii_uppercase)
+
+::
+
+  ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+
+Python2.7
+=========
+
+.. code-block:: python
+
+  import string
+  print string.lowercase
+
+::
+
+  abcdefghijklmnopqrstuvwxyz
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import string
+  string.lowercase
+
+::
+
+  Traceback (most recent call last):
+    File "tmp.py", line 2, in <module>
+      string.lowercase
+  AttributeError: 'module' object has no attribute 'lowercase'
+
+
+Python3.0
+=========
+
+.. code-block:: python
+
+  import string
+  print(string.ascii_lowercase)
+
+::
+
+  abcdefghijklmnopqrstuvwxyz
+
+
