@@ -32,12 +32,15 @@ Project
 Notice these projects are on going and not completed nor stable yet.
 
 - coderunner:
-  tool to run codes and check their output
+
+  - tool to run codes and check their output
 
 - doc:
-  tool to make html files on
-  http://nishio.github.com/learn_language/
-  from test codes
+
+  - tool to make html files from test codes.
+    The generated htmls are on
+    http://nishio.github.com/learn_language/
+
 
 - languages on browsers(under development)
 
@@ -45,6 +48,7 @@ Notice these projects are on going and not completed nor stable yet.
   - https://github.com/nishio/LazyK-on-browser
   - https://github.com/nishio/Brainfxck-on-browser
   - https://github.com/nishio/EDSAC-on-browser
+  - Forth
 
 For detail visit each project page
 
@@ -78,6 +82,6 @@ Or simply use pull-request of github.
 Thanks
 ======
 
-tokibito, aodag, moriyoshi, Dragan Zivkovic
+tokibito, aodag, moriyoshi, Dragan Zivkovic, Sri Ariyani
 
 
