@@ -2,3 +2,4 @@ build
 source/*.rst
 gh-pages
 repos/Parser-on-browser/
+repos/Brainfxck-on-browser/
