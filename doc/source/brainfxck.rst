@@ -2,6 +2,8 @@
  Brainf*ck on browser
 ======================
 
+Demo
+====
 
 .. raw:: html
 

@@ -2,9 +2,12 @@
  Parser on browser
 ===================
 
+Demo
+====
+
 
 .. raw:: html
-   
+
    <script src="repos/Parser-on-browser/eparse.js"></script>
    <script src="repos/Parser-on-browser/jquery-1.7.2.min.js"></script>
    <script src="repos/Parser-on-browser/jquery.terminal-0.4.15.js"></script>
@@ -36,6 +39,7 @@
        <input type="button" id="load" value="Load operators" />
    </div>
    <p clear="both"></p>
+
 
 Feature
 =======
