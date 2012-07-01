@@ -21,56 +21,55 @@ It makes source codes huge and makes difficult to read.
 TODO
 ====
 
-- (done) Milestone1: S-expression Parser
+- Refactor commit history so that readers can learn how to implement LISP step by step.
+  'feature/M1-S-Expression-Parser' branch is nice but 'feature/M2' has actually 4 milestone.
+
+- Connect with https://github.com/nishio/AST-Visualization-on-browser
+
+- Make a site in English and Japanese (for my book's readers)
+
+History
+=======
+
+This list corresponds to current commit history. We need refactor it.
+
+- Milestone1: S-expression Parser
 
   - given string such like "(* 1 (+ 2 3))" and return syntax trees
   - in this point forget about reader macros such as "'(1 2 3)"
 
-- (done) Milestone2: Some Built-in function
+- 'feature/M2'
 
-  - arithmetic functions: +, -, \*, /
-  - other functions: eval, cons, list
+  - Milestone2: Some Built-in function
 
-- (done) Milestone3: A REPL interpreter(when user input (* 1 (+ 2 3)), it prints 5)
+    - arithmetic functions: +, -, \*, /
+    - other functions: eval, cons, list
 
-  - Now we can (* 1 (+ 2 3))
+  - (done) Milestone3: A REPL interpreter(when user input (* 1 (+ 2 3)), it prints 5)
 
-- (done) Milestone4: Special forms: quote and if
-- (done) Milestone5: Reader syntax with apostrophe: '(+ 2 2) = (quote (+ 2 2))
+    - Now we can (* 1 (+ 2 3))
 
+  - (done) Milestone4: Special forms: quote and if
+  - (done) Milestone5: Reader syntax with apostrophe: '(+ 2 2) = (quote (+ 2 2))
 
-- Milestone6: equality and comparison: =, /=, <, etc.
-- Milestone7: comments in the code
-- Milestone8: a textbox for loading examples into interpreter
+- 'feature/factorial_and_counter'
 
-- Milestone9: lexical scope (let and variables)
-- Milestone10: defining your own functions (defun)
+  - Milestone6: equality and comparison: =, /=, <, etc.
+  - Milestone7: comments in the code
+  - Milestone8: a textbox for loading examples into interpreter
 
- - Now we can make factorial and counter
+  - Milestone9: lexical scope (let and variables)
+  - Milestone10: defining your own functions (defun)
 
-- Further milestones (need to break into smaller milestones)
+    - Now we can make factorial and counter
 
-  - Strings, I/O (print, read) using terminal
-  - Macros (and quasiquote/unquote)
+- 'feature/macro'
 
-::
-
-   ; factorial
-   (defun factorial (n) (if (= n 0) 1 (* n (factorial (- n 1)))))
-
-   ; counter
-   gosh> (define (counter)
-     (let ((count 0))
-        (lambda () (set! count (+ 1 count)))))
-   counter
-   gosh> (define c (counter))
-   c
-   gosh> (c)
-   1
-   gosh> (c)
-   2
-   gosh> (c)
-   3
+  - variable-length argument lists (func arg1 arg2 . rest)
+  - defmacro and macro-expansion stage
+  - macroexpand function
+  - quasiquote and unquote (` ,) for easier building of macros
+  - a 'gensym' function and example illustrating the problem of hygiene in macros.
 
 
 License

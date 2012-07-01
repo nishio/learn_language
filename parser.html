@@ -19,7 +19,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-    <title>EDSAC Simulator on browser &mdash; Learn Languages 1.0 documentation</title>
+    <title>Parser on browser &mdash; Learn Languages 1.0 documentation</title>
     
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -37,8 +37,8 @@
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="Learn Languages 1.0 documentation" href="index.html" />
-    <link rel="next" title="LISP on browser" href="LISP-on-browser.html" />
-    <link rel="prev" title="learn_language/doc" href="doc.html" /> 
+    <link rel="next" title="Brainf*ck on browser" href="brainfxck.html" />
+    <link rel="prev" title="Python 2 and 3" href="python_2and3.html" /> 
   </head>
   <body>
     <div class="related">
@@ -48,10 +48,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="LISP-on-browser.html" title="LISP on browser"
+          <a href="brainfxck.html" title="Brainf*ck on browser"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="doc.html" title="learn_language/doc"
+          <a href="python_2and3.html" title="Python 2 and 3"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Learn Languages 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -62,51 +62,73 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="edsac-simulator-on-browser">
-<h1>EDSAC Simulator on browser<a class="headerlink" href="#edsac-simulator-on-browser" title="Permalink to this headline">¶</a></h1>
-<p>I think EDSAC is good to learn machine language,
-because recent CPU is complex.</p>
-<p>My goal is to make a Python version to run on console,
-and a JavaScript version to run on browser.</p>
-<p><strong>NOTICE</strong></p>
-<p>This code is not complete yet.</p>
-<div class="section" id="design">
-<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
-<p>We now have plenty of memory than 1950s.
-For easy learning and inspectation,
-use memories in human-readable way.</p>
+  <div class="section" id="parser-on-browser">
+<h1>Parser on browser<a class="headerlink" href="#parser-on-browser" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="demo">
+<h2>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h2>
+<script src="repos/Parser-on-browser/eparse.js"></script>
+<script src="repos/Parser-on-browser/jquery-1.7.2.min.js"></script>
+<script src="repos/Parser-on-browser/jquery.terminal-0.4.15.js"></script>
+<script src="repos/Parser-on-browser/eparse.js"></script>
+<script src="repos/Parser-on-browser/eparse-test.js"></script>
+<link rel="stylesheet" type="text/css" href="repos/Parser-on-browser/terminal.css" />
+<script>
+  $(function() {
+    eparse.interface($('#term'), $('#operators'), $('#load'));
+    eparse.test();
+    $('body').click(function() { eparse.terminal.disable(); });
+    $('#clear').click(function () { eparse.terminal.clear(); });
+  });
+</script>
+
+<div id="term" style="width: 48%; height: 300px; float: left;"></div>
+<div style="width: 48%; float: right;">
+    <textarea id="operators" style="width: 100%; height: 300px;">
+// define operators here
+// arguments: name, priority (>0), associativity ('left', 'right')
+
+operator('+', 1, 'left');
+operator('-', 1, 'left');
+operator('*', 2, 'left');
+operator('/', 2, 'left');
+operator('**', 3, 'right');
+</textarea>
+    <input type="button" id="clear" value="Clear terminal" />
+    <input type="button" id="load" value="Load operators" />
 </div>
-<div class="section" id="todo">
-<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<p clear="both"></p></div>
+<div class="section" id="feature">
+<h2>Feature<a class="headerlink" href="#feature" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Try other sample to run</li>
-<li>I made 3 classes Value, WordValue, DoubleWordValue,
-however I feel it is better to use only one class &#8216;Bits&#8217;</li>
+<li>The operator table is editable by the user in a textbox, for example:</li>
 </ul>
+<div class="highlight-python"><pre>// define operators here
+// arguments: name, priority (&gt;0), associativity ('left', 'right')
+
+operator('+', 1, 'left');
+operator('^', 3, 'left');
+operator('-', 1, 'left');
+operator('*', 2, 'left');
+operator('/', 2, 'left');
+operator('**', 3, 'right');</pre>
+</div>
+<ul class="simple">
+<li>The parser understand &#8216;(&#8216; &#8216;)&#8217;</li>
+<li>The user input an expression and receive a list of tokens, then the parser result, for example:</li>
+</ul>
+<div class="highlight-python"><pre>eparse&gt; 2+2*2**2**2*2+2
+tokens: [number(2), op(+), number(2), op(*), number(2), op(**), number
+(2), op(**), number(2), op(*), number(2), op(+), number(2)]
+result: [[2 + [[2 * [2 ** [2 ** 2]]] * 2]] + 2]</pre>
+</div>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
-<p>GPLv3 by NISHIO Hirokazu (c)2012</p>
-</div>
-<div class="section" id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="http://www.cl.cam.ac.uk/~mr/edsacposter.pdf">http://www.cl.cam.ac.uk/~mr/edsacposter.pdf</a><ul>
-<li>code of initial order and square are come from this poster.</li>
-<li>&#8220;11100 0 0000100010 0 62 S34S&#8221; seems typo of &#8220;01100 ...&#8221;</li>
-<li>It said HnS is &#8216;R += m[n]&#8217;, however EdsacTG.pdf said it is &#8216;R = m[n]&#8217;.
-If &#8216;+=&#8217; is correct, on &#8216;97: H76S&#8217;, result is affected by value which stored on R during initial order.
-I choose &#8216;R = m[n]&#8217;.</li>
-</ul>
-</li>
-<li><a class="reference external" href="http://www.cl.cam.ac.uk/users/mr/Edsac/edsac.tgz">http://www.cl.cam.ac.uk/users/mr/Edsac/edsac.tgz</a></li>
-<li><a class="reference external" href="http://www.cs.clemson.edu/~mark/edsac.html">http://www.cs.clemson.edu/~mark/edsac.html</a></li>
-<li><a class="reference external" href="http://www.dcs.warwick.ac.uk/~edsac/Software/EdsacTG.pdf">http://www.dcs.warwick.ac.uk/~edsac/Software/EdsacTG.pdf</a></li>
-</ul>
+<p>GPLv3</p>
 </div>
 <div class="section" id="thanks">
 <h2>Thanks<a class="headerlink" href="#thanks" title="Permalink to this headline">¶</a></h2>
-<p>Artem Smirnov, Mustafa Karimi, Yoni Tresina Purbasari, Dariane Joy Papa</p>
+<p>Paweł Marczewski wrote almost codes.</p>
 </div>
 </div>
 
@@ -118,25 +140,24 @@ I choose &#8216;R = m[n]&#8217;.</li>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">EDSAC Simulator on browser</a><ul>
-<li><a class="reference internal" href="#design">Design</a></li>
-<li><a class="reference internal" href="#todo">TODO</a></li>
+<li><a class="reference internal" href="#">Parser on browser</a><ul>
+<li><a class="reference internal" href="#demo">Demo</a></li>
+<li><a class="reference internal" href="#feature">Feature</a></li>
 <li><a class="reference internal" href="#license">License</a></li>
-<li><a class="reference internal" href="#reference">Reference</a></li>
 <li><a class="reference internal" href="#thanks">Thanks</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="doc.html"
-                        title="previous chapter">learn_language/doc</a></p>
+  <p class="topless"><a href="python_2and3.html"
+                        title="previous chapter">Python 2 and 3</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="LISP-on-browser.html"
-                        title="next chapter">LISP on browser</a></p>
+  <p class="topless"><a href="brainfxck.html"
+                        title="next chapter">Brainf*ck on browser</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="sources/edsac.txt"
+    <li><a href="sources/parser.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -163,10 +184,10 @@ I choose &#8216;R = m[n]&#8217;.</li>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="LISP-on-browser.html" title="LISP on browser"
+          <a href="brainfxck.html" title="Brainf*ck on browser"
              >next</a> |</li>
         <li class="right" >
-          <a href="doc.html" title="learn_language/doc"
+          <a href="python_2and3.html" title="Python 2 and 3"
              >previous</a> |</li>
         <li><a href="index.html">Learn Languages 1.0 documentation</a> &raquo;</li> 
       </ul>

@@ -77,12 +77,23 @@ It makes source codes huge and makes difficult to read.</p>
 <div class="section" id="todo">
 <h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>(done) Milestone1: S-expression Parser<ul>
+<li>Refactor commit history so that readers can learn how to implement LISP step by step.
+&#8216;feature/M1-S-Expression-Parser&#8217; branch is nice but &#8216;feature/M2&#8217; has actually 4 milestone.</li>
+<li>Connect with <a class="reference external" href="https://github.com/nishio/AST-Visualization-on-browser">https://github.com/nishio/AST-Visualization-on-browser</a></li>
+<li>Make a site in English and Japanese (for my book&#8217;s readers)</li>
+</ul>
+</div>
+<div class="section" id="history">
+<h2>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h2>
+<p>This list corresponds to current commit history. We need refactor it.</p>
+<ul class="simple">
+<li>Milestone1: S-expression Parser<ul>
 <li>given string such like &#8220;(* 1 (+ 2 3))&#8221; and return syntax trees</li>
 <li>in this point forget about reader macros such as &#8220;&#8217;(1 2 3)&#8221;</li>
 </ul>
 </li>
-<li>(done) Milestone2: Some Built-in function<ul>
+<li>&#8216;feature/M2&#8217;<ul>
+<li>Milestone2: Some Built-in function<ul>
 <li>arithmetic functions: +, -, *, /</li>
 <li>other functions: eval, cons, list</li>
 </ul>
@@ -93,41 +104,28 @@ It makes source codes huge and makes difficult to read.</p>
 </li>
 <li>(done) Milestone4: Special forms: quote and if</li>
 <li>(done) Milestone5: Reader syntax with apostrophe: &#8216;(+ 2 2) = (quote (+ 2 2))</li>
+</ul>
+</li>
+<li>&#8216;feature/factorial_and_counter&#8217;<ul>
 <li>Milestone6: equality and comparison: =, /=, &lt;, etc.</li>
 <li>Milestone7: comments in the code</li>
 <li>Milestone8: a textbox for loading examples into interpreter</li>
 <li>Milestone9: lexical scope (let and variables)</li>
-<li>Milestone10: defining your own functions (defun)</li>
-</ul>
-<blockquote>
-<div><ul class="simple">
+<li>Milestone10: defining your own functions (defun)<ul>
 <li>Now we can make factorial and counter</li>
-</ul>
-</div></blockquote>
-<ul class="simple">
-<li>Further milestones (need to break into smaller milestones)<ul>
-<li>Strings, I/O (print, read) using terminal</li>
-<li>Macros (and quasiquote/unquote)</li>
 </ul>
 </li>
 </ul>
-<div class="highlight-python"><pre>; factorial
-(defun factorial (n) (if (= n 0) 1 (* n (factorial (- n 1)))))
-
-; counter
-gosh&gt; (define (counter)
-  (let ((count 0))
-     (lambda () (set! count (+ 1 count)))))
-counter
-gosh&gt; (define c (counter))
-c
-gosh&gt; (c)
-1
-gosh&gt; (c)
-2
-gosh&gt; (c)
-3</pre>
-</div>
+</li>
+<li>&#8216;feature/macro&#8217;<ul>
+<li>variable-length argument lists (func arg1 arg2 . rest)</li>
+<li>defmacro and macro-expansion stage</li>
+<li>macroexpand function</li>
+<li>quasiquote and unquote (` ,) for easier building of macros</li>
+<li>a &#8216;gensym&#8217; function and example illustrating the problem of hygiene in macros.</li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
@@ -150,6 +148,7 @@ gosh&gt; (c)
 <li><a class="reference internal" href="#">LISP on browser</a><ul>
 <li><a class="reference internal" href="#design">Design</a></li>
 <li><a class="reference internal" href="#todo">TODO</a></li>
+<li><a class="reference internal" href="#history">History</a></li>
 <li><a class="reference internal" href="#license">License</a></li>
 <li><a class="reference internal" href="#thanks">Thanks</a></li>
 </ul>

@@ -19,7 +19,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-    <title>EDSAC Simulator on browser &mdash; Learn Languages 1.0 documentation</title>
+    <title>Brainf*ck on browser &mdash; Learn Languages 1.0 documentation</title>
     
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -37,8 +37,7 @@
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="Learn Languages 1.0 documentation" href="index.html" />
-    <link rel="next" title="LISP on browser" href="LISP-on-browser.html" />
-    <link rel="prev" title="learn_language/doc" href="doc.html" /> 
+    <link rel="prev" title="Parser on browser" href="parser.html" /> 
   </head>
   <body>
     <div class="related">
@@ -48,10 +47,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="LISP-on-browser.html" title="LISP on browser"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="doc.html" title="learn_language/doc"
+          <a href="parser.html" title="Parser on browser"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Learn Languages 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -62,51 +58,92 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="edsac-simulator-on-browser">
-<h1>EDSAC Simulator on browser<a class="headerlink" href="#edsac-simulator-on-browser" title="Permalink to this headline">¶</a></h1>
-<p>I think EDSAC is good to learn machine language,
-because recent CPU is complex.</p>
-<p>My goal is to make a Python version to run on console,
-and a JavaScript version to run on browser.</p>
-<p><strong>NOTICE</strong></p>
-<p>This code is not complete yet.</p>
-<div class="section" id="design">
-<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
-<p>We now have plenty of memory than 1950s.
-For easy learning and inspectation,
-use memories in human-readable way.</p>
+  <div class="section" id="brainf-ck-on-browser">
+<h1>Brainf*ck on browser<a class="headerlink" href="#brainf-ck-on-browser" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="demo">
+<h2>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h2>
+<link href="repos/Brainfxck-on-Browser/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="repos/Brainfxck-on-Browser/bootstrap/js/bootstrap.min.js"></script>1
+<link href="repos/Brainfxck-on-Browser/style.css" rel="stylesheet">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="repos/Brainfxck-on-Browser/jquery.js"></script>
+<script src="repos/Brainfxck-on-Browser/trybf-utils.js"></script>
+<script src="repos/Brainfxck-on-Browser/trybf-memory.js"></script>
+<script src="repos/Brainfxck-on-Browser/trybf.js"></script>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav">
+                <li class="active">
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="readme.html">Readme</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-<div class="section" id="todo">
-<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Try other sample to run</li>
-<li>I made 3 classes Value, WordValue, DoubleWordValue,
-however I feel it is better to use only one class &#8216;Bits&#8217;</li>
-</ul>
+
+<div class="container-fluid" id="bf">
+    <div id="edit" class="row">
+        <div class="span6">
+            <h4>Program</h4>
+            <textarea id="code" class="span6" style="height:300px;"></textarea>
+
+            <div class="btn-group" id="edit-mode">
+                <button id="run" class="btn" title="Run program">
+                    <i class="icon-play"></i>
+                </button>
+                <button id="debug" class="btn" title="Start debugging">
+                    <i class="icon-asterisk"></i>
+                </button>
+            </div>
+
+            <div class="btn-group" id="run-mode" hidden>
+                <button id="stop" class="btn" title="Stop program running">
+                        <i class="icon-stop"></i>
+                </button>
+            </div>
+
+            <div class="btn-group" id="debug-mode" hidden>
+                <button id="stop" class="btn" title="Stop debugging">
+                    <i class="icon-stop"></i>
+                </button>
+                <button id="step" class="btn" title="Go to next instruction">
+                    <i class="icon-step-forward"></i>
+                </button>
+                <button id="stepto" class="btn" title="Go to next (breakpoint)">
+                    <i class="icon-fast-forward"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="span6">
+            <h4>Memory</h4>
+            <pre id="mem"></pre>
+            <h4>Output</h4>
+            <pre id="output"></pre>
+        </div>
+    </div>
+</div>
+
+<p clear="both"></p></div>
+<div class="section" id="feature">
+<h2>Feature<a class="headerlink" href="#feature" title="Permalink to this headline">¶</a></h2>
+<p>Brainf*ck interpreter which run on browsers.</p>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
-<p>GPLv3 by NISHIO Hirokazu (c)2012</p>
-</div>
-<div class="section" id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="http://www.cl.cam.ac.uk/~mr/edsacposter.pdf">http://www.cl.cam.ac.uk/~mr/edsacposter.pdf</a><ul>
-<li>code of initial order and square are come from this poster.</li>
-<li>&#8220;11100 0 0000100010 0 62 S34S&#8221; seems typo of &#8220;01100 ...&#8221;</li>
-<li>It said HnS is &#8216;R += m[n]&#8217;, however EdsacTG.pdf said it is &#8216;R = m[n]&#8217;.
-If &#8216;+=&#8217; is correct, on &#8216;97: H76S&#8217;, result is affected by value which stored on R during initial order.
-I choose &#8216;R = m[n]&#8217;.</li>
-</ul>
-</li>
-<li><a class="reference external" href="http://www.cl.cam.ac.uk/users/mr/Edsac/edsac.tgz">http://www.cl.cam.ac.uk/users/mr/Edsac/edsac.tgz</a></li>
-<li><a class="reference external" href="http://www.cs.clemson.edu/~mark/edsac.html">http://www.cs.clemson.edu/~mark/edsac.html</a></li>
-<li><a class="reference external" href="http://www.dcs.warwick.ac.uk/~edsac/Software/EdsacTG.pdf">http://www.dcs.warwick.ac.uk/~edsac/Software/EdsacTG.pdf</a></li>
-</ul>
+<p>GPLv3</p>
 </div>
 <div class="section" id="thanks">
 <h2>Thanks<a class="headerlink" href="#thanks" title="Permalink to this headline">¶</a></h2>
-<p>Artem Smirnov, Mustafa Karimi, Yoni Tresina Purbasari, Dariane Joy Papa</p>
+<p>Artem Smirnov wrote almost codes.</p>
 </div>
 </div>
 
@@ -118,25 +155,21 @@ I choose &#8216;R = m[n]&#8217;.</li>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">EDSAC Simulator on browser</a><ul>
-<li><a class="reference internal" href="#design">Design</a></li>
-<li><a class="reference internal" href="#todo">TODO</a></li>
+<li><a class="reference internal" href="#">Brainf*ck on browser</a><ul>
+<li><a class="reference internal" href="#demo">Demo</a></li>
+<li><a class="reference internal" href="#feature">Feature</a></li>
 <li><a class="reference internal" href="#license">License</a></li>
-<li><a class="reference internal" href="#reference">Reference</a></li>
 <li><a class="reference internal" href="#thanks">Thanks</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="doc.html"
-                        title="previous chapter">learn_language/doc</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="LISP-on-browser.html"
-                        title="next chapter">LISP on browser</a></p>
+  <p class="topless"><a href="parser.html"
+                        title="previous chapter">Parser on browser</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="sources/edsac.txt"
+    <li><a href="sources/brainfxck.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -163,10 +196,7 @@ I choose &#8216;R = m[n]&#8217;.</li>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="LISP-on-browser.html" title="LISP on browser"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="doc.html" title="learn_language/doc"
+          <a href="parser.html" title="Parser on browser"
              >previous</a> |</li>
         <li><a href="index.html">Learn Languages 1.0 documentation</a> &raquo;</li> 
       </ul>
