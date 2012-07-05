@@ -159,8 +159,8 @@ source:
 MY_SERVER = /Users/nishio/cur/entrypoint
 
 deploy:
-	rsync -r -v build/html/ $(MY_SERVER)/public_html/learn_language
-	rsync -r -v repos/ $(MY_SERVER)/public_html/learn_language/repos
+	rsync -r -v --exclude=.git build/html/ $(MY_SERVER)/public_html/learn_language
+	rsync -r -v --exclude=.git repos/ $(MY_SERVER)/public_html/learn_language/repos
 
 deploy-on-github:
 	cp -r build/html/* gh-pages
