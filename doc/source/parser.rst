@@ -71,6 +71,14 @@ Feature
    result: [[2 + [[2 * [2 ** [2 ** 2]]] * 2]] + 2]
 
 
+Read code!
+==========
+
+Its parser is about 200 lines.
+
+https://github.com/nishio/Parser-on-browser
+
+
 License
 =======
 
