@@ -53,10 +53,13 @@ TODO
 - To make output better, add heading between test? Add description to tests?
   http://nishio.github.com/learn_language/test_index.html
 
-  - add option '--lang-format' which value is in 'heading', 'strong', 'none'
+  - add 'description' on tests, add option to tell how to show it. (default: before code)
   - add 'Heading' class as a dummy tests. It is not good design.
 
 - To make test case easily, helper script needed.
 
   - Input is a file which contains some codes separated with "\n----\n"
   - Output is a test script
+
+- Use http://packages.python.org/distribute/setuptools.html#development-mode
+  instead of dirty sys.path manipulation

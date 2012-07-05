@@ -145,8 +145,14 @@ class Test(object):
         """
         show code. currently output ReST (for my book)
         """
-        print self.human_name
-        print "=" * len(self.human_name)
+        if args.lang_format == "strong":
+            print "**%s**" % self.human_name
+        elif args.lang_format == "none":
+            pass # print nothing
+        else: # default: "heading"
+            print self.human_name
+            print "=" * len(self.human_name)
+
         print
         print ".. code-block:: %s" % self.pygments_name
         print
@@ -418,6 +424,11 @@ def main():
             "Print codes and expected outputs in specified format. "
             "When it is specified, not run codes. "
             "(supported: rest, mybook)"))
+    parser.add_argument(
+        '--lang-format', dest='lang_format', action='store', default="heading",
+        help=(
+            "Print language's name (such as 'Python') in specified format. "
+            "(supported: heading(default), strong, none)"))
     parser.add_argument(
         '--suppress-expected', dest='suppress_expected', action='store_true',
         help=(
