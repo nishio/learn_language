@@ -38,7 +38,7 @@ Demo
        <input type="button" id="clear" value="Clear terminal" />
        <input type="button" id="load" value="Load operators" />
    </div>
-   <p clear="both"></p>
+   <p style="clear: both"></p>
 
 
 Feature

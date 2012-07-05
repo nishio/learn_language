@@ -8,7 +8,7 @@ Demo
 .. raw:: html
 
    <link href="repos/Brainfxck-on-Browser/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-   <script src="repos/Brainfxck-on-Browser/bootstrap/js/bootstrap.min.js"></script>1
+   <script src="repos/Brainfxck-on-Browser/bootstrap/js/bootstrap.min.js"></script>
    <link href="repos/Brainfxck-on-Browser/style.css" rel="stylesheet">
    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
    <!--[if lt IE 9]>
@@ -77,7 +77,7 @@ Demo
        </div>
    </div>
 
-   <p clear="both"></p>
+   <p style="clear: both; height 2em;"> </p>
 
 
 Feature
