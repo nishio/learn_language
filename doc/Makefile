@@ -156,7 +156,13 @@ source:
 	python collect_readme.py
 	python collect_tests.py
 
+MY_SERVER = /Users/nishio/cur/entrypoint
+
 deploy:
+	rsync -r -v build/html/ $(MY_SERVER)/public_html/learn_language
+	rsync -r -v repos/ $(MY_SERVER)/public_html/learn_language/repos
+
+deploy-on-github:
 	cp -r build/html/* gh-pages
 	cd gh-pages; \
 	git add .; \
