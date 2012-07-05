@@ -44,6 +44,8 @@ It can fix as follow::
    coderunner/bin$ ln -s /usr/bin/perl5.14.2 perl5
    coderunner/bin$ sudo apt-get install gauche
 
+I used `Rackhub`<http://rackhub.net/> for the test.
+
 
 TODO
 ====

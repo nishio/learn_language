@@ -45,10 +45,10 @@ Notice these projects are on going and not completed nor stable yet.
 - languages on browsers(under development)
 
   - https://github.com/nishio/LISP-on-browser
-  - https://github.com/nishio/LazyK-on-browser
+  - https://github.com/nishio/FORTH-on-browser
   - https://github.com/nishio/Brainfxck-on-browser
   - https://github.com/nishio/EDSAC-on-browser
-  - Forth
+  - https://github.com/nishio/LazyK-on-browser
 
 For detail visit each project page
 
@@ -62,7 +62,7 @@ License
 All test codes for coderunner are under these license:
 
 - If no arthor are specified, it is public domain.
-- If some arthor are specified, it is CC-BY 2.0.
+- If no license are specified and some arthors are specified, it is CC-BY 2.0.
 
 Its purpose is not to disturb reader's work.
 

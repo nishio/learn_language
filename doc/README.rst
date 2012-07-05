@@ -3,8 +3,8 @@
 ====================
 
 This is a tool to make html files on
-http://nishio.github.com/learn_language/
-from test codes.
+http://nhiro.org/learn_language/
+from test codes and README of other repository.
 
 make_source.py generates \*.rst,
 and Sphinx builds them into html files.
@@ -13,7 +13,12 @@ Usage::
 
   $ make source
   $ make html
-  $ make deploy # need write access to the repository
+  $ make deploy # it need permission to my server
 
 
-To 'make deploy' we need to checkout the learn_language repository's gh-pages branch as name 'gh-pages'.
+TODO
+====
+
+- use 'git submodule' to store other repository in ./repos/ (now it was cloned)
+
+
