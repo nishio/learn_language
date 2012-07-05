@@ -52,7 +52,7 @@ Notice these projects are on going and not completed nor stable yet.
 
 For detail visit each project page
 
-.. toctree::
+.. toctree
 
 
 
