@@ -7,32 +7,17 @@ Demo
 
 .. raw:: html
 
-   <link href="repos/Brainfxck-on-Browser/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-   <script src="repos/Brainfxck-on-Browser/bootstrap/js/bootstrap.min.js"></script>
-   <link href="repos/Brainfxck-on-Browser/style.css" rel="stylesheet">
+   <link href="repos/Brainfxck-on-browser/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <script src="repos/Brainfxck-on-browser/bootstrap/js/bootstrap.min.js"></script>
+   <link href="repos/Brainfxck-on-browser/style.css" rel="stylesheet">
    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
    <!--[if lt IE 9]>
        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
    <![endif]-->
-   <script src="repos/Brainfxck-on-Browser/jquery.js"></script>
-   <script src="repos/Brainfxck-on-Browser/trybf-utils.js"></script>
-   <script src="repos/Brainfxck-on-Browser/trybf-memory.js"></script>
-   <script src="repos/Brainfxck-on-Browser/trybf.js"></script>
-
-   <div class="navbar navbar-fixed-top">
-       <div class="navbar-inner">
-           <div class="container">
-               <ul class="nav">
-                   <li class="active">
-                       <a href="index.html">Home</a>
-                   </li>
-                   <li>
-                       <a href="readme.html">Readme</a>
-                   </li>
-               </ul>
-           </div>
-       </div>
-   </div>
+   <script src="repos/Brainfxck-on-browser/jquery.js"></script>
+   <script src="repos/Brainfxck-on-browser/trybf-utils.js"></script>
+   <script src="repos/Brainfxck-on-browser/trybf-memory.js"></script>
+   <script src="repos/Brainfxck-on-browser/trybf.js"></script>
 
    <div class="container-fluid" id="bf">
        <div id="edit" class="row">
