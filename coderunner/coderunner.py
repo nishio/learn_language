@@ -416,7 +416,7 @@ class CSharp(Test):
     human_name = "C#"
     temp_filename = "tmp.cs"
     embedded_output_pattern = _multi_pattern(
-        r"/\* output \(checked by coderunner\)(.*) \*/",
+        r"/\* output \(checked by coderunner\)(.*) ?\*/",
         r"//-> ([^\n]+)\n")
     pygments_name = "cs"
     bin = "gmcs"
