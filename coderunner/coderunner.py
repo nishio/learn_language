@@ -431,9 +431,10 @@ class CSharp(Test):
 
         cmd = ["gmcs", self.filename]
         ret = self.subproc(cmd)
+        exename = self.filename.replace(".cs", ".exe")
         if self.to_run:
             #TODO: (assert not ret) should be test failure
-            ret = self.subproc(["mono", "tmp.exe"])
+            ret = self.subproc(["mono", exename])
         self.check_expect(ret)
 
 
