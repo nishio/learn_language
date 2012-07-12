@@ -52,10 +52,20 @@ About Java7
 
 When I install Java7 on Mac OS X, it was installed in
 /Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/bin/java
-Oracle suggests to switch default jre using GUI, however I don't like it.
-http://www.oracle.com/technetwork/java/javase/downloads/jdk-for-mac-readme-1564562.html
+`Oracle suggests to switch default jre using GUI<http://www.oracle.com/technetwork/java/javase/downloads/jdk-for-mac-readme-1564562.html>`_
+, however I don't like it. I add another test runner which refer to 'java7' and 'javac7',
+then put symbolic links in coderunner/bin/ .
 
-In Linux
+
+::
+
+   class Java7(Java):
+       human_name = "Java7"
+       pygments_name = "java7"
+       bin = "javac7"
+
+
+In Linux you can install as follows
 
 ::
 
@@ -63,6 +73,8 @@ In Linux
    $sudo add-apt-repository ppa:webupd8team/java
    $sudo apt-get update
    $sudo apt-get install oracle-java7-installer
+
+
 
 TODO
 ====

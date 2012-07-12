@@ -357,6 +357,12 @@ class Java(Test):
         self.check_expect(ret)
 
 
+class Java7(Java):
+    human_name = "Java7"
+    pygments_name = "java7"
+    bin = "javac7"
+
+
 class LangC(Test):
     human_name = "C"
     temp_filename = "tmp.c"
