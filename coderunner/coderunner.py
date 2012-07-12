@@ -341,6 +341,7 @@ class Scheme(Gauche):
 class Java(Test):
     human_name = "Java"
     temp_filename = "Tmp.java"
+    embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) ?\*/"
     pygments_name = "java"
     bin = "javac"
 
