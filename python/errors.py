@@ -431,4 +431,39 @@ Traceback (most recent call last):
 AttributeError: can't set attribute
 """)
 
+test(Python, """
+while 1:
+ while 1:
+  while 1:
+   while 1:
+    while 1:
+     while 1:
+      while 1:
+       while 1:
+        while 1:
+         while 1:
+          while 1:
+           while 1:
+            while 1:
+             while 1:
+              while 1:
+               while 1:
+                while 1:
+                 while 1:
+                  while 1:
+                   while 1:
+                    while 1:
+                     print "hello"
+""", """
+SystemError: too many statically nested blocks
+""")
+
+test(Python, """
+return
+""", """
+  File "tmp.py", line 1
+    return
+SyntaxError: 'return' outside function
+""")
+
 main()
