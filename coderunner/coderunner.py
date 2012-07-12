@@ -404,6 +404,31 @@ class Cpp(Test):
         self.check_expect(ret)
 
 
+class CSharp(Test):
+    human_name = "C#"
+    temp_filename = "tmp.cs"
+    embedded_output_pattern = _multi_pattern(
+        r"/\* output \(checked by coderunner\)(.*) \*/",
+        r"//-> ([^\n]+)\n")
+    pygments_name = "cs"
+    bin = "gmcs"
+
+    def __init__(self, code, expect="", extra_option=[], **kw):
+        self.extra_option = extra_option
+        super(CSharp, self).__init__(code, expect, **kw)
+
+    def run(self):
+        if not self.is_file:
+            file(self.filename, "w").write(self.code)
+
+        cmd = ["gmcs", self.filename]
+        ret = self.subproc(cmd)
+        if self.to_run:
+            #TODO: (assert not ret) should be test failure
+            ret = self.subproc(["mono", "tmp.exe"])
+        self.check_expect(ret)
+
+
 def test(lang, *args, **kw):
     "register tests"
     tests.append(

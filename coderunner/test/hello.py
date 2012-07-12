@@ -63,4 +63,18 @@ test(Scheme, r"""
 Hello
 """)
 
+test(CSharp, r"""
+using System;
+
+namespace HelloWorld{
+    class Hello{
+        static void Main(){
+            System.Console.WriteLine("Hello World!");
+        }
+    }
+}
+""", """
+Hello World!
+""")
+
 main()
