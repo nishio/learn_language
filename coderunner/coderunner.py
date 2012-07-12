@@ -239,6 +239,7 @@ class _Python(TestScript):
     pygments_name = "python"
     temp_filename = "tmp.py"
     dontcare_pattern = _pattern(r" at ", "0x[0-9a-fX]+", r">")
+    embedded_output_pattern = r'"""output \(checked by coderunner\)(.*)"""'
 
 
 class Python27(_Python):
