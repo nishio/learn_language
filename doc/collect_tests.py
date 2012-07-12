@@ -39,10 +39,13 @@ process(
 
 process(
     "../python/errors.py",
-    "Python Errors", "python_errors.rst")
+    "Python Errors", "python_errors.rst",
+    option=["--lang-format=none"])
+
 
 process(
     "../python/2and3.py",
-    "Python 2 and 3", "python_2and3.rst")
+    "Python 2 and 3", "python_2and3.rst",
+    option=["--lang-format=strong"])
 
 generate_index()

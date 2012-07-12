@@ -1,3 +1,9 @@
 build
 source/*.rst
 gh-pages
+repos/Parser-on-browser/
+repos/Brainfxck-on-browser/
+repos/LISP-on-browser/
+repos/AST-Visualization-on-browser
+repos/FORTH-on-browser/
+repos/EDSAC-on-browser/
