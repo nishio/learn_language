@@ -344,17 +344,18 @@ class Java(Test):
     embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) ?\*/"
     pygments_name = "java"
     bin = "javac"
+    runtime = "java"
 
     def run(self):
         if not self.is_file:
             file(self.filename, "w").write(self.code)
 
         ret = self.subproc(
-            ["env", "LC_ALL=en", "javac", self.filename])
+            ["env", "LC_ALL=en", self.bin, self.filename])
         if self.to_run:
             trunk = self.filename.replace(".java", "")
             ret += self.subproc(
-                ["env", "LC_ALL=en", "java", "-cp", ".", trunk])
+                ["env", "LC_ALL=en", self.runtime, "-cp", ".", trunk])
         self.check_expect(ret)
 
 
