@@ -66,10 +66,16 @@ All test codes for coderunner are under these license:
 
 Its purpose is not to disturb reader's work.
 
-Tools (coderunner, sphinxdoc) are under GPLv3.
+Tools (coderunner, sphinxdoc) and languages are under GPLv3.
 It is to ensure reusability of codes
 even if I give up to maintain this projects.
 
+TODO
+====
+
+- Python bytecode and st and ast visualizer
+- (for ASTVIZ) Use better Tree layouting algorithm (implemented in LazyK project)
+- SPIM (MIPS simulator) on browser?
 
 How to contribute
 =================
