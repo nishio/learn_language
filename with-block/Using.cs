@@ -1,3 +1,5 @@
+using System;
+
 /* output (checked by coderunner)
 * sample of normal process
 open: first
@@ -17,51 +19,58 @@ close: first
 caught: An application exception has occurred.
 finally
 */
-using System;
 
 class Program
 {
     static void Main()
     {
-        try{
-                System.Console.WriteLine("* sample of normal process");
-                process(false);
-                System.Console.WriteLine("\n* sample of failed process");
-                process(true);
-        }catch (System.ApplicationException e){
-                System.Console.WriteLine("caught: " + e.Message);
-        }finally{
-                System.Console.WriteLine("finally");
+        try
+        {
+            Console.WriteLine("* sample of normal process");
+            process(false);
+            Console.WriteLine("\n* sample of failed process");
+            process(true);
+        }
+        catch (ApplicationException e)
+        {
+            Console.WriteLine("caught: " + e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("finally");
         }
     }
 
-    static void process(bool to_fail){
+    static void process(bool to_fail)
+    {
         using (
-              MyClass c1 = new MyClass("first"),
-                      c2 = new MyClass("second"))
+            MyClass c1 = new MyClass("first"),
+                    c2 = new MyClass("second"))
         {
-                System.Console.WriteLine("process");
-                if(to_fail){
-                        System.Console.WriteLine("failed");
-                        throw new System.ApplicationException();
-                }
+            Console.WriteLine("process");
+
+            if (to_fail)
+            {
+                Console.WriteLine("failed");
+                throw new ApplicationException();
+            }
         }
         Console.WriteLine("finished");
     }
 }
 
-
 class MyClass : IDisposable
 {
-    String name;
+    string name;
+
     public MyClass(String _name)
     {
         this.name = _name;
-        System.Console.WriteLine("open: " + name);
+        Console.WriteLine("open: " + name);
     }
 
-    void IDisposable.Dispose()
+    void Dispose()
     {
-        System.Console.WriteLine("close: " + name);
+        Console.WriteLine("close: " + name);
     }
 }
