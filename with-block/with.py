@@ -59,5 +59,6 @@ close (<type 'exceptions.ZeroDivisionError'>, ZeroDivisionError('integer divisio
 """)
 
 test(Java7, "TryWithResource.java", is_file=True, is_embedded_output=True)
+test(CSharp, "Using.cs", is_file=True, is_embedded_output=True)
 
 main()
