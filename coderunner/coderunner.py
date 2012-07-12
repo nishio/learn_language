@@ -489,7 +489,7 @@ def _test():
 
 def _test_executables():
     print "check whether expected executables exist:"
-    for lang in [Python, Ruby, Perl, JS, Scheme, Java, LangC, Cpp]:
+    for lang in [Python, Ruby, Perl, JS, Scheme, Java, LangC, Cpp, CSharp]:
         cmd = "which %s" % lang.bin
         ret = subprocess.call(cmd, shell=True, env={"PATH": PATH})
         if ret != 0:
