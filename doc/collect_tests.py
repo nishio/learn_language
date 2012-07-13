@@ -48,6 +48,10 @@ process(
     "1 / 2", "division.rst")
 
 process(
+    "../with-block/test.py",
+    "With-statement", "with_statement.rst")
+
+process(
     "../python/errors.py",
     "Python Errors", "python_errors.rst",
     option=["--lang-format=none"])
