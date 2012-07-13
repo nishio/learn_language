@@ -362,7 +362,7 @@ class Java(Test):
 
 class Java7(Java):
     human_name = "Java7"
-    pygments_name = "java7"
+    pygments_name = "java"
     bin = "javac7"
     runtime = "java7"
 
@@ -419,7 +419,7 @@ class CSharp(Test):
     embedded_output_pattern = _multi_pattern(
         r"/\* output \(checked by coderunner\)(.*) ?\*/",
         r"//-> ([^\n]+)\n")
-    pygments_name = "cs"
+    pygments_name = "csharp"
     bin = "gmcs"
 
     def __init__(self, code, expect="", extra_option=[], **kw):
