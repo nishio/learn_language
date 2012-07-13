@@ -29,6 +29,8 @@ BIN_PATH = os.path.join(os.path.abspath(
         os.path.dirname(__file__)), 'bin')
 PATH = ":".join([BIN_PATH] + os.environ.get('PATH', '').split(":"))
 
+EMBEDDED_OUTPUT_PATTERN_LIKE_C = r"/\* output \(checked by coderunner\)(.*) ?\*/"
+
 def _indent(s):
     r"""
     >>> _indent("aaa")
@@ -342,7 +344,7 @@ class Scheme(Gauche):
 class Java(Test):
     human_name = "Java"
     temp_filename = "Tmp.java"
-    embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) ?\*/"
+    embedded_output_pattern = EMBEDDED_OUTPUT_PATTERN_LIKE_C
     pygments_name = "java"
     bin = "javac"
     runtime = "java"
@@ -369,7 +371,7 @@ class Java7(Java):
 class LangC(Test):
     human_name = "C"
     temp_filename = "tmp.c"
-    embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) ?\*/"
+    embedded_output_pattern = EMBEDDED_OUTPUT_PATTERN_LIKE_C
     pygments_name = "c"
     bin = "gcc"
 
@@ -387,7 +389,7 @@ class Cpp(Test):
     human_name = "C++"
     temp_filename = "tmp.cpp"
     embedded_output_pattern = _multi_pattern(
-        r"/\* output \(checked by coderunner\)(.*) \*/",
+        EMBEDDED_OUTPUT_PATTERN_LIKE_C,
         r"//-> ([^\n]+)\n")
     pygments_name = "cpp"
     bin = "g++"
@@ -417,7 +419,7 @@ class CSharp(Test):
     human_name = "C#"
     temp_filename = "tmp.cs"
     embedded_output_pattern = _multi_pattern(
-        r"/\* output \(checked by coderunner\)(.*) ?\*/",
+        EMBEDDED_OUTPUT_PATTERN_LIKE_C,
         r"//-> ([^\n]+)\n")
     pygments_name = "csharp"
     bin = "gmcs"
