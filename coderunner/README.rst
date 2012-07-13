@@ -69,7 +69,7 @@ In Linux you can install as follows
 
 ::
 
-   # Add the “WEBUPD8″ PPA.
+   # Add the "WEBUPD8" PPA.
    $sudo add-apt-repository ppa:webupd8team/java
    $sudo apt-get update
    $sudo apt-get install oracle-java7-installer
