@@ -6,8 +6,18 @@ import collect_readme
 toc = []
 
 def process(testfile, title, outputfile, option=[]):
+    testdir, testscript = os.path.split(testfile)
+
+    if testdir:
+        CWD = os.getcwd()
+        os.chdir(testdir)
+
     ret = subprocess.check_output([
-            "python", testfile, "--format=rest"] + option)
+            "python", testscript, "--format=rest"] + option)
+
+    if testdir:
+        os.chdir(CWD)
+
     fo = file(os.path.join("source", outputfile) , "w")
     fo.write("=" * len(title))
     fo.write("\n%s\n" % title)
