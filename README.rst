@@ -4,36 +4,56 @@
 
 To run and read codes helps you to learn language's core concept.
 
+
 Preface
 =======
 
 Hi, I'm `Dr. NISHIO Hirokazu <http://www.nishiohirokazu.org/>`_.
-I'm writing a book to teach the core concept of programming languages.
-In the process, I feel some needs.
+I'm writing a book to teach the core concepts of programming languages.
 
-- To run a bunch of small codes and check its output.
-  When I teach programming I use a lot of small codes.
-  However sometimes their outputs changes depends on languages' version or enviroment settings.
-  To make easy to check output, the input and output should be described in a runnable form.
-  They are tests, in meaning of test-driven development.
-  What I need is regression tests for textbook.
+I think that to run codes helps you understand language's behavior.
+To read implementation of languages also helps you.
+However, there are some problems:
 
-- To run codes helps you understand language's behavior.
-  To read implementation of languages also helps you.
-  However I found some problem when I writing my book.
-  For some old languages, there are no easy way to ready to run.
-  For some new languages, they are already grew too big to read.
-  One way to overcome these problems are implement small subset of languages which run on browsers.
+- For some old languages, it is not easy to make environment you can run codes.
+- For some new languages, it is already grew too big to read. It is not easy to understand.
+
+One way to overcome these problems are implement small subset of languages which run on browsers.
 
 
 Project
 =======
 
-Notice these projects are on going and not completed nor stable yet.
+- languages on browsers
+
+  :Parser-on-browser:
+     The concept of parser is very important. It is a recursive descent parser of infix notation works on browser. You can change and observe operators' priority and associativity. (completed)
+
+  :LISP-on-browser:
+     LISP is a language with simple but extensible grammers. You can try LISP on browser and learn how macros works.
+     (completed)
+
+  :AST-Visualization-on-browser: The concept of abstract syntax tree (AST) is very important. It is a visualizer which show AST of JavaScript in realtime. (completed, but it is better to change tree layout engine)
+
+  :FORTH-on-browser: FORTH is a language with simple grammers and stack-based execution. The concept of stack-based execution is important because a lot of modern language (such as Java, Python and Ruby) choose it for thier implementation of virtual machine. (completed)
+
+  :EDSAC-on-browser: EDSAC is a computer in 1950s. It allows us to make program with human-readable symbols instead of describing machine instructions as a bunch of bits. It is the origin of computer programs. (not yet)
+
+  :Brainfxck-on-browser: Very small language with interesting architecture, which was inspired by the turing machine. (completed, but should be improved)
+
+  :LazyK-on-browser: Lazy K is small *functional* language. (not yet)
+
 
 - coderunner:
 
-  - tool to run codes and check their output
+  - Tool to run codes and check their output.
+    To run a bunch of small codes and check its output is important.
+    When I teach programming I use a lot of small codes.
+    However sometimes their outputs changes depends on languages' version or enviroment settings.
+    To make easy to check output, the input and output should be described in a runnable form.
+    They are tests, in meaning of test-driven development.
+    What I need is regression tests for textbook.
+
 
 - doc:
 
@@ -41,14 +61,6 @@ Notice these projects are on going and not completed nor stable yet.
     The generated htmls are on
     http://nishio.github.com/learn_language/
 
-
-- languages on browsers(under development)
-
-  - https://github.com/nishio/LISP-on-browser
-  - https://github.com/nishio/FORTH-on-browser
-  - https://github.com/nishio/Brainfxck-on-browser
-  - https://github.com/nishio/EDSAC-on-browser
-  - https://github.com/nishio/LazyK-on-browser
 
 For detail visit each project page
 

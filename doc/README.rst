@@ -13,8 +13,12 @@ Usage::
 
   $ make source
   $ make html
-  $ make deploy # it need permission to my server
 
+Usage(for me)::
+
+  $ make deploy # it copies files for my entrypoint project.
+
+  I need "$ make deploy" on entrypoint project to send files on server.
 
 TODO
 ====
