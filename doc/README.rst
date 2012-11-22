@@ -9,6 +9,8 @@ from test codes and README of other repository.
 make_source.py generates \*.rst,
 and Sphinx builds them into html files.
 
+http://nhiro.org/learn_language/index.html comes from learn_language/README.rst.
+
 Usage::
 
   $ make source

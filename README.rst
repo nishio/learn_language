@@ -27,17 +27,16 @@ Project
 - languages on browsers
 
   :Parser-on-browser:
-     The concept of parser is very important. It is a recursive descent parser of infix notation works on browser. You can change and observe operators' priority and associativity. (completed)
+     The concept of parser is very important. It is a recursive descent parser of infix notation works on browser. You can change and observe operators' priority and associativity.
 
   :LISP-on-browser:
      LISP is a language with simple but extensible grammers. You can try LISP on browser and learn how macros works.
-     (completed)
 
-  :AST-Visualization-on-browser: The concept of abstract syntax tree (AST) is very important. It is a visualizer which show AST of JavaScript in realtime. (completed, but it is better to change tree layout engine)
+  :AST-Visualization-on-browser: The concept of abstract syntax tree (AST) is very important. It is a visualizer which show AST of JavaScript in realtime. (it is better to change tree layout engine)
 
   :FORTH-on-browser: FORTH is a language with simple grammers and stack-based execution. The concept of stack-based execution is important because a lot of modern language (such as Java, Python and Ruby) choose it for thier implementation of virtual machine. (completed)
 
-  :EDSAC-on-browser: EDSAC is a computer in 1950s. It allows us to make program with human-readable symbols instead of describing machine instructions as a bunch of bits. It is the origin of computer programs. (not yet)
+  :EDSAC-on-browser: EDSAC is a computer in 1950s. It allows us to make program with human-readable symbols instead of describing machine instructions as a bunch of bits. It is very primitive computer language.
 
   :Brainfxck-on-browser: Very small language with interesting architecture, which was inspired by the turing machine. (completed, but should be improved)
 
