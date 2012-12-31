@@ -419,6 +419,10 @@ class Cpp(Test):
         ret = self.subproc(cmd)
         if self.to_run:
             #TODO: (assert not ret) should be test failure
+            if ret != "":
+                raise AssertionError(
+                    "You try to run but compiler told following error:\n"
+                    + ret + "\nIf you expected that, use option to_run=False")
             ret = self.subproc(["env", "./a.out"])
         self.check_expect(ret)
 
