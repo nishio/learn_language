@@ -3,3 +3,5 @@ tmp.*
 Tmp.java
 *.pyc
 *.class
+*.s
+a.out.dSYM

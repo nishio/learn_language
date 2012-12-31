@@ -29,6 +29,8 @@ BIN_PATH = os.path.join(os.path.abspath(
         os.path.dirname(__file__)), 'bin')
 PATH = ":".join([BIN_PATH] + os.environ.get('PATH', '').split(":"))
 
+EMBEDDED_OUTPUT_PATTERN_LIKE_C = r"/\* output \(checked by coderunner\)(.*) ?\*/"
+
 def _indent(s):
     r"""
     >>> _indent("aaa")
@@ -145,8 +147,14 @@ class Test(object):
         """
         show code. currently output ReST (for my book)
         """
-        print self.human_name
-        print "=" * len(self.human_name)
+        if args.lang_format == "strong":
+            print "**%s**" % self.human_name
+        elif args.lang_format == "none":
+            pass # print nothing
+        else: # default: "heading"
+            print self.human_name
+            print "=" * len(self.human_name)
+
         print
         print ".. code-block:: %s" % self.pygments_name
         print
@@ -228,11 +236,15 @@ class TestScript(Test):
         ret = self.subproc(self.bin.split() + [self.filename])
         self.check_expect(ret)
 
+        if not self.is_file:
+            os.remove(self.filename)
+
 
 class _Python(TestScript):
     pygments_name = "python"
     temp_filename = "tmp.py"
     dontcare_pattern = _pattern(r" at ", "0x[0-9a-fX]+", r">")
+    embedded_output_pattern = r'"""output \(checked by coderunner\)(.*)"""'
 
 
 class Python27(_Python):
@@ -335,26 +347,36 @@ class Scheme(Gauche):
 class Java(Test):
     human_name = "Java"
     temp_filename = "Tmp.java"
+    embedded_output_pattern = EMBEDDED_OUTPUT_PATTERN_LIKE_C
     pygments_name = "java"
     bin = "javac"
+    runtime = "java"
 
     def run(self):
         if not self.is_file:
             file(self.filename, "w").write(self.code)
 
         ret = self.subproc(
-            ["env", "LC_ALL=en", "javac", self.filename])
+            ["env", "LC_ALL=en", self.bin, self.filename])
         if self.to_run:
             trunk = self.filename.replace(".java", "")
             ret += self.subproc(
-                ["env", "LC_ALL=en", "java", "-cp", ".", trunk])
+                ["env", "LC_ALL=en", self.runtime, "-cp", ".", trunk])
         self.check_expect(ret)
 
+        if not self.is_file:
+            os.remove(self.filename)
+
+class Java7(Java):
+    human_name = "Java7"
+    pygments_name = "java"
+    bin = "javac7"
+    runtime = "java7"
 
 class LangC(Test):
     human_name = "C"
     temp_filename = "tmp.c"
-    embedded_output_pattern = r"/\* output \(checked by coderunner\)(.*) \*/"
+    embedded_output_pattern = EMBEDDED_OUTPUT_PATTERN_LIKE_C
     pygments_name = "c"
     bin = "gcc"
 
@@ -368,11 +390,14 @@ class LangC(Test):
             ret += self.subproc(["env", "./a.out"])
         self.check_expect(ret)
 
+        if not self.is_file:
+            os.remove(self.filename)
+
 class Cpp(Test):
     human_name = "C++"
     temp_filename = "tmp.cpp"
     embedded_output_pattern = _multi_pattern(
-        r"/\* output \(checked by coderunner\)(.*) \*/",
+        EMBEDDED_OUTPUT_PATTERN_LIKE_C,
         r"//-> ([^\n]+)\n")
     pygments_name = "cpp"
     bin = "g++"
@@ -398,6 +423,32 @@ class Cpp(Test):
         self.check_expect(ret)
 
 
+class CSharp(Test):
+    human_name = "C#"
+    temp_filename = "tmp.cs"
+    embedded_output_pattern = _multi_pattern(
+        EMBEDDED_OUTPUT_PATTERN_LIKE_C,
+        r"//-> ([^\n]+)\n")
+    pygments_name = "csharp"
+    bin = "gmcs"
+
+    def __init__(self, code, expect="", extra_option=[], **kw):
+        self.extra_option = extra_option
+        super(CSharp, self).__init__(code, expect, **kw)
+
+    def run(self):
+        if not self.is_file:
+            file(self.filename, "w").write(self.code)
+
+        cmd = ["gmcs", self.filename]
+        ret = self.subproc(cmd)
+        exename = self.filename.replace(".cs", ".exe")
+        if self.to_run:
+            #TODO: (assert not ret) should be test failure
+            ret = self.subproc(["mono", exename])
+        self.check_expect(ret)
+
+
 def test(lang, *args, **kw):
     "register tests"
     tests.append(
@@ -418,6 +469,11 @@ def main():
             "Print codes and expected outputs in specified format. "
             "When it is specified, not run codes. "
             "(supported: rest, mybook)"))
+    parser.add_argument(
+        '--lang-format', dest='lang_format', action='store', default="heading",
+        help=(
+            "Print language's name (such as 'Python') in specified format. "
+            "(supported: heading(default), strong, none)"))
     parser.add_argument(
         '--suppress-expected', dest='suppress_expected', action='store_true',
         help=(
@@ -447,7 +503,7 @@ def _test():
 
 def _test_executables():
     print "check whether expected executables exist:"
-    for lang in [Python, Ruby, Perl, JS, Scheme, Java, LangC, Cpp]:
+    for lang in [Python, Ruby, Perl, JS, Scheme, Java, LangC, Cpp, CSharp]:
         cmd = "which %s" % lang.bin
         ret = subprocess.call(cmd, shell=True, env={"PATH": PATH})
         if ret != 0:

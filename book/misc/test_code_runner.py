@@ -1,6 +1,4 @@
-import os, sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from coderunner import *
+from code_runner import *
 
 test(Python, """
 print "Hello"
@@ -57,24 +55,5 @@ test(Clojure, """
 Hello
 """)
 
-test(Scheme, r"""
-(display "Hello")
-""", """
-Hello
-""")
-
-test(CSharp, r"""
-using System;
-
-namespace HelloWorld{
-    class Hello{
-        static void Main(){
-            System.Console.WriteLine("Hello World!");
-        }
-    }
-}
-""", """
-Hello World!
-""")
 
 main()
