@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec java -jar -Dfile.encoding=UTF-8 /opt/local/share/java/rhino/js.jar "$@"
