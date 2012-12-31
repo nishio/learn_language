@@ -56,8 +56,7 @@ test(Perl, """
 $x = "global";
 
 sub yobu{
-    my $x; # ここをlocalからmyに変更した
-    $x = "yobu";
+    my $x = "yobu"; # ここをlocalからmyに変更した
     &yobareru();
 }
 
