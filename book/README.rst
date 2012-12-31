@@ -69,3 +69,5 @@ section6
 - raii: RAIIのテスト、test.pyに期待する出力が書かれています
 - test.py: Python, Ruby, JSでの例外の違い
 - CheckedException.java: 検査例外のサンプル
+
+

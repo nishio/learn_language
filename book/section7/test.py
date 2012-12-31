@@ -1,9 +1,19 @@
 # -*- encoding: utf-8 -*-
 """
-Samples to cause error
+Samples for section 7
 """
-import os, sys
 from coderunner import *
+
+test(Ruby, r"""
+x = "Ruby"
+z = x
+x[0] = "P"
+p x #=> "Puby"
+p z #=> "Puby"
+""", """
+"Puby"
+"Puby"
+""")
 
 
 test(Perl, r"""
@@ -118,7 +128,7 @@ def foo()
     p y  #-> raise error: we can't see y because it is lambda's local variable
 end
 
-foo()
+foo
 """, """
 "new"
 tmp.rb:6:in `foo': undefined local variable or method `y' for main:Object (NameError)
