@@ -489,6 +489,7 @@ def main():
 
     args = parser.parse_args()
     if not args.format:
+        print "%d tests..." % len(tests)
         for test in tests:
             test.run()
         print "ok."
