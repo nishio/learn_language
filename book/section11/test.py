@@ -174,6 +174,8 @@ test(Perl, """
 2匹
 """)
 
+JS = NodeJS
+
 test(JS, """
 // JavaScript
 var counter = {
@@ -182,12 +184,12 @@ var counter = {
 
     push: function(){
         this.count++;
-        print(this.name + ": " +
+        console.log(this.name + ": " +
                     this.count + "匹");
     },
     reset: function(){
         this.count = 0;
-        print(this.name + ": " +
+        console.log(this.name + ": " +
                     "リセット");
     }
 }
@@ -213,7 +215,7 @@ function makeCounter(){
         count: 0,
         push: function(){
             this.count++;
-            print(this.count + "匹");
+            console.log(this.count + "匹");
         }
     }
 }
@@ -236,16 +238,16 @@ function Foo(){
 }
 Foo.prototype.y = 2
 var obj = new Foo();
-print(obj); // -> Object {x=1, more...}
-print(obj.__proto__); // -> Object {y=2}
-print(obj.x); // -> 1
-print(obj.y); // -> 2
+console.log(obj);           // -> { x: 1 }
+console.log(obj.__proto__); // -> { y: 2 }
+console.log(obj.x);         // -> 1
+console.log(obj.y);         // -> 2
 """, """
-[object Object]
-[object Object]
+{ x: 1 }
+{ y: 2 }
 1
 2
-""") # Rhinoだとオブジェクトの区別がつかない
+""")
 
 test(JS, """
 // JavaScript
@@ -255,14 +257,14 @@ var Counter = function() {
 
 Counter.prototype.push = function(){
     this.count++;
-    print(this.count + "匹");
+    console.log(this.count + "匹");
 }
 
 var c1 = new Counter();
 c1.push(); //-> 1匹
 c1.push(); //-> 2匹
 var c2 = new Counter();
-print(c1.push === c2.push) //-> true // 同じ物
+console.log(c1.push === c2.push) //-> true // 同じ物
 """, """
 1匹
 2匹
@@ -275,7 +277,7 @@ function makeCounter(){
   var count = 0;
   function push(){
     count++;
-    print(count);
+    console.log(count);
   }
   return push;
 }
