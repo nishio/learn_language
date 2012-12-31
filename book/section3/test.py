@@ -39,7 +39,7 @@ int main(){
   // OK
   vector<vector<int> > x;
 }
-""")
+""", to_run=False)
 
 test(Cpp, """
 #include <vector>

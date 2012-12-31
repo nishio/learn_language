@@ -3,8 +3,7 @@
 Samples to cause error
 """
 import os, sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
-from coderunner.coderunner import *
+from coderunner import *
 
 
 test(Perl, r"""
