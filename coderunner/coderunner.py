@@ -236,6 +236,9 @@ class TestScript(Test):
         ret = self.subproc(self.bin.split() + [self.filename])
         self.check_expect(ret)
 
+        if not self.is_file:
+            os.remove(self.filename)
+
 
 class _Python(TestScript):
     pygments_name = "python"
@@ -361,6 +364,8 @@ class Java(Test):
                 ["env", "LC_ALL=en", self.runtime, "-cp", ".", trunk])
         self.check_expect(ret)
 
+        if not self.is_file:
+            os.remove(self.filename)
 
 class Java7(Java):
     human_name = "Java7"
@@ -384,6 +389,9 @@ class LangC(Test):
         if self.to_run:
             ret += self.subproc(["env", "./a.out"])
         self.check_expect(ret)
+
+        if not self.is_file:
+            os.remove(self.filename)
 
 class Cpp(Test):
     human_name = "C++"
