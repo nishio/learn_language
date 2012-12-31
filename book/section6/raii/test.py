@@ -1,6 +1,4 @@
-import sys
-sys.path.insert(0, "..")
-from code_runner import test, Cpp, main
+from coderunner import test, Cpp, main
 
 test(Cpp, "raii.cpp", """
 scenario1: normal case

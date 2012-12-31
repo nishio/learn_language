@@ -1,4 +1,4 @@
-class Foo {
+class CheckedException {
     // foo will throw MyException
     void foo() throws MyException{
         throw new MyException();

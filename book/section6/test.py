@@ -2,10 +2,11 @@
 """
 Samples to cause error
 """
-import os, sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
-from coderunner.coderunner import *
+from coderunner import *
 
+"""
+arguments number mismatch
+"""
 
 test(Python, """
 def foo(x, y):
@@ -41,6 +42,9 @@ foo(1)
 """)
 
 
+"""
+range error
+"""
 
 test(Python, """
 x = [0, 1, 2]

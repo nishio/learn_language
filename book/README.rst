@@ -39,7 +39,6 @@ section4
 実行する用
 ----------
 
-
 - if_elseif_else_goto.c: elseを使わずにgotoで実現したコード
 - if_elseif_else_wo_goto.c: 素直にelseを使って実装したコード
 - no_if.c: 2つのコードを両方、色々な引数で実行するコード
@@ -54,3 +53,19 @@ section4
 
 test.pyはno_if.c, no_while.c, no_for.c, ForLoopTest.javaの4つのファイルが期待通りの出力を出すかを確認します。
 
+
+section5
+========
+
+再帰呼び出しのサンプルコードが1個置いてあります。
+
+
+section6
+========
+
+- exception.c: 返り値でエラーを返す例
+- exception_goto.c: goto outでエラー処理をまとめる例
+- exception_setjmp.c: 紙面からは割愛された、setjmp/longjmpでまとめる例
+- raii: RAIIのテスト、test.pyに期待する出力が書かれています
+- test.py: Python, Ruby, JSでの例外の違い
+- CheckedException.java: 検査例外のサンプル
