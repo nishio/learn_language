@@ -7,6 +7,72 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 from coderunner.coderunner import *
 
 
+test(Perl, r"""
+# Perl
+$x = "global";
+
+sub yobu{
+    local $x = "yobu";
+    &yobareru();
+}
+
+sub yobareru{
+    print "$x\n";
+    # ↑「yobu」と表示される
+}
+
+&yobu();
+""", """
+yobu
+""")
+
+
+"""
+呼ばれる側でlocal宣言すると、新しい空の変数が作らる。thanks @__gfx__
+"""
+test(Perl, r"""
+# Perl
+$x = "global";
+
+sub yobu{
+    local $x;
+    $x = "yobu";
+    &yobareru();
+}
+
+sub yobareru{
+    local $x;
+    print "[$x]\n";
+    # ↑[]と表示される
+}
+
+&yobu();
+""", """
+[]
+""")
+
+
+test(Perl, """
+$x = "global";
+
+sub yobu{
+    my $x; # ここをlocalからmyに変更した
+    $x = "yobu";
+    &yobareru();
+}
+
+sub yobareru{
+    print "$x\n";
+    # ↑「global」と表示される
+}
+
+&yobu();
+""", """
+global
+""")
+
+
+
 """
 form Ruby 1.9 block arguments has block scope
 """
@@ -98,70 +164,6 @@ new
 
 
 
-test(Perl, r"""
-# Perl
-$x = "global";
-
-sub yobu{
-    local $x;
-    $x = "yobu-local";
-    &yobareru();
-}
-
-sub yobareru{
-    print "$x\n";
-    # ↑「yobu-local」と表示される
-}
-
-&yobu();
-""", """
-yobu-local
-""")
-
-
-"""
-呼ばれる側でlocal宣言すると、新しい空の変数が作らる。thanks @__gfx__
-"""
-test(Perl, r"""
-# Perl
-$x = "global";
-
-sub yobu{
-    local $x;
-    $x = "yobu-local";
-    &yobareru();
-}
-
-sub yobareru{
-    local $x;
-    print "[$x]\n";
-    # ↑[]と表示される
-}
-
-&yobu();
-""", """
-[]
-""")
-
-
-test(Perl, """
-$x = "global";
-
-sub yobu{
-    my $x; # ここをlocalからmyに変更した
-    $x = "yobu-local";
-    &yobareru();
-}
-
-sub yobareru{
-    print "$x\n";
-    # ↑「global」と表示される
-}
-
-&yobu();
-""", """
-global
-""")
 
 main()
 
