@@ -3,7 +3,7 @@
 Samples to cause error
 """
 from coderunner import *
-
+JS = NodeJS
 """
 arguments number mismatch
 """
@@ -33,7 +33,7 @@ tmp.rb:1:in `foo': wrong number of arguments (1 for 2) (ArgumentError)
 
 test(JS, """
 function foo(x, y){
-  print(x, y);
+  console.log(x, y);
 }
 
 foo(1)
@@ -64,8 +64,8 @@ nil
 """)
 
 test(JS, """
-x = [0, 1, 2]
-print(x[3])
+x = [0, 1, 2];
+console.log(x[3]);
 """, """
 undefined
 """)
