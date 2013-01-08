@@ -1,10 +1,10 @@
-data Foo a = Person {age :: Int, name :: String, something :: a}
+data Person a = MakePerson {age :: Int, name :: String, something :: a}
 
-x :: Foo Int
-x = Person {age = 31, name = "nishio", something = 1}
+x :: Person Int
+x = MakePerson {age = 31, name = "nishio", something = 1}
 
-y :: Foo String
-y = Person {age = 31, name = "nishio", something = "hoge"}
+y :: Person String
+y = MakePerson {age = 31, name = "nishio", something = "hoge"}
 
 main = do
   print $ something x   -- -> 1

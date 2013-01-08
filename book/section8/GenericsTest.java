@@ -1,15 +1,15 @@
 public class GenericsTest {
     public static void main(String[] args) {
-        Foo<Integer> x = new Foo<Integer>();
+        Person<Integer> x = new Person<Integer>();
         x.something = 1;
-        Foo<String> y = new Foo<String>();
+        Person<String> y = new Person<String>();
         y.something = "hoge";
         System.out.println(x.something); // -> 1
         System.out.println(y.something); // -> hoge
     }
 }
 
-class Foo<T>{
+class Person<T>{
     public Integer age;
     public String name;
     public T something;
