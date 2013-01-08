@@ -16,5 +16,21 @@ print(0x3e8)
 1000
 """)
 
+test(Python27, r"""
+print 1 / 2
+print 1 // 2
+""", """
+0
+0
+""")
+
+test(Python30, r"""
+print(1 / 2)
+print(1 // 2)
+""", """
+0.5
+0
+""")
+
 main()
 
