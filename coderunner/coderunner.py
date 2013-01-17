@@ -69,6 +69,17 @@ def _multi_pattern(*patterns):
     return "(?:%s)" % "|".join(patterns)
 
 
+def _subproc(cmd):
+    p = subprocess.Popen(
+        cmd,
+        stderr=subprocess.STDOUT,
+        stdout=subprocess.PIPE,
+        env={"PATH": PATH})
+    ret, _dummy = p.communicate("")
+    ret = ret.strip("\n")
+    return ret
+
+
 class Test(object):
     """
     embedded_output_pattern:
@@ -80,16 +91,6 @@ class Test(object):
     embedded_output_pattern = None
     dontcare_pattern = None
     pygments_name = 'none'
-
-    def subproc(self, cmd):
-        p = subprocess.Popen(
-            cmd,
-            stderr=subprocess.STDOUT,
-            stdout=subprocess.PIPE,
-            env={"PATH": PATH})
-        ret, _dummy = p.communicate("")
-        ret = ret.strip("\n")
-        return ret
 
     def check_expect(self, ret):
         """
@@ -227,13 +228,20 @@ class Test(object):
         return "\n".join(buf)
 
 
+    version_option = ["-v"]
+    @classmethod
+    def get_version(cls):
+        cmd = [cls.bin] + cls.version_option
+        ret = _subproc(cmd)
+        return ret
+
 
 class TestScript(Test):
     def run(self):
         if not self.is_file:
             file(self.filename, "w").write(self.code)
 
-        ret = self.subproc(self.bin.split() + [self.filename])
+        ret = _subproc(self.bin.split() + [self.filename])
         self.check_expect(ret)
 
         if not self.is_file:
@@ -245,6 +253,7 @@ class _Python(TestScript):
     temp_filename = "tmp.py"
     dontcare_pattern = _pattern(r" at ", "0x[0-9a-fX]+", r">")
     embedded_output_pattern = r'"""output \(checked by coderunner\)(.*)"""'
+    version_option = ["-V"]
 
 
 class Python27(_Python):
@@ -294,7 +303,7 @@ class Rhino(_JS):
     human_name = "Rhino"
 
 
-class JS(Rhino):
+class JS(NodeJS):
     human_name = "JavaScript"
 
 
@@ -337,6 +346,7 @@ class _Scheme(TestScript):
 
 class Gauche(_Scheme):
     bin = "gosh"
+    version_option = ['-V']
     human_name = "Gauche"
 
 
@@ -351,16 +361,17 @@ class Java(Test):
     pygments_name = "java"
     bin = "javac"
     runtime = "java"
+    version_option = ['-version']
 
     def run(self):
         if not self.is_file:
             file(self.filename, "w").write(self.code)
 
-        ret = self.subproc(
+        ret = _subproc(
             ["env", "LC_ALL=en", self.bin, self.filename])
         if self.to_run:
             trunk = self.filename.replace(".java", "")
-            ret += self.subproc(
+            ret += _subproc(
                 ["env", "LC_ALL=en", self.runtime, "-cp", ".", trunk])
         self.check_expect(ret)
 
@@ -385,9 +396,9 @@ class LangC(Test):
             file(self.filename, "w").write(self.code)
 
         cmd = ("gcc").split() + [self.filename]
-        ret = self.subproc(cmd)
+        ret = _subproc(cmd)
         if self.to_run:
-            ret += self.subproc(["env", "./a.out"])
+            ret += _subproc(["env", "./a.out"])
         self.check_expect(ret)
 
         if not self.is_file:
@@ -416,14 +427,14 @@ class Cpp(Test):
              "-Wpointer-arith -Woverloaded-virtual -Wnon-virtual-dtor "
              "-I/opt/local/include/ -O3").split()
             + self.extra_option + [self.filename])
-        ret = self.subproc(cmd)
+        ret = _subproc(cmd)
         if self.to_run:
             #TODO: (assert not ret) should be test failure
             if ret != "":
                 raise AssertionError(
                     "You try to run but compiler told following error:\n"
                     + ret + "\nIf you expected that, use option to_run=False")
-            ret = self.subproc(["env", "./a.out"])
+            ret = _subproc(["env", "./a.out"])
         self.check_expect(ret)
 
 
@@ -444,14 +455,19 @@ class CSharp(Test):
         if not self.is_file:
             file(self.filename, "w").write(self.code)
 
-        cmd = ["gmcs", self.filename]
-        ret = self.subproc(cmd)
+        cmd = [self.bin, self.filename]
+        ret = _subproc(cmd)
         exename = self.filename.replace(".cs", ".exe")
         if self.to_run:
             #TODO: (assert not ret) should be test failure
-            ret = self.subproc(["mono", exename])
+            ret = _subproc(["mono", exename])
         self.check_expect(ret)
 
+    @classmethod
+    def get_version(cls):
+        cmd = [cls.bin, "--about"]
+        ret = _subproc(cmd)
+        return ret
 
 def test(lang, *args, **kw):
     "register tests"
@@ -506,9 +522,11 @@ def _test():
     import doctest
     doctest.testmod()
 
+
 def _test_executables():
     print "check whether expected executables exist:"
     for lang in [Python, Ruby, Perl, JS, Scheme, Java, LangC, Cpp, CSharp]:
+        print lang.human_name
         cmd = "which %s" % lang.bin
         ret = subprocess.call(cmd, shell=True, env={"PATH": PATH})
         if ret != 0:
@@ -518,6 +536,13 @@ def _test_executables():
             print "  install it or make symbolic link to it in coderunner/bin/"
 
 
+def print_version():
+    for lang in [Python, Ruby, Perl, JS, Scheme, Java, LangC, Cpp, CSharp]:
+        print lang.human_name
+        print lang.get_version()
+
+
 if __name__ == "__main__":
     _test()
     _test_executables()
+    print_version()
