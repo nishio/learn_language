@@ -233,6 +233,13 @@ class Test(object):
     def get_version(cls):
         cmd = [cls.bin] + cls.version_option
         ret = _subproc(cmd)
+        lines = ret.split('\n')
+        if len(lines) > 3:
+            filtered = [line for line in lines if 'version' in line]
+            if filtered:
+                return "".join(filtered)
+            import pdb
+            pdb.set_trace()
         return ret
 
 
@@ -446,6 +453,7 @@ class CSharp(Test):
         r"//-> ([^\n]+)\n")
     pygments_name = "csharp"
     bin = "gmcs"
+    version_option = ['--version']
 
     def __init__(self, code, expect="", extra_option=[], **kw):
         self.extra_option = extra_option
@@ -463,11 +471,6 @@ class CSharp(Test):
             ret = _subproc(["mono", exename])
         self.check_expect(ret)
 
-    @classmethod
-    def get_version(cls):
-        cmd = [cls.bin, "--about"]
-        ret = _subproc(cmd)
-        return ret
 
 def test(lang, *args, **kw):
     "register tests"
