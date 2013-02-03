@@ -485,7 +485,8 @@ def drop_tests():
 
 def main():
     global args
-    parser = argparse.ArgumentParser(description='run codes and check output')
+    parser = argparse.ArgumentParser(description='Run codes and check outputs are as expected.')
+
     parser.add_argument(
         '--format', dest='format', action='store',
         help=(
@@ -511,6 +512,7 @@ def main():
             "Copy got output into clipboard. (Mac only)"))
 
     args = parser.parse_args()
+
     if not args.format:
         print "%d tests..." % len(tests)
         for test in tests:
@@ -546,6 +548,19 @@ def print_version():
 
 
 if __name__ == "__main__":
-    _test()
-    _test_executables()
-    print_version()
+    parser = argparse.ArgumentParser(description='Run codes and check outputs are as expected.')
+    parser.add_argument('--self-test', action='store_true',
+                        help='run coderunner\'s doctest')
+    parser.add_argument('--exec-test', action='store_true',
+                        help='test executables availability')
+    parser.add_argument('--print-versions', action='store_true',
+                        help='print versions of executables')
+
+    args = parser.parse_args()
+
+    if args.self_test:
+        _test()
+    if args.exec_test:
+        _test_executables()
+    if args.print_versions:
+        print_version()
