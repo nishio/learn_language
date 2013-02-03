@@ -18,6 +18,17 @@ Traceback (most recent call last):
 ValueError: need more than 2 values to unpack
 """)
 
+test(Python30, """
+x, *y, z = 1, 2, 3, 4, 5
+print(x)
+print(y)
+print(z)
+""", """
+1
+[2, 3, 4]
+5
+""")
+
 test(Ruby, """
 x, y = 1, 2, 3
 p x
