@@ -3,6 +3,27 @@
 Samples to cause error
 """
 from coderunner import *
+JS = NodeJS
+
+test(LangC, r"""
+#include <stdio.h>
+
+int foo(){
+  static ret = 0;
+  ret++;
+  return ret;
+}
+
+int main(){
+  printf("%d\n", foo());
+  printf("%d\n", foo());
+  printf("%d\n", foo());
+}
+""", """
+1
+2
+3
+""")
 
 test(Perl, """
 # Perlのパッケージでカウンタを作る
@@ -174,8 +195,6 @@ test(Perl, """
 2匹
 """)
 
-JS = NodeJS
-
 test(JS, """
 // JavaScript
 var counter = {
@@ -229,6 +248,39 @@ c1.push(); //-> 2匹
 1匹
 1匹
 2匹
+""")
+
+test(JS, """
+// JavaScript
+function makeCounter(){
+    return {
+        count: 0,
+        push: function(){
+            this.count++;
+            console.log(this.count + "匹");
+        }
+    }
+}
+
+var c1 = makeCounter();
+var c2 = makeCounter();
+console.log(c1.push === c2.push); //-> false
+""", """
+false
+""")
+
+test(JS, """
+// JavaScript
+obj = {}
+obj.__proto__ = {x: 1}
+
+console.log(obj);           // -> {}
+console.log(obj.__proto__); // -> { x: 1 }
+console.log(obj.x);         // -> 1
+""", """
+{}
+{ x: 1 }
+1
 """)
 
 test(JS, """
