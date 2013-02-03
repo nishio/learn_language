@@ -60,7 +60,7 @@ $"$"$"
 
 test(Python27, r"""
 # 日本語でコメントを書いただけ
-""", """
+""", r"""
   File "tmp.py", line 1
 SyntaxError: Non-ASCII character '\xe6' in file tmp.py on line 1, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
 """)
