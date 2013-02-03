@@ -17,7 +17,7 @@ Hello
 
 
 test(JS, r"""
-print("Hello");
+console.log("Hello");
 ""","""
 Hello
 """)
