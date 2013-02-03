@@ -70,6 +70,11 @@ def _multi_pattern(*patterns):
 
 
 def _subproc(cmd):
+    """
+    call subprocess `cmd` and get its output
+    >>> _subproc(['echo', 'foo'])
+    'foo'
+    """
     p = subprocess.Popen(
         cmd,
         stderr=subprocess.STDOUT,
@@ -78,6 +83,8 @@ def _subproc(cmd):
     ret, _dummy = p.communicate("")
     ret = ret.strip("\n")
     return ret
+
+
 
 
 class Test(object):
@@ -546,8 +553,8 @@ def print_version():
         print lang.human_name
         print lang.get_version()
 
-
-if __name__ == "__main__":
+def _main():
+    """main function when coderunner.py was called as a script (not imported as library)"""
     parser = argparse.ArgumentParser(description='Run codes and check outputs are as expected.')
     parser.add_argument('--self-test', action='store_true',
                         help='run coderunner\'s doctest')
@@ -560,7 +567,14 @@ if __name__ == "__main__":
 
     if args.self_test:
         _test()
-    if args.exec_test:
+    elif args.exec_test:
         _test_executables()
-    if args.print_versions:
+    elif args.print_versions:
         print_version()
+    else:
+        print 'running self-test'
+        _test()
+        print 'ok.'
+
+if __name__ == "__main__":
+    _main()
