@@ -1,5 +1,3 @@
-import os, sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from coderunner import *
 
 test(Python, """
@@ -24,7 +22,7 @@ puts 1 / 2
 
 
 test(JS, r"""
-print(1 / 2);
+console.log(1 / 2);
 ""","""
 0.5
 """)

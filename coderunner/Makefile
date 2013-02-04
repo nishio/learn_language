@@ -2,8 +2,13 @@
 
 test:
 	python test/hello.py
-	python test/tuple_unpacking.py
 	python test/python_js.py
+	python test/division.py
+	python test/equals.py
+	python test/zero_division.py
+	python test/tuple_unpacking.py
+	cd test; python embedded_output.py
+	cd test; python dontcare.py
 
 test-all: test booktest
 
