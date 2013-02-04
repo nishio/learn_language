@@ -70,7 +70,7 @@ def spawn(argv, master_read, stdin_read, commands_to_run, timeout):
 # end: ported from 'pty' library
 
 def interact(shell, commands_to_run, timeout=1.0):
-    typescript = open('typescript', 'w')
+    typescript = open('tmp.log', 'w')
 
     def read(fd):
         data = os.read(fd, 1024)
