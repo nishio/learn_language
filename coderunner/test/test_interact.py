@@ -1,12 +1,14 @@
 from coderunner import *
 
-test(GHCi, """
+test(GHCi, r"""
 :t 1
-""", """
+:t \x -> x
+""", r"""
 Prelude> :t 1
 1 :: (Num t) => t
+Prelude> :t \x -> x
+\x -> x :: t -> t
 """)
-
 
 test(Prolog, r"""
 1 = 2.

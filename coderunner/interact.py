@@ -95,8 +95,9 @@ def remove_escape_sequence(s):
 def get_ghci_body(s):
     m = re.search(r'Prelude>.*(?=\r\n\w+>)', s, re.DOTALL)
     ret = m.group()
-    # newline by GHCi is '\r\r\n', normalize it to '\n'
-    ret = ret.replace('\r\r\n', '\n')
+    # nomarlize newline
+    ret = ret.replace('\r\n', '\n')
+    ret = ret.replace('\r', '')
     return ret
 
 
