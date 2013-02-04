@@ -21,6 +21,7 @@ import argparse
 import subprocess
 import difflib
 import os
+import sys
 import re
 
 tests = []
@@ -138,7 +139,7 @@ class Test(object):
                     p = subprocess.Popen(["pbcopy"], stdin=subprocess.PIPE)
                     p.stdin.write(ret)
                     p.stdin.close()
-                raise AssertionError
+                sys.exit(1)
 
     def show(self):
         if args.format == "rest":
@@ -505,11 +506,26 @@ def test(lang, code, expect='', *args, **kw):
     tests.append(t)
     return t
 
+
 def drop_tests():
     """delete already registered tests.
     It is useful when you are writing a lot of tests"""
     global tests
     tests = []
+
+
+def run_a_test(lang, code, expect='', *xs, **kw):
+    """
+    Run a test without calling ``main``.
+    It is for doctest of myself.
+
+    >>> run_a_test(Python, 'print 1+1', '2')
+    """
+    args.nonstop = True  # don't call sys.exit on fail
+    args.copy_got_output = False
+    t = lang(code, expect, *xs, **kw)
+    t.run()
+
 
 def main():
     global args
@@ -576,6 +592,7 @@ def print_version():
 
 def _main():
     """main function when coderunner.py was called as a script (not imported as library)"""
+    global args
     parser = argparse.ArgumentParser(description='Run codes and check outputs are as expected.')
     parser.add_argument('--self-test', action='store_true',
                         help='run coderunner\'s doctest')
