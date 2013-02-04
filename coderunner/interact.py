@@ -21,10 +21,8 @@ I set timeout=10.0 to wait it.
 'scala> 1\r\nres0: Int = 1\r\n\r\n'
 """
 
-import subprocess
 from select import select
 import os
-import tty
 import pty
 import re
 
@@ -43,29 +41,20 @@ def spawn(argv, master_read, stdin_read, commands_to_run, timeout):
     pid, master_fd = pty.fork()
     if pid == CHILD:
         os.execlp(argv[0], *argv)
-    try:
-        mode = tty.tcgetattr(STDIN_FILENO)
-        tty.setraw(STDIN_FILENO)
-        restore = 1
-    except tty.error:    # This is the same as termios.error
-        restore = 0
-    try:
-        pty._writen(master_fd, commands_to_run)
 
-        fds = [master_fd]
-        while True:
-            rfds, wfds, xfds = select(fds, [], [], timeout)
-            if not rfds:
-                break  # timeout
-            data = master_read(master_fd)
-            if not data:  # Reached EOF.
-                break
+    pty._writen(master_fd, commands_to_run)
 
-    finally:
-        if restore:
-            tty.tcsetattr(STDIN_FILENO, tty.TCSAFLUSH, mode)
+    fds = [master_fd]
+    while True:
+        rfds, wfds, xfds = select(fds, [], [], timeout)
+        if not rfds:  # timeout
+            break
+        data = master_read(master_fd)
+        if not data:  # Reached EOF.
+            break
+
     os.close(master_fd)
-
+# end: ported from 'pty' library
 
 def interact(shell, commands_to_run, timeout=1.0):
     typescript = open('typescript', 'w')
