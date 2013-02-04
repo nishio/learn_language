@@ -397,11 +397,13 @@ class Java(Test):
         if not self.is_file:
             os.remove(self.filename)
 
+
 class Java7(Java):
     human_name = "Java7"
     pygments_name = "java"
     bin = "javac7"
     runtime = "java7"
+
 
 class LangC(Test):
     human_name = "C"
@@ -422,6 +424,7 @@ class LangC(Test):
 
         if not self.is_file:
             os.remove(self.filename)
+
 
 class Cpp(Test):
     human_name = "C++"
@@ -546,6 +549,7 @@ class Prolog(TestInteractive):
         self.check_expect(ret)
         for name in self.modules:
             os.remove("%s.pl" % name)
+
 
 class ScalaInteractive(TestInteractive):
     human_name = "Scala"
