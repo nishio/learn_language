@@ -367,6 +367,12 @@ class Scheme(Gauche):
     human_name = "Scheme"
 
 
+class Haskell(TestScript):
+    bin = "runghc"
+    temp_filename = "tmp.hs"
+    pygments_name = "haskell"
+
+
 class Java(Test):
     human_name = "Java"
     temp_filename = "Tmp.java"
