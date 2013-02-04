@@ -2,21 +2,20 @@
 '''
 code runner: tools to run small codes (sample code of documents)
 
-# USAGE: register tests with 'test' func, then call 'main'
+USAGE: register tests with 'test' func, then call 'main'
+see doc of 'test' for its arguments
 
 test(Python,
 """
 1/0
-""",
-"""
+""", """
 Traceback (most recent call last):
   File "tmp.py", line 1, in <module>
     1/0
 ZeroDivisionError: integer division or modulo by zero
 """)
 
-test(Java,
-"exception.java", is_file=True, to_run=False)
+test(Java, "exception.java", is_file=True, to_run=False)
 '''
 import argparse
 import subprocess
@@ -83,8 +82,6 @@ def _subproc(cmd):
     ret, _dummy = p.communicate("")
     ret = ret.strip("\n")
     return ret
-
-
 
 
 class Test(object):
@@ -479,10 +476,34 @@ class CSharp(Test):
         self.check_expect(ret)
 
 
-def test(lang, *args, **kw):
-    "register tests"
-    tests.append(
-        lang(*args, **kw))
+def test(lang, code, expect='', *args, **kw):
+    """register tests
+    lang: instance of Test class,
+          which holds how to test given code
+          especially which language it is
+
+    code: code to test.
+
+    expect: expected output of given code
+            optional (default: '')
+
+    optional arguments(foo=bar means bar is default value)
+
+    if_file=False: When True, ``code`` is a path to another file.
+
+    to_run=True: When False, ``code`` will not be run.
+                 It is used expecially in Java, C++,
+                 when you want to check behavoir on compile phase
+
+    is_embedded_output=False:
+        When True, expected output is embedded in the given code
+        (usually with in_file=True)
+        see ``embedded_output_pattern`` to know how to embed them.
+
+    """
+    t = lang(code, expect, *args, **kw)
+    tests.append(t)
+    return t
 
 def drop_tests():
     """delete already registered tests.
