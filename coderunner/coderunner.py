@@ -23,6 +23,7 @@ import difflib
 import os
 import sys
 import re
+import interact
 
 tests = []
 BIN_PATH = os.path.join(os.path.abspath(
@@ -475,6 +476,80 @@ class CSharp(Test):
             #TODO: (assert not ret) should be test failure
             ret = _subproc(["mono", exename])
         self.check_expect(ret)
+
+
+class TestInteractive(Test):
+    default_timeout = 1.0
+    def __init__(self, code, expect="", timeout=None, **kw):
+        if timeout == None: timeout = self.default_timeout
+        self.timeout = timeout
+        if not code.endswith('\n'):
+            code += '\n'
+        code += interact.EOT
+        super(TestInteractive, self).__init__(code, expect, **kw)
+
+    def run(self):
+        ret = interact.interact(
+            self.bin.split(),
+            self.code, self.timeout)
+
+        ret = self.get_result(ret)
+        self.check_expect(ret)
+
+    def get_result(self, s):
+        raise NotImplementedError
+
+
+class GHCi(TestInteractive):
+    human_name = "Haskell"
+    temp_filename = "tmp.hs"
+    pygments_name = "haskell"
+    bin = "ghci"
+
+    def get_result(self, s):
+        return interact.get_ghci_body(s)
+
+
+class Prolog(TestInteractive):
+    human_name = "Prolog"
+    temp_filename = "tmp.pl"
+    pygments_name = "prolog"
+    bin = "swipl"  # SWI-Prolog
+
+    def __init__(self, code, expect="", timeout=None, **kw):
+        self.modules = []
+        super(Prolog, self).__init__(code, expect, **kw)
+
+    def get_result(self, s):
+        return interact.get_swipl_body(s)
+
+    def with_module(self, name, code):
+        file('%s.pl' % name, 'w').write(code)
+        self.modules.append(name)
+
+    def run(self):
+        code = self.code
+        for name in self.modules:
+            code = "[%s].\n" % name + code  # load modules
+
+        ret = interact.interact(
+            self.bin.split(),
+            code, self.timeout)
+
+        ret = self.get_result(ret)
+        self.check_expect(ret)
+        for name in self.modules:
+            os.remove("%s.pl" % name)
+
+class ScalaInteractive(TestInteractive):
+    human_name = "Scala"
+    temp_filename = "tmp.scala"
+    pygments_name = "scala"
+    bin = "scala-2.10"  # SWI-Prolog
+    default_timeout = 10.0
+
+    def get_result(self, s):
+        return interact.get_scala_body(s)
 
 
 def test(lang, code, expect='', *args, **kw):
