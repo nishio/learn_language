@@ -57,7 +57,9 @@ test.pyはno_if.c, no_while.c, no_for.c, ForLoopTest.javaの4つのファイル�
 section5
 ========
 
-再帰呼び出しのサンプルコードが1個置いてあります。
+- recursive.py: 再帰呼び出しのサンプルコード
+- recursive.py.txt: 再帰呼び出し解説用の「作成途中のコード」
+- func_call.c: 関数の呼び出しをアセンブリ言語にコンパイルして観察するためのコード(本文では使われていません)
 
 
 section6
@@ -70,4 +72,16 @@ section6
 - test.py: Python, Ruby, JSでの例外の違い
 - CheckedException.java: 検査例外のサンプル
 
+section8
+========
+
+- int_and_float.c: intとしての足し算とfloatとしての足し算が異なる機械語であることを、アセンブリ言語にコンパイルした結果を眺めることで学ぶためのコード
+- GenericsTest.java: ジェネリクスのサンプル
+- add_one.c: 1を加算する関数のサンプル(型推論のある言語との比較用)
+- generics.hs: 型コンストラクタのサンプル
+
+- python.c: Pythonの動的型付けされた値のメモリイメージを観察するコード
+- structure.c: 構造体のサンプル
+- generics.cpp: クラステンプレートのサンプル(ただしstructure.cからの話の流れにあわせるためclassではなくstructを使っている)
+- oct.c: 0100が百ではないことを確認するコード
 
