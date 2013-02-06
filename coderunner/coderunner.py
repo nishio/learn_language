@@ -372,6 +372,38 @@ class Haskell(TestScript):
     temp_filename = "tmp.hs"
     pygments_name = "haskell"
 
+SMALLTALK_PREFIX_CODE = """
+squeak := OSProcess thisOSProcess.
+
+print := [:value |
+    squeak stdOut
+        nextPutAll: (value asString);
+        nextPut: Character lf;
+        flush].
+
+printException := [:e |
+    squeak stdOut
+        nextPutAll: (e asString);
+        nextPutAll: (e messageText);
+        nextPut: Character lf;
+        flush].
+
+[
+"""
+SMALLTALK_SUFFIX_CODE = """
+] on: Exception
+  do: printException.
+
+squeak sigkill: squeak.
+"""
+class Smalltalk(TestScript):
+    bin = "run_squeak.py"  # in 'bin' dir
+    temp_filename = "tmp.st"
+    pygments_name = "smalltalk"
+
+    def __init__(self, code, expect="", extra_option=[], **kw):
+        code = SMALLTALK_PREFIX_CODE + code + SMALLTALK_SUFFIX_CODE
+        super(Smalltalk, self).__init__(code, expect, **kw)
 
 class Java(Test):
     human_name = "Java"
