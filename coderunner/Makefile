@@ -1,5 +1,8 @@
 .PHONY: test
 
+install:
+	python setup.py develop
+
 test:
 	python test/hello.py
 	python test/python_js.py
