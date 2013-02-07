@@ -84,7 +84,7 @@ test(Scheme, r"""
 test(Smalltalk, """
 1 / 0
 """, """
-ZeroDivide:
+ZeroDivide: 
 """)
 
 main()
