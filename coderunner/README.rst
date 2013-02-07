@@ -18,13 +18,74 @@ Usage
   $ python coderunner.py # run self tests
   $ python test/hello.py # run 'print hello' tests
 
+It may fail. Don't get discouraged.
+It is better if it works in various environment without customization,
+however it is hard work and is not main scope of the project.
+Please read following instruction to modify settings to fit your environment.
+
 
 Expected executables
 ====================
 
-Self test warns if expected executables don't found::
+in case of plain Ubuntu 12.04
+-----------------------------
 
-   coderunner$ python coderunner.py
+'executable test' warns if expected executables aren't found.
+When I tried it on Ubuntu 12.04 (2012-02-02), it said as follow
+
+::
+   $ python coderunner.py --exec-test
+   check whether expected executables exist:
+   Python
+   /usr/bin/python2.7
+   Ruby
+   Test 'Ruby' expected executable named 'ruby1.9' in $PATH.
+     install it or make symbolic link to it in coderunner/bin/
+   Perl
+   Test 'Perl' expected executable named 'perl5' in $PATH.
+     install it or make symbolic link to it in coderunner/bin/
+   JavaScript
+   Test 'JS' expected executable named 'node' in $PATH.
+     install it or make symbolic link to it in coderunner/bin/
+   Scheme
+   Test 'Scheme' expected executable named 'gosh' in $PATH.
+     install it or make symbolic link to it in coderunner/bin/
+   Java
+   Test 'Java' expected executable named 'javac' in $PATH.
+     install it or make symbolic link to it in coderunner/bin/
+   C
+   /usr/bin/gcc
+   C++
+   Test 'Cpp' expected executable named 'g++' in $PATH.
+     install it or make symbolic link to it in coderunner/bin/
+   C#
+   Test 'CSharp' expected executable named 'gmcs' in $PATH.
+     install it or make symbolic link to it in coderunner/bin/
+
+So I did as follows
+
+::
+   $ sudo apt-get install ruby1.9.3 nodejs gauche openjdk-7-jdk g++ mono-gmcs
+   $ cd bin
+   $ ln -s /usr/bin/ruby1.9.3 ruby1.9
+   $ ln -s /usr/bin/perl5.14.2 perl5
+
+You need to run setup.py(you can also do ``$ sudo make install`` )::
+
+  $ sudo python setup.py develop
+
+It it fail by lack of setuptools, try this::
+
+   $ sudo apt-get install python-setuptools
+
+
+in case of Rackhub
+------------------
+
+I tried the test on `Rackhub`<http://rackhub.net/> (2012-06-10)
+It warned as follow::
+
+   coderunner$ python coderunner.py --exec-test
    check whether expected executables exist:
    /home/rackhuber/.pythonbrew/pythons/Python-2.7.3/bin/python2.7
    Test 'Ruby' expected executable named 'ruby1.9' in $PATH.
@@ -40,11 +101,12 @@ Self test warns if expected executables don't found::
 
 It can fix as follow::
 
-   coderunner/bin$ ln -s /home/rackhuber/.rvm/rubies/ruby-1.9.2-p320/bin/ruby ruby1.9
-   coderunner/bin$ ln -s /usr/bin/perl5.14.2 perl5
-   coderunner/bin$ sudo apt-get install gauche
+   $ sudo apt-get install gauche
+   $ cd bin
+   bin$ ln -s /home/rackhuber/.rvm/rubies/ruby-1.9.2-p320/bin/ruby ruby1.9
+   bin$ ln -s /usr/bin/perl5.14.2 perl5
 
-I used `Rackhub`<http://rackhub.net/> for the test.
+At that time I didn't support C# yet. Not using setup.py yet.
 
 
 About Java7
@@ -75,9 +137,23 @@ In Linux you can install as follows
    $sudo apt-get install oracle-java7-installer
 
 
+About Squeak
+============
+
+I installed squeak with Squeak-4.3-All-in-One.
+I made image with OSProcess.
+And I hardcoded Squeak executable and the image in bin/run_squeak.py.
+Please modify it as fit to your environment.
+
 
 TODO
 ====
+
+- It is too high hurdle for users to install all language beforehand.
+  Test should be ignored when its prerequisite not satisfied.
+
+  - current impl.: when _subproc failed with OSError, print error message and continue.
+    It should be brushed up.
 
 - To make output better, add heading between test? Add description to tests?
   http://nishio.github.com/learn_language/test_index.html
@@ -90,5 +166,4 @@ TODO
   - Input is a file which contains some codes separated with "\n----\n"
   - Output is a test script
 
-- Use http://packages.python.org/distribute/setuptools.html#development-mode
-  instead of dirty sys.path manipulation
+- support Common Lisp, OCaml, etc.
