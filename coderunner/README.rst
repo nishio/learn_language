@@ -155,6 +155,9 @@ TODO
   - current impl.: when _subproc failed with OSError, print error message and continue.
     It should be brushed up.
 
+  - currently Smalltalk test call bin/run_squeak.py and fail in it.
+    It is not trapped.
+
 - To make output better, add heading between test? Add description to tests?
   http://nishio.github.com/learn_language/test_index.html
 
