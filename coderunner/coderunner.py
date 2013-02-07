@@ -70,21 +70,27 @@ def _multi_pattern(*patterns):
     return "(?:%s)" % "|".join(patterns)
 
 
+class CantRunSubprocess(RuntimeError): pass
+
 def _subproc(cmd):
     """
     call subprocess `cmd` and get its output
     >>> _subproc(['echo', 'foo'])
     'foo'
     """
-    p = subprocess.Popen(
-        cmd,
-        stderr=subprocess.STDOUT,
-        stdout=subprocess.PIPE,
-        env={"PATH": PATH})
-    ret, _dummy = p.communicate("")
-    ret = ret.strip("\n")
-    return ret
+    try:
+        p = subprocess.Popen(
+            cmd,
+            stderr=subprocess.STDOUT,
+            stdout=subprocess.PIPE,
+            env={"PATH": PATH})
+        ret, _dummy = p.communicate("")
+        ret = ret.strip("\n")
+        return ret
 
+    except OSError, e:
+        assert str(e) == '[Errno 2] No such file or directory'
+        raise CantRunSubprocess("Can't run subprocess", cmd)
 
 class Test(object):
     """
@@ -677,7 +683,10 @@ def main():
     if not args.format:
         print "%d tests..." % len(tests)
         for test in tests:
-            test.run()
+            try:
+                test.run()
+            except CantRunSubprocess, e:
+                print "can't run subprocess '%s', ignored" % " ".join(e.args[1])
         print "ok."
     else:
         for test in tests:
