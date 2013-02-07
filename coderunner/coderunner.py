@@ -130,7 +130,7 @@ class Test(object):
             gotlines = ret.split("\n")
             difflines = list(difflib.unified_diff(
                     expectlines, gotlines, "expected", "got"))
-            if len(difflines) < len(expectlines) + len(gotlines):
+            if args.use_diff and len(difflines) < len(expectlines) + len(gotlines):
                 print "diff " + "=" * 35
                 print "\n".join(difflines)
                 print "=" * 40
@@ -677,6 +677,10 @@ def main():
         '--copy', dest='copy_got_output', action='store_true',
         help=(
             "Copy got output into clipboard. (Mac only)"))
+    parser.add_argument(
+        '--no-diff', dest='use_diff', action='store_false',
+        help=(
+            "show diff of expected and got outputs (default: True)"))
 
     args = parser.parse_args()
 
