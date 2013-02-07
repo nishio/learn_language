@@ -193,7 +193,8 @@ class Test(object):
         print "\n"
 
     def __init__(self, code, expect="", is_file=False,
-                 to_run=True, is_embedded_output=False):
+                 to_run=True, is_embedded_output=False,
+                 extra_dontcare=None):
         """
         is_file: when code is large you can put it in the other file
         to_run: False when you don't want to run
@@ -223,6 +224,12 @@ class Test(object):
             self.expect = expect.strip("\n")
 
         self.to_run = to_run
+
+        if extra_dontcare != None:
+            if self.dontcare_pattern:
+                self.dontcare_pattern += '|' + extra_dontcare
+            else:
+                self.dontcare_pattern = extra_dontcare
 
     def get_embedded_output(self):
         data = file(self.filename).read()

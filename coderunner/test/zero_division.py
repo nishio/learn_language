@@ -51,8 +51,9 @@ int main(){
 }
 ""","""
 tmp.cpp: In function 'int main()':
-tmp.cpp:3: warning: division by zero in '1 / 0'
-""", to_run=False)
+tmp.cpp:3:22: warning: division by zero [-Wdiv-by-zero]
+""", to_run=False,
+extra_dontcare=r"3:22:|3:|\[-Wdiv-by-zero\]|in '1 / 0'")
 
 
 test(Clojure, """
