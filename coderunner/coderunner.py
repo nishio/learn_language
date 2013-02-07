@@ -111,10 +111,10 @@ class Test(object):
         if self.dontcare_pattern:
             self.expect = re.sub(
                 self.dontcare_pattern,
-                "..dontcare..", self.expect)
+                "..dontcare..", self.expect, re.DOTALL)
             ret = re.sub(
                 self.dontcare_pattern,
-                "..dontcare..", ret)
+                "..dontcare..", ret, re.DOTALL)
 
         if ret != self.expect:
             print
@@ -312,9 +312,15 @@ class _JS(TestScript):
     temp_filename = "tmp.js"
     pygments_name = "javascript"
 
+
 class NodeJS(_JS):
     bin = "node"
     human_name = "Node.js"
+    dontcare_pattern = _multi_pattern(
+        # 3 lines before error
+        r"(\n[^\n]*){3}\n(?=\w*Error: )",
+        # detail stacktrace
+        r"(    at[^\n]+\n?)+")
 
 
 class Rhino(_JS):

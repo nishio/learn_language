@@ -182,17 +182,17 @@ console.log(b) //-> error
 [Function: b]
 [Function: b]
 
-/Users/nishio/cur/learn_language/coderunner/tmp.js:4
-console.log(b) //-> error
-            ^
+node.js:201
+        throw e; // process.nextTick error, or 'error' event on first tick
+              ^
 ReferenceError: b is not defined
-    at Object.<anonymous> (/Users/nishio/cur/learn_language/coderunner/tmp.js:4:13)
-    at Module._compile (module.js:446:26)
-    at Object..js (module.js:464:10)
-    at Module.load (module.js:353:31)
-    at Function._load (module.js:311:12)
-    at Array.0 (module.js:484:10)
-    at EventEmitter._tickCallback (node.js:190:38)
+    at Object.<anonymous> (/home/nishio/learn_language/coderunner/tmp.js:4:13)
+    at Module._compile (module.js:441:26)
+    at Object..js (module.js:459:10)
+    at Module.load (module.js:348:32)
+    at Function._load (module.js:308:12)
+    at Array.0 (module.js:479:10)
+    at EventEmitter._tickCallback (node.js:192:41)
 """)
 
 main()
