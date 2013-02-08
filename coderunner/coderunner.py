@@ -91,7 +91,6 @@ def _subproc(cmd):
             stdout=subprocess.PIPE,
             env={"PATH": PATH})
         ret, _dummy = p.communicate("")
-        ret = ret.strip("\n")
         return ret
 
     except OSError, e:
@@ -125,6 +124,7 @@ class Test(object):
                 self.dontcare_pattern,
                 "..dontcare..", ret, re.DOTALL)
 
+        ret = ret.strip("\n")
         if ret != self.expect:
             print
             print "ERROR"
