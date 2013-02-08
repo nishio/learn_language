@@ -1,5 +1,11 @@
 from coderunner import *
 
+header('say Hello in each language')
+
+comment('''
+This document was generated from hello.py.
+''')
+
 test(Python, """
 print "Hello"
 """, """

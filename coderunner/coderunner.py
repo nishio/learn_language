@@ -24,6 +24,7 @@ import os
 import sys
 import re
 import interact
+from docwriter import header, comment
 
 tests = []
 BIN_PATH = os.path.join(os.path.abspath(
