@@ -54,8 +54,14 @@ def _pattern(prefix, body, suffix):
     >>> re.findall(_, "aa<abc>de<foo>bar")
     ['abc', 'foo']
     """
-    pre = "(?<=%s)" % prefix  # positive lookbehind assertion
-    suf = "(?=%s)" % suffix  # lookahead assertion
+    if prefix:
+        pre = "(?<=%s)" % prefix  # positive lookbehind assertion
+    else:
+        pre = ''
+    if suffix:
+        suf = "(?=%s)" % suffix  # lookahead assertion
+    else:
+        suf = ''
     return pre + body + suf
 
 
