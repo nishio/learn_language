@@ -5,26 +5,36 @@
 このディレクトリは「〜」のサンプルコードを置く場所です。
 
 細かいコード片などはCodeRunnerを使ってひとつのスクリプトにまとめて、一括で挙動をテストする仕組みになっています。
-CodeRunnerの詳細はsection3にて。
+CodeRunnerの詳細はsection1にて。
+
+section1
+========
+
+test.pyの中に2件のテストがあります。たとえば下のように書かれています。言語と、入力と、期待している出力が並んでいて、
+この例では「Rubyで"""if 0〜"""のコードを実行すると、"""true!"""と出力される」と読みます。
+
+::
+
+   test(Ruby, """
+   if 0 then
+     print "true!"
+   else
+     print "false!"
+   end
+   """, """
+   true!
+   """)
+
+また、test.pyの内容をReST形式で出力したものがtest.rstという名前で置かれています。Github上で見るとシンタックスハイライトなどがついて読みやすいかと思います。
+
+https://github.com/nishio/learn_language/blob/master/book/section1/test.rst
 
 section3
 ========
 
 test.pyの中に5件のテストがあります。たとえば下のように書かれています。これは言語と、入力と、期待している出力が並んでいて、この例ではPythonで"""import 〜"""のコードを実行すると、次の"""2 0 LOAD_FAST〜"""の出力が得られる、と読みます。
 
-::
 
-   test(Python, """
-   import dis
-   dis.dis(lambda x, y, z: (x + y) * z)
-   """, """
-     2           0 LOAD_FAST                0 (x)
-                 3 LOAD_FAST                1 (y)
-                 6 BINARY_ADD          
-                 7 LOAD_FAST                2 (z)
-                10 BINARY_MULTIPLY     
-                11 RETURN_VALUE        
-   """)
 
 
 

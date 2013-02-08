@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 """
-Sample codes for section 3
+Sample codes for section 1
 """
 from coderunner import *
 
