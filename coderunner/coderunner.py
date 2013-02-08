@@ -191,7 +191,6 @@ class Test(object):
             print _indent(expected)
         print "\n"
 
-
     def __init__(self, code, expect="", is_file=False,
                  to_run=True, is_embedded_output=False,
                  extra_dontcare=None):
@@ -424,29 +423,60 @@ class Smalltalk(GNUSmalktalk):
     human_name = "Smalltalk"
 
 
-class Java(Test):
-    human_name = "Java"
-    temp_filename = "Tmp.java"
-    embedded_output_pattern = EMBEDDED_OUTPUT_PATTERN_LIKE_C
-    pygments_name = "java"
-    bin = "javac"
-    runtime = "java"
-    version_option = ['-version']
+class TestTwoPhase(Test):
+    """
+    Test runner for two phased (compile and run) language
+    """
+    def __init__(self, code, expect="", extra_option=[],
+                 ignore_warning=False, **kw):
+        """
+        ignore_warning: ignore compile warnings (default: False)
+        """
+        self.extra_option = extra_option
+        self.ignore_warning = ignore_warning
+        super(TestTwoPhase, self).__init__(code, expect, **kw)
 
     def run(self):
         if not self.is_file:
             file(self.filename, "w").write(self.code)
 
-        ret = _subproc(
-            ["env", "LC_ALL=en", self.bin, self.filename])
+        ret = self.compile_phase()
+
         if self.to_run:
-            trunk = self.filename.replace(".java", "")
-            ret += _subproc(
-                ["env", "LC_ALL=en", self.runtime, "-cp", ".", trunk])
+            if self.ignore_warning: ret = ""
+            if ret != "":
+                raise AssertionError(
+                    "You try to run but compiler show following message:\n"
+                    + ret + "\nYou can use option ignore_warning=True to ignore, or to_run=False to abort")
+            ret += self.run_phase()
         self.check_expect(ret)
 
         if not self.is_file:
             os.remove(self.filename)
+
+    def compile_phase(self):
+        cmd = (self.bin.split() + self.extra_option + [self.filename])
+        ret = _subproc(cmd)
+        return ret
+
+    def run_phase(self):
+        ret = _subproc(self.runtime.split())
+        return ret
+
+
+class Java(TestTwoPhase):
+    human_name = "Java"
+    temp_filename = "Tmp.java"
+    embedded_output_pattern = EMBEDDED_OUTPUT_PATTERN_LIKE_C
+    pygments_name = "java"
+    bin = "env LC_ALL=en javac"
+    runtime = "env LC_ALL=en java -cp ."
+    version_option = ['-version']
+
+    def run_phase(self):
+        trunk = self.filename.replace(".java", "")
+        ret = _subproc(self.runtime.split() + [trunk])
+        return ret
 
 
 class Java7(Java):
@@ -456,62 +486,29 @@ class Java7(Java):
     runtime = "java7"
 
 
-class LangC(Test):
+class LangC(TestTwoPhase):
     human_name = "C"
     temp_filename = "tmp.c"
     embedded_output_pattern = EMBEDDED_OUTPUT_PATTERN_LIKE_C
     pygments_name = "c"
     bin = "gcc"
+    runtime = "env ./a.out"
 
-    def run(self):
-        if not self.is_file:
-            file(self.filename, "w").write(self.code)
-
-        cmd = ("gcc").split() + [self.filename]
-        ret = _subproc(cmd)
-        if self.to_run:
-            ret += _subproc(["env", "./a.out"])
-        self.check_expect(ret)
-
-        if not self.is_file:
-            os.remove(self.filename)
-
-
-class Cpp(Test):
+class Cpp(TestTwoPhase):
     human_name = "C++"
     temp_filename = "tmp.cpp"
     embedded_output_pattern = _multi_pattern(
         EMBEDDED_OUTPUT_PATTERN_LIKE_C,
         r"//-> ([^\n]+)\n")
     pygments_name = "cpp"
-    bin = "g++"
-
-    def __init__(self, code, expect="", extra_option=[], **kw):
-        self.extra_option = extra_option
-        super(Cpp, self).__init__(code, expect, **kw)
-
-    def run(self):
-        if not self.is_file:
-            file(self.filename, "w").write(self.code)
-
-        cmd = (
-            ("env LC_ALL=en g++ -Wall -W -Wformat=2 -Wcast-qual -Wcast-align "
-             "-Wwrite-strings -Wconversion -Wfloat-equal "
-             "-Wpointer-arith -Woverloaded-virtual -Wnon-virtual-dtor "
-             "-I/opt/local/include/ -O3").split()
-            + self.extra_option + [self.filename])
-        ret = _subproc(cmd)
-        if self.to_run:
-            #TODO: (assert not ret) should be test failure
-            if ret != "":
-                raise AssertionError(
-                    "You try to run but compiler told following error:\n"
-                    + ret + "\nIf you expected that, use option to_run=False")
-            ret = _subproc(["env", "./a.out"])
-        self.check_expect(ret)
+    bin = ("env LC_ALL=en g++ -Wall -W -Wformat=2 -Wcast-qual -Wcast-align "
+           "-Wwrite-strings -Wconversion -Wfloat-equal "
+           "-Wpointer-arith -Woverloaded-virtual -Wnon-virtual-dtor "
+           "-I/opt/local/include/ -O3")
+    runtime = "env ./a.out"
 
 
-class CSharp(Test):
+class CSharp(TestTwoPhase):
     human_name = "C#"
     temp_filename = "tmp.cs"
     embedded_output_pattern = _multi_pattern(
@@ -520,22 +517,12 @@ class CSharp(Test):
     pygments_name = "csharp"
     bin = "gmcs"
     version_option = ['--version']
+    runtime = "mono"
 
-    def __init__(self, code, expect="", extra_option=[], **kw):
-        self.extra_option = extra_option
-        super(CSharp, self).__init__(code, expect, **kw)
-
-    def run(self):
-        if not self.is_file:
-            file(self.filename, "w").write(self.code)
-
-        cmd = [self.bin, self.filename]
-        ret = _subproc(cmd)
+    def run_phase(self):
         exename = self.filename.replace(".cs", ".exe")
-        if self.to_run:
-            #TODO: (assert not ret) should be test failure
-            ret = _subproc(["mono", exename])
-        self.check_expect(ret)
+        ret = _subproc(["mono", exename])
+        return ret
 
 
 class TestInteractive(Test):
