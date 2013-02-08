@@ -168,12 +168,6 @@ TODO
   - currently Smalltalk test call bin/run_squeak.py and fail in it.
     It is not trapped.
 
-- To make output better, add heading between test? Add description to tests?
-  http://nishio.github.com/learn_language/test_index.html
-
-  - add 'description' on tests, add option to tell how to show it. (default: before code)
-  - add 'Heading' class as a dummy tests. It is not good design.
-
 - To make test case easily, helper script needed.
 
   - Input is a file which contains some codes separated with "\n----\n"
