@@ -342,6 +342,7 @@ class _Perl(TestScript):
     dontcare_pattern = _pattern(r"HASH\(", "0x[0-9a-fX]+", r"\)")
     pygments_name = "perl"
 
+
 class Perl5(_Perl):
     bin = "perl5"
     human_name = "Perl5"
@@ -389,6 +390,7 @@ class Haskell(TestScript):
     bin = "runghc"
     temp_filename = "tmp.hs"
     pygments_name = "haskell"
+
 
 class _Smalltalk(TestScript):
     temp_filename = "tmp.st"
