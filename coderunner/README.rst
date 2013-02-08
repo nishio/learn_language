@@ -25,6 +25,18 @@ however it is hard work and is not main scope of the project.
 Please read following instruction to modify settings to fit your environment.
 
 
+Install
+=======
+
+You need to run setup.py(you can also do ``$ sudo make install`` )::
+
+  $ sudo python setup.py develop
+
+It it fail by lack of setuptools, try this::
+
+   $ sudo apt-get install python-setuptools
+
+
 Expected executables
 ====================
 
@@ -71,13 +83,6 @@ So I did as follows
    $ ln -s /usr/bin/ruby1.9.3 ruby1.9
    $ ln -s /usr/bin/perl5.14.2 perl5
 
-You need to run setup.py(you can also do ``$ sudo make install`` )::
-
-  $ sudo python setup.py develop
-
-It it fail by lack of setuptools, try this::
-
-   $ sudo apt-get install python-setuptools
 
 
 in case of Rackhub
@@ -149,6 +154,7 @@ Please modify it as fit to your environment.
 
 It may be better way to use gnu-smalltalk. On Ubuntu, apt-get install gnu-smalltalk works well.
 On my Mac port install gst not works.
+
 
 TODO
 ====
