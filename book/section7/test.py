@@ -82,8 +82,8 @@ global
 
 
 
-comment("""
-form Ruby 1.9 block arguments has block scope
+header("""
+from Ruby 1.9 block arguments has block scope
 """)
 
 test(Ruby18, """
@@ -137,7 +137,7 @@ tmp.rb:6:in `foo': undefined local variable or method `y' for main:Object (NameE
 """)
 
 
-comment("""
+header("""
 Python 3.0 has new 'nonlocal' declaration
 """)
 

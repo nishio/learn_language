@@ -25,7 +25,7 @@ int main(){
 3
 """)
 
-test(Perl, """
+test(Perl, r"""
 # Perlのパッケージでカウンタを作る
 {
     package Counter;
@@ -56,7 +56,7 @@ Counter::push; #-> スズメ: 1匹
 """)
 
 
-test(Perl, """
+test(Perl, r"""
 # Perl
 {
     package Counter;
@@ -87,7 +87,7 @@ test(Perl, """
 2匹
 """)
 
-test(Perl, """
+test(Perl, r"""
 # Perl
 {
     package Counter;
@@ -122,7 +122,7 @@ test(Perl, """
 """)
 
 
-test(Perl, """
+test(Perl, r"""
 # Perl
 {
     package Counter;
@@ -156,10 +156,10 @@ Counter=HASH(0x1008001f0)
 1匹
 2匹
 """)
-# 0x1008001f0は実行のたびに変わる値
+comment("0x1008001f0は実行のたびに変わる値")
 
 
-test(Perl, """
+test(Perl, r"""
 # Perl
 {
     package Counter;

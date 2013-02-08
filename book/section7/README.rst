@@ -99,8 +99,9 @@ Perl
 
 
 
-form Ruby 1.9 block arguments has block scope
+from Ruby 1.9 block arguments has block scope
 
+===============================================
 
 Ruby1.8
 =======
@@ -178,6 +179,7 @@ Ruby
 
 Python 3.0 has new 'nonlocal' declaration
 
+===========================================
 
 Python2.7
 =========

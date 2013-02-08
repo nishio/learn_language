@@ -37,13 +37,11 @@ Perl
   
       sub push{
           $count++;
-          print "$name: $count匹
-  ";
+          print "$name: $count匹\n";
       }
       sub reset{
           $count = 0;
-          print "$name: リセット
-  ";
+          print "$name: リセット\n";
       }
   }
   
@@ -73,8 +71,7 @@ Perl
       sub push{
           my $values = shift;
           $values->{count}++;
-          print "$values->{count}匹
-  ";
+          print "$values->{count}匹\n";
       }
   }
   
@@ -114,8 +111,7 @@ Perl
       sub push{
           my $values = shift;
           $values->{count}++;
-          print "$values->{count}匹
-  ";
+          print "$values->{count}匹\n";
       }
   }
   
@@ -155,21 +151,18 @@ Perl
       sub push{
           my $values = shift;
           $values->{count}++;
-          print "$values->{count}匹
-  ";
+          print "$values->{count}匹\n";
       }
   }
   
   {
       my $counter = {"value" => 0};
-      print "$counter
-  ";
+      print "$counter\n";
       #-> HASH(0x1008001f0)  # blessされてないハッシュ
   
       # ハッシュとパッケージを結び付ける
       bless $counter, "Counter";
-      print "$counter
-  ";
+      print "$counter\n";
       #-> Counter=HASH(0x1008001f0)
       # blessされたハッシュ
   
@@ -184,6 +177,9 @@ Perl
   1匹
   2匹
 
+
+
+0x1008001f0は実行のたびに変わる値
 
 Perl
 ====
@@ -201,8 +197,7 @@ Perl
       sub push{
           my $values = shift;
           $values->{count}++;
-          print "$values->{count}匹
-  ";
+          print "$values->{count}匹\n";
       }
   }
   
