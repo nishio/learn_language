@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
-import os, sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
-from coderunner.coderunner import *
+from coderunner import *
 
 test(Python27, r"""
 # -*- encoding: utf-8 -*-
@@ -71,6 +69,45 @@ test(Python27, r"""
 # 日本語でコメントを書いただけ
 """, """
 """)
+
+test(LangC, "show_string.c", """
+abc
+3
+
+""", is_file=True)
+
+test(Cpp, "bad_comment.cpp", """
+1
+3
+""", is_file=True, ignore_warning=True)
+
+test(LangC, "show_string2.c", """
+defabc$$
+8
+""", is_file=True, ignore_warning=True)
+
+test(LangC, "sjis.c", u"""
+ドレミファャ宴Vド
+""".encode('sjis'), is_file=True, ignore_warning=True)
+
+test(Perl, "sjis.pl", u"""
+ドレミファャ宴Vド
+侮ｦ
+垂ｵ込む
+""".encode('sjis'), is_file=True)
+
+test(Perl, "sjis2.pl", """
+Can't find string terminator '"' anywhere before EOF at sjis2.pl line 1.
+""", is_file=True)
+
+comment("""
+Perlではコメント中の\が改行をエスケープしないので2がコメントアウトされない
+""")
+test(Perl, "sjis3.pl", """
+1
+2
+3
+""", is_file=True)
 
 main()
 
