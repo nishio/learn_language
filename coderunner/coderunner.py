@@ -385,6 +385,7 @@ class Scheme(Gauche):
 
 
 class Haskell(TestScript):
+    human_name = "Haskell"
     bin = "runghc"
     temp_filename = "tmp.hs"
     pygments_name = "haskell"
