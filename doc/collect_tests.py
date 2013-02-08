@@ -6,6 +6,7 @@ import collect_readme
 toc = []
 
 def process(testfile, title, outputfile, option=[]):
+    print "processing %s(%s)" % (title, testfile)
     testdir, testscript = os.path.split(testfile)
 
     if testdir:
