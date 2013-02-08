@@ -469,8 +469,8 @@ class Java(TestTwoPhase):
     temp_filename = "Tmp.java"
     embedded_output_pattern = EMBEDDED_OUTPUT_PATTERN_LIKE_C
     pygments_name = "java"
-    bin = "env LC_ALL=en javac"
-    runtime = "env LC_ALL=en java -cp ."
+    bin = "env LC_ALL=en javac -J-Duser.language=en"
+    runtime = "env LC_ALL=en java -Duser.language=en -cp ."
     version_option = ['-version']
 
     def run_phase(self):
