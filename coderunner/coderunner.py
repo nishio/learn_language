@@ -116,6 +116,7 @@ class Test(object):
         """
         check whether ret == self.expect and show if not.
         """
+        # replace `don't care pattern` (not to care difference)
         if self.dontcare_pattern:
             self.expect = re.sub(
                 self.dontcare_pattern,
@@ -151,7 +152,7 @@ class Test(object):
                 print "=" * 40
             if not args.nonstop:
                 if args.copy_got_output:
-                    # TODO: support other OS (now Mac only)
+                    # copy result to clipboard (now Mac only)
                     p = subprocess.Popen(["pbcopy"], stdin=subprocess.PIPE)
                     p.stdin.write(ret)
                     p.stdin.close()
