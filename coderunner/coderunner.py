@@ -166,10 +166,7 @@ class Test(object):
         else:
             raise NotImplementedError, args.format
 
-    def show_in_rest(self):
-        """
-        show code. currently output ReST (for my book)
-        """
+    def _show_header_in_rest(self):
         if args.lang_format == "strong":
             print "**%s**" % self.human_name
         elif args.lang_format == "none":
@@ -178,6 +175,11 @@ class Test(object):
             print self.human_name
             print "=" * len(self.human_name)
 
+    def show_in_rest(self):
+        """
+        show code. currently output ReST (for my book)
+        """
+        self._show_header_in_rest()
         print
         print ".. code-block:: %s" % self.pygments_name
         print
@@ -563,6 +565,20 @@ class TestInteractive(Test):
 
     def get_result(self, s):
         raise NotImplementedError
+
+    def show_in_rest(self):
+        """
+        in Interactive test, self.code is repeated in self.expect,
+        so no need to print it.
+        """
+        self._show_header_in_rest()
+        expected = self._expect_as_utf8().strip("\n")
+        if expected == "": raise AssertionError('%s has no expected output')
+        print
+        print "::"
+        print
+        print _indent(expected)
+        print "\n"
 
 
 class GHCi(TestInteractive):

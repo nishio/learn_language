@@ -110,12 +110,6 @@ Haskell
 Haskell
 =======
 
-.. code-block:: haskell
-
-  let add_one = \x -> x + 1
-  :type add_one
-  
-
 ::
 
   Prelude> let add_one = \x -> x + 1
@@ -125,14 +119,6 @@ Haskell
 
 Haskell
 =======
-
-.. code-block:: haskell
-
-  let identity = \x -> x
-  :type identity
-  :type identity identity
-  identity identity 1
-  
 
 ::
 
@@ -148,11 +134,6 @@ Haskell
 Scala
 =====
 
-.. code-block:: scala
-
-  def identity = x => x
-  
-
 ::
 
   scala> def identity = x => x
@@ -163,13 +144,6 @@ Scala
 
 Scala
 =====
-
-.. code-block:: scala
-
-  def identity[T] = (x : T) => x
-  identity(identity)
-  identity(identity)(1)
-  
 
 ::
 
