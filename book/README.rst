@@ -2,7 +2,7 @@
  サンプルコード
 ================
 
-このディレクトリは「〜」のサンプルコードを置く場所です。 Files under this directory are sample codes for my book "..."
+このディレクトリは「〜」のサンプルコードを置く場所です。
 
 細かいコード片などはCodeRunnerを使ってひとつのスクリプトにまとめて、一括で挙動をテストする仕組みになっています。
 CodeRunnerの詳細はsection3にて。
@@ -10,11 +10,22 @@ CodeRunnerの詳細はsection3にて。
 section3
 ========
 
-test.pyの中に5件のテストがあります。
-test.pyの中を見ると、言語と、入力と、期待している出力が並んでいるのがわかるかと思います。
+test.pyの中に5件のテストがあります。たとえば下のように書かれています。これは言語と、入力と、期待している出力が並んでいて、この例ではPythonで"""import 〜"""のコードを実行すると、次の"""2 0 LOAD_FAST〜"""の出力が得られる、と読みます。
 
-test.pyを実行するには、coderunnerディレクトリ内でpython setup.py installを実行する必要があります。
-このライブラリは筆者のMacbookとUbuntu上で動作チェックしているので、もしWindowsで動かなければご連絡ください。
+::
+
+   test(Python, """
+   import dis
+   dis.dis(lambda x, y, z: (x + y) * z)
+   """, """
+     2           0 LOAD_FAST                0 (x)
+                 3 LOAD_FAST                1 (y)
+                 6 BINARY_ADD          
+                 7 LOAD_FAST                2 (z)
+                10 BINARY_MULTIPLY     
+                11 RETURN_VALUE        
+   """)
+
 
 
 section4
@@ -43,11 +54,14 @@ section4
 - if_elseif_else_wo_goto.c: 素直にelseを使って実装したコード
 - no_if.c: 2つのコードを両方、色々な引数で実行するコード
 
+
 - while_goto.c: whileを使わずにgotoで実装したコード
 - while_wo_goto.c: 素直にwhileを使って実装したコード
 - no_wihle.c: 両方を試すコード
 
+
 - no_for.c: for文と、for文なしで同じ内容を実装したコード
+
 
 - ForLoopTest.java: Javaで3通りのfor文を試すコード
 
@@ -72,6 +86,17 @@ section6
 - test.py: Python, Ruby, JSでの例外の違い
 - CheckedException.java: 検査例外のサンプル
 
+section7
+========
+
+test.py内で下記のテストをしています。
+
+- 代入でオブジェクトはコピーされない
+- Perlでのmyとlocalの挙動の違い
+- Rubyでのブロック引数のスコープ
+- Pythonのnonlocal宣言
+
+
 section8
 ========
 
@@ -84,11 +109,21 @@ section8
 - add_one.c: 1を加算する関数のサンプル(型推論のある言語との比較用)
 - python.c: Pythonの動的型付けされた値のメモリイメージを観察するコード
 
-test.py内
----------
+test.py内では以下のテストをしています。
 
 - 16進数と8進数の観察
 - 0.3を10回足しても3.0にはならないことの確認
 - x / 2で行われる演算がxの型によってことなることの観察
 - Haskellでの型推論の観察
 - Scalaでの型推論の観察
+
+section9
+========
+
+test.py内では以下のテストをしています。
+
+- 文字列をJIS, SJIS, EUC-JPで符号化してバイト列の比較
+- シフト命令を追加することで「$"」が「あ」に変わることの確認
+- Pythonでは非ASCIIバイトを含むファイルを実行するにはマジックコメントが必要なことの確認
+
+
