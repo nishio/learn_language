@@ -135,7 +135,7 @@ class Test(object):
                 print "file:", self.filename
             else:
                 print "code " + "=" * 35
-                print self.code
+                print self._code_as_utf8()
                 print "=" * 40
 
             expectlines = self.expect.split("\n")
@@ -144,13 +144,13 @@ class Test(object):
                     expectlines, gotlines, "expected", "got"))
             if args.use_diff and len(difflines) < len(expectlines) + len(gotlines):
                 print "diff " + "=" * 35
-                print "\n".join(difflines)
+                print self._as_utf8("\n".join(difflines))
                 print "=" * 40
             else:
                 print "expected " + "=" * 31
-                print self.expect
+                print self._expect_as_utf8()
                 print "got " + "=" * 36
-                print ret
+                print self._as_utf8(ret)
                 print "=" * 40
             if not args.nonstop:
                 if args.copy_got_output:
@@ -181,9 +181,9 @@ class Test(object):
         print
         print ".. code-block:: %s" % self.pygments_name
         print
-        print _indent(self.code.strip("\n"))
+        print _indent(self._code_as_utf8().strip("\n"))
         if not args.suppress_expected:
-            expected = self.expect.strip("\n")
+            expected = self._expect_as_utf8().strip("\n")
             if expected == "": expected = "(no output)"
             print
             print "::"
@@ -191,16 +191,34 @@ class Test(object):
             print _indent(expected)
         print "\n"
 
+    def _code_as_utf8(self):
+        if self.source_encoding:
+            return self.code.decode(self.source_encoding).encode('utf-8')
+        return self.code
+
+    def _expect_as_utf8(self):
+        return self._as_utf8(self.expect)
+
+    def _as_utf8(self, output):
+        if self.output_encoding:
+            return output.decode(self.output_encoding).encode('utf-8')
+        return output
+
     def __init__(self, code, expect="", is_file=False,
                  to_run=True, is_embedded_output=False,
-                 extra_dontcare=None):
+                 extra_dontcare=None, source_encoding=None,
+                 output_encoding=None):
         """
         is_file: when code is large you can put it in the other file
         to_run: False when you don't want to run
                 (especially in Java, C++, you may want to check
                  the code fail to compile)
         is_embedded_output: whether output is embedded in the given code
+        source_encoding: if be set, convert from given encoding to UTF-8 (default None)
+        output_encoding: if be set, convert from given encoding to UTF-8 (default None)
         """
+        self.source_encoding = source_encoding
+        self.output_encoding = output_encoding
         if is_file:
             self.filename = code
             assert os.path.isfile(code), "2nd arg must be filename"
