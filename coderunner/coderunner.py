@@ -386,6 +386,13 @@ class Scheme(Gauche):
     human_name = "Scheme"
 
 
+class CommonLisp(TestScript):
+    human_name = "Common Lisp"
+    bin = "clisp"
+    temp_filename = "tmp.lisp"
+    version_option = ['--version']
+
+
 class Haskell(TestScript):
     human_name = "Haskell"
     bin = "runghc"

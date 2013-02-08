@@ -81,4 +81,10 @@ namespace HelloWorld{
 Hello World!
 """)
 
+test(CommonLisp, r"""
+(print "hello")
+""", """
+"hello" 
+""")
+
 main()
