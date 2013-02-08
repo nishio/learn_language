@@ -34,7 +34,8 @@ class Header(_Base):
         """
         level: 0, 1, 2
         """
-        self.content = content
+        # shoud not contain newline
+        self.content = content.replace('\n', '')
         self.level = level
 
     def show_in_rest(self):
