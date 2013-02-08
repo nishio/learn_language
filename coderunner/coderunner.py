@@ -98,8 +98,11 @@ def _subproc(cmd):
         assert str(e) == '[Errno 2] No such file or directory'
         raise CantRunSubprocess("Can't run subprocess", cmd)
 
+
 class Test(object):
     """
+    Basic test runner
+
     embedded_output_pattern:
       regular expression to find output desctiption
 
@@ -160,7 +163,7 @@ class Test(object):
         elif args.format == "mybook":
             self.show_for_mybook()
         else:
-            raise NotImplementedError
+            raise NotImplementedError, args.format
 
     def show_in_rest(self):
         """
@@ -678,7 +681,7 @@ def main():
         help=(
             "Print codes and expected outputs in specified format. "
             "When it is specified, not run codes. "
-            "(supported: rest, mybook)"))
+            "(supported: rest)"))
     parser.add_argument(
         '--lang-format', dest='lang_format', action='store', default="heading",
         help=(
