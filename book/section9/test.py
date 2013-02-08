@@ -79,7 +79,9 @@ abc
 test(Cpp, "bad_comment.cpp", """
 1
 3
-""", is_file=True, ignore_warning=True)
+""", is_file=True, ignore_warning=True,
+source_encoding='sjis')
+
 
 test(LangC, "show_string2.c", """
 defabc$$
@@ -88,17 +90,22 @@ defabc$$
 
 test(LangC, "sjis.c", u"""
 ドレミファャ宴Vド
-""".encode('sjis'), is_file=True, ignore_warning=True)
+""".encode('sjis'), is_file=True, ignore_warning=True,
+output_encoding='sjis', source_encoding='sjis')
+
 
 test(Perl, "sjis.pl", u"""
 ドレミファャ宴Vド
 侮ｦ
 垂ｵ込む
-""".encode('sjis'), is_file=True)
+""".encode('sjis'), is_file=True,
+output_encoding='sjis', source_encoding='sjis')
+
 
 test(Perl, "sjis2.pl", """
 Can't find string terminator '"' anywhere before EOF at sjis2.pl line 1.
-""", is_file=True)
+""", is_file=True,
+output_encoding='sjis', source_encoding='sjis')
 
 comment("""
 Perlではコメント中の\が改行をエスケープしないので2がコメントアウトされない
@@ -107,7 +114,8 @@ test(Perl, "sjis3.pl", """
 1
 2
 3
-""", is_file=True)
+""", is_file=True,
+output_encoding='sjis', source_encoding='sjis')
 
 main()
 
