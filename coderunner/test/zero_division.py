@@ -85,7 +85,11 @@ test(Scheme, r"""
 test(Smalltalk, """
 1 / 0
 """, """
-ZeroDivide: 
+Object: 1 error: The program attempted to divide a number by zero
+ZeroDivide(Exception)>>signal (ExcHandling.st:254)
+SmallInteger(Number)>>zeroDivide (SysExcept.st:1385)
+SmallInteger>>/ (SmallInt.st:277)
+UndefinedObject>>executeStatements (tmp.st:1)
 """)
 
 main()
