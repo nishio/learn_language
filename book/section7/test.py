@@ -36,9 +36,10 @@ yobu
 """)
 
 
-"""
+comment("""
 呼ばれる側でlocal宣言すると、新しい空の変数が作らる。thanks @__gfx__
-"""
+""")
+
 test(Perl, r"""
 # Perl
 $x = "global";
@@ -81,9 +82,9 @@ global
 
 
 
-"""
+comment("""
 form Ruby 1.9 block arguments has block scope
-"""
+""")
 
 test(Ruby18, """
 x = 0
@@ -136,9 +137,9 @@ tmp.rb:6:in `foo': undefined local variable or method `y' for main:Object (NameE
 """)
 
 
-"""
+comment("""
 Python 3.0 has new 'nonlocal' declaration
-"""
+""")
 
 
 test(Python27, """
