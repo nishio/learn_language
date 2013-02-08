@@ -160,8 +160,6 @@ class Test(object):
     def show(self):
         if args.format == "rest":
             self.show_in_rest()
-        elif args.format == "mybook":
-            self.show_for_mybook()
         else:
             raise NotImplementedError, args.format
 
@@ -190,16 +188,6 @@ class Test(object):
             print _indent(expected)
         print "\n"
 
-    def show_for_mybook(self):
-        """
-        show code. currently output ReST (for my book)
-        """
-        print "::"
-        print
-        print _indent(self.code.strip("\n"))
-        print _indent("-" * 20)
-        print _indent(self.expect.strip("\n"))
-        print "\n"
 
     def __init__(self, code, expect="", is_file=False,
                  to_run=True, is_embedded_output=False,
