@@ -15,8 +15,9 @@ Usage
 
 ::
 
-  $ python coderunner.py # run self tests
-  $ python test/hello.py # run 'print hello' tests
+  $ python coderunner.py              # run self tests
+  $ python coderunner.py --exec-test  # run executable tests
+  $ python test/hello.py              # run 'print hello' tests
 
 It may fail. Don't get discouraged.
 It is better if it works in various environment without customization,
@@ -137,14 +138,17 @@ In Linux you can install as follows
    $sudo apt-get install oracle-java7-installer
 
 
-About Squeak
-============
+About Smalltalk
+===============
 
 I installed squeak with Squeak-4.3-All-in-One.
-I made image with OSProcess.
-And I hardcoded Squeak executable and the image in bin/run_squeak.py.
+It doesn't have ability to write stdout, so I installed OSProcess additionaly.
+I made image with OSProcess. Though it takes 16MB, I didn't commit in the repository.
+I hardcoded path of Squeak executable and the image in bin/run_squeak.py.
 Please modify it as fit to your environment.
 
+It may be better way to use gnu-smalltalk. On Ubuntu, apt-get install gnu-smalltalk works well.
+On my Mac port install gst not works.
 
 TODO
 ====
