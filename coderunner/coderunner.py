@@ -25,6 +25,7 @@ import sys
 import re
 import interact
 from docwriter import header, comment
+import langspec
 
 tests = []
 BIN_PATH = os.path.join(os.path.abspath(
@@ -405,36 +406,12 @@ class _Smalltalk(TestScript):
     pygments_name = "smalltalk"
 
 
-SMALLTALK_PREFIX_CODE = """
-squeak := OSProcess thisOSProcess.
-
-print := [:value |
-    squeak stdOut
-        nextPutAll: (value asString);
-        nextPut: Character lf;
-        flush].
-
-printException := [:e |
-    squeak stdOut
-        nextPutAll: (e asString);
-        nextPutAll: (e messageText);
-        nextPut: Character lf;
-        flush].
-
-[
-"""
-SMALLTALK_SUFFIX_CODE = """
-] on: Exception
-  do: printException.
-
-squeak sigkill: squeak.
-"""
 class Squeak(_Smalltalk):
     human_name = "Squeak"
     bin = "run_squeak.py"  # in 'bin' dir
 
     def __init__(self, code, expect="", extra_option=[], **kw):
-        code = SMALLTALK_PREFIX_CODE + code + SMALLTALK_SUFFIX_CODE
+        code = langspec.squeak.PREFIX_CODE + code + langspec.squeak.SUFFIX_CODE
         super(Smalltalk, self).__init__(code, expect, **kw)
 
 
