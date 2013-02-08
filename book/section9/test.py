@@ -48,7 +48,7 @@ EUC
 
 test(Python27, r"""
 # -*- encoding: utf-8 -*-
-print '$"$"$"'.decode('iso-2022-jp')
+print '$"$"$"'.decode('iso-2022-jp').encode('utf-8')
 print '\x1b$B$"$"$"'.decode('iso-2022-jp').encode('utf-8')
 """, """
 $"$"$"
@@ -107,15 +107,16 @@ Can't find string terminator '"' anywhere before EOF at sjis2.pl line 1.
 """, is_file=True,
 output_encoding='sjis', source_encoding='sjis')
 
-comment("""
-Perlではコメント中の\が改行をエスケープしないので2がコメントアウトされない
-""")
 test(Perl, "sjis3.pl", """
 1
 2
 3
 """, is_file=True,
 output_encoding='sjis', source_encoding='sjis')
+comment("""
+Perlではコメント中の\が改行をエスケープしないので2がコメントアウトされない
+""")
+
 
 main()
 

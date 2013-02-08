@@ -60,7 +60,7 @@ Python2.7
 .. code-block:: python
 
   # -*- encoding: utf-8 -*-
-  print '$"$"$"'.decode('iso-2022-jp')
+  print '$"$"$"'.decode('iso-2022-jp').encode('utf-8')
   print '\x1b$B$"$"$"'.decode('iso-2022-jp').encode('utf-8')
 
 ::
@@ -204,11 +204,6 @@ Perl
   Can't find string terminator '"' anywhere before EOF at sjis2.pl line 1.
 
 
-
-
-Perlではコメント中の\が改行をエスケープしないので2がコメントアウトされない
-
-
 Perl
 ====
 
@@ -224,5 +219,10 @@ Perl
   1
   2
   3
+
+
+
+
+Perlではコメント中の\が改行をエスケープしないので2がコメントアウトされない
 
 
