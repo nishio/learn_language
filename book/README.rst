@@ -32,10 +32,11 @@ https://github.com/nishio/learn_language/blob/master/book/section1/test.rst
 section3
 ========
 
-test.pyの中に5件のテストがあります。たとえば下のように書かれています。これは言語と、入力と、期待している出力が並んでいて、この例ではPythonで"""import 〜"""のコードを実行すると、次の"""2 0 LOAD_FAST〜"""の出力が得られる、と読みます。
+test.pyの中に5件のテストがあります。
 
-
-
+- Pythonでバイトコードを観察する
+- Pythonで抽象構文木を観察する
+- C++で「error: '>>' should be '> >' within a nested template argument list」を起こす例
 
 
 section4
