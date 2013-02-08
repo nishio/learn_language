@@ -31,7 +31,7 @@ BIN_PATH = os.path.join(os.path.abspath(
         os.path.dirname(__file__)), 'bin')
 PATH = ":".join([BIN_PATH] + os.environ.get('PATH', '').split(":"))
 
-EMBEDDED_OUTPUT_PATTERN_LIKE_C = r"/\* output \(checked by coderunner\)(.*) \*/"
+EMBEDDED_OUTPUT_PATTERN_LIKE_C = r"/\* output \(checked by coderunner\)(.*[^ ]) ?\*/"
 
 def _indent(s):
     r"""
