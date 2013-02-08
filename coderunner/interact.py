@@ -26,6 +26,7 @@ import os
 import pty
 import re
 
+TYPESCRIPT = 'tmp.log'
 EOT = '\x04'  # ^D: End of Transmission
 ESCAPE_SEQUENCE = (
     '\x1B\[\d+(;\d+)*m|'  # color
@@ -70,7 +71,7 @@ def spawn(argv, master_read, stdin_read, commands_to_run, timeout):
 # end: ported from 'pty' library
 
 def interact(shell, commands_to_run, timeout=1.0):
-    typescript = open('tmp.log', 'w')
+    typescript = open(TYPESCRIPT, 'w')
 
     def read(fd):
         data = os.read(fd, 1024)
@@ -85,7 +86,7 @@ def interact(shell, commands_to_run, timeout=1.0):
     spawn(shell, read, read2, commands_to_run, timeout)
     typescript.close()
 
-    data = open('typescript').read()
+    data = open(TYPESCRIPT).read()
     return remove_escape_sequence(data)
 
 def remove_escape_sequence(s):
