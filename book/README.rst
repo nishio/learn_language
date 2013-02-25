@@ -11,7 +11,7 @@ section1
 ========
 
 test.pyの中に2件のテストがあります。たとえば下のように書かれています。言語と、入力と、期待している出力が並んでいて、
-この例では「Rubyで"""if 0〜"""のコードを実行すると、"""true!"""と出力される」と読みます。
+この例では「Rubyで ``if 0 then〜end`` のコードを実行すると、 ``true!`` と出力される」と読みます。
 
 ::
 
@@ -25,9 +25,9 @@ test.pyの中に2件のテストがあります。たとえば下のように書
    true!
    """)
 
-また、test.pyの内容をReST形式で出力したものがtest.rstという名前で置かれています。Github上で見るとシンタックスハイライトなどがついて読みやすいかと思います。
+また、test.pyの内容をReST形式で出力したものがREADME.rstという名前で置かれています。Github上で見るとシンタックスハイライトなどがついて読みやすいかと思います。
 
-https://github.com/nishio/learn_language/blob/master/book/section1/test.rst
+https://github.com/nishio/learn_language/blob/master/book/section1/README.rst
 
 section3
 ========
