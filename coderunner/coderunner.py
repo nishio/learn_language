@@ -443,6 +443,16 @@ class Smalltalk(GNUSmalktalk):
     human_name = "Smalltalk"
 
 
+class Scala(TestScript):
+    temp_filename = "tmp.scala"
+    human_name = "Scala"
+    pygments_name = "scala"
+    bin = "scala-2.10"
+    # don't care fullpath on error message
+    dontcare_pattern = _multi_pattern(
+        _pattern('^', '.*', 'tmp\.scala:'),
+        r'\.\.\.')
+
 class TestTwoPhase(Test):
     """
     Test runner for two phased (compile and run) language
