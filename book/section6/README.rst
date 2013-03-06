@@ -1,5 +1,7 @@
+
+
 Python
-======
+------
 
 .. code-block:: python
 
@@ -7,6 +9,7 @@ Python
     print x, y
   
   foo(1)
+
 
 ::
 
@@ -16,8 +19,9 @@ Python
   TypeError: foo() takes exactly 2 arguments (1 given)
 
 
+
 Ruby
-====
+-----
 
 .. code-block:: ruby
 
@@ -27,14 +31,16 @@ Ruby
   
   foo 1
 
+
 ::
 
   tmp.rb:1:in `foo': wrong number of arguments (1 for 2) (ArgumentError)
   	from tmp.rb:5:in `<main>'
 
 
+
 Node.js
-=======
+-------
 
 .. code-block:: javascript
 
@@ -44,18 +50,21 @@ Node.js
   
   foo(1)
 
+
 ::
 
   1 undefined
 
 
+
 Python
-======
+------
 
 .. code-block:: python
 
   x = [0, 1, 2]
   print x[3]
+
 
 ::
 
@@ -65,29 +74,32 @@ Python
   IndexError: list index out of range
 
 
+
 Ruby
-====
+-----
 
 .. code-block:: ruby
 
   x = [0, 1, 2]
   p x[3]
 
+
 ::
 
   nil
 
 
+
 Node.js
-=======
+-------
 
 .. code-block:: javascript
 
   x = [0, 1, 2];
   console.log(x[3]);
 
+
 ::
 
   undefined
-
 

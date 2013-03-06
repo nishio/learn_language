@@ -1,5 +1,7 @@
+
+
 Ruby
-====
+-----
 
 .. code-block:: ruby
 
@@ -9,14 +11,16 @@ Ruby
   p x #=> "Puby"
   p z #=> "Puby"
 
+
 ::
 
   "Puby"
   "Puby"
 
 
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
@@ -35,18 +39,20 @@ Perl
   
   &yobu();
 
+
 ::
 
   yobu
 
 
 
-
 呼ばれる側でlocal宣言すると、新しい空の変数が作らる。thanks @__gfx__
 
 
+
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
@@ -67,13 +73,15 @@ Perl
   
   &yobu();
 
+
 ::
 
   []
 
 
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
@@ -92,31 +100,35 @@ Perl
   
   &yobu();
 
+
 ::
 
   global
 
 
-
 from Ruby 1.9 block arguments has block scope
 =============================================
 
+
+
 Ruby1.8
-=======
+-------
 
 .. code-block:: ruby
 
   x = 0
   lambda {|x|}.call 1
   p x
+
 
 ::
 
   1
 
 
+
 Ruby1.9
-=======
+-------
 
 .. code-block:: ruby
 
@@ -124,13 +136,15 @@ Ruby1.9
   lambda {|x|}.call 1
   p x
 
+
 ::
 
   0
 
 
+
 Ruby
-====
+-----
 
 .. code-block:: ruby
 
@@ -144,6 +158,7 @@ Ruby
   
   foo()
 
+
 ::
 
   tmp.rb:4:in `bar': undefined local variable or method `x' for main:Object (NameError)
@@ -151,8 +166,9 @@ Ruby
   	from tmp.rb:9:in `<main>'
 
 
+
 Ruby
-====
+-----
 
 .. code-block:: ruby
 
@@ -166,6 +182,7 @@ Ruby
   
   foo
 
+
 ::
 
   "new"
@@ -173,12 +190,13 @@ Ruby
   	from tmp.rb:9:in `<main>'
 
 
-
 Python 3.0 has new 'nonlocal' declaration
 =========================================
 
+
+
 Python2.7
-=========
+---------
 
 .. code-block:: python
 
@@ -193,13 +211,15 @@ Python2.7
   
   foo() #-> old (not changed)
 
+
 ::
 
   old
 
 
+
 Python3.0
-=========
+---------
 
 .. code-block:: python
 
@@ -213,8 +233,8 @@ Python3.0
   
   foo()  #-> new (changed)
 
+
 ::
 
   new
-
 

@@ -1,5 +1,7 @@
+
+
 Python3.0
-=========
+---------
 
 .. code-block:: python
 
@@ -7,6 +9,7 @@ Python3.0
   print(0o1750)
   print(hex(1000))  #=> '0x3e8'
   print(0x3e8)
+
 
 ::
 
@@ -16,13 +19,15 @@ Python3.0
   1000
 
 
+
 JavaScript
-==========
+----------
 
 .. code-block:: javascript
 
   console.log(0.3 + 0.3 + 0.3 + 0.3 + 0.3 + 0.3 + 0.3 + 0.3 + 0.3 + 0.3)
   console.log(Math.floor(0.3 + 0.3 + 0.3 + 0.3 + 0.3 + 0.3 + 0.3 + 0.3 + 0.3 + 0.3))
+
 
 ::
 
@@ -30,8 +35,9 @@ JavaScript
   2
 
 
+
 C
-=
+-----
 
 .. code-block:: c
 
@@ -50,19 +56,22 @@ C
     printf("%f\n", divide_float(1));
   }
 
+
 ::
 
   0.000000
   0.500000
 
 
+
 Python2.7
-=========
+---------
 
 .. code-block:: python
 
   print 1 / 2
   print 1 // 2
+
 
 ::
 
@@ -70,13 +79,15 @@ Python2.7
   0
 
 
+
 Python3.0
-=========
+---------
 
 .. code-block:: python
 
   print(1 / 2)
   print(1 // 2)
+
 
 ::
 
@@ -84,8 +95,9 @@ Python3.0
   0
 
 
+
 Haskell
-=======
+-------
 
 .. code-block:: haskell
 
@@ -101,14 +113,16 @@ Haskell
     print $ something x   -- -> 1
     print $ something y   -- -> "hoge"
 
+
 ::
 
   1
   "hoge"
 
 
+
 Haskell
-=======
+-------
 
 ::
 
@@ -117,8 +131,9 @@ Haskell
   add_one :: Integer -> Integer
 
 
+
 Haskell
-=======
+-------
 
 ::
 
@@ -131,8 +146,9 @@ Haskell
   1
 
 
+
 Scala
-=====
+-----
 
 ::
 
@@ -142,8 +158,9 @@ Scala
                         ^
 
 
+
 Scala
-=====
+-----
 
 ::
 
@@ -159,5 +176,4 @@ Scala
    required: Nothing
                 identity(identity)(1)
                                    ^
-
 

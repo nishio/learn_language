@@ -1,6 +1,11 @@
+.. contents::
+   :local:
+
 
 Instantiation
 =============
+
+
 
 Scala
 -----
@@ -13,12 +18,14 @@ Scala
   
   new Foo  // error
 
+
 ::
 
   ...tmp.scala:5: error: trait Foo is abstract; cannot be instantiated
   new Foo  // error
   ^
   one error found
+
 
 
 Squeak
@@ -32,16 +39,18 @@ Squeak
   
   print value:(Foo new).
 
+
 ::
 
   a Foo
 
 
-
 Oops, trait in Squeak can be instanciated...
 
+
+
 Ruby
-----
+-----
 
 .. code-block:: ruby
 
@@ -49,14 +58,16 @@ Ruby
   
   Foo new
 
+
 ::
 
   tmp.rb:3:in `<main>': undefined local variable or method `new' for main:Object (NameError)
 
 
-
 Single inheritance
 ==================
+
+
 
 Scala
 -----
@@ -70,9 +81,11 @@ Scala
   class C extends Foo{}
   new C().foo
 
+
 ::
 
   foo!
+
 
 
 Squeak
@@ -98,13 +111,15 @@ Squeak
   
   print value: (C new foo).
 
+
 ::
 
   foo
 
 
+
 Ruby
-----
+-----
 
 .. code-block:: ruby
 
@@ -120,14 +135,16 @@ Ruby
   
   C.new.foo
 
+
 ::
 
   foo
 
 
-
 Multiple inheritance
 ====================
+
+
 
 Scala
 -----
@@ -146,10 +163,12 @@ Scala
   new C().foo
   new C().bar
 
+
 ::
 
   foo!
   bar!
+
 
 
 Squeak
@@ -185,14 +204,16 @@ Squeak
   print value: (C new foo).
   print value: (C new bar).
 
+
 ::
 
   foo
   bar
 
 
+
 Ruby
-----
+-----
 
 .. code-block:: ruby
 
@@ -216,15 +237,17 @@ Ruby
   C.new.foo
   C.new.bar
 
+
 ::
 
   foo
   bar
 
 
-
 Conflicting name
 ================
+
+
 
 Scala
 -----
@@ -241,6 +264,7 @@ Scala
   
   class C extends Foo with Bar{}
 
+
 ::
 
   ...tmp.scala:9: error: class C inherits conflicting members:
@@ -250,6 +274,7 @@ Scala
   class C extends Foo with Bar{}
         ^
   one error found
+
 
 
 Squeak
@@ -287,16 +312,18 @@ Squeak
   ] on: Exception
     do: printException.
 
+
 ::
 
   Error: A class or trait does not properly resolve a conflict between multiple traits it uses.
 
 
-
 error occurs when you send a message, not when you define a class
 
+
+
 Ruby
-----
+-----
 
 .. code-block:: ruby
 
@@ -319,10 +346,10 @@ Ruby
   
   C.new.hello
 
+
 ::
 
   bar
-
 
 
 Ruby silently overrides conflicting methods
@@ -330,6 +357,8 @@ Ruby silently overrides conflicting methods
 
 Choose one of the methods
 =========================
+
+
 
 Scala
 -----
@@ -350,9 +379,11 @@ Scala
   
   new C().hello
 
+
 ::
 
   bar!
+
 
 
 Squeak
@@ -387,10 +418,10 @@ Squeak
   
   print value: (C new hello).
 
+
 ::
 
   bar
-
 
 
 How to do in Ruby?
@@ -398,6 +429,8 @@ How to do in Ruby?
 
 Use both of the methods
 =======================
+
+
 
 Scala
 -----
@@ -421,10 +454,12 @@ Scala
   
   new C().hello
 
+
 ::
 
   foo!
   bar!
+
 
 
 Squeak
@@ -465,10 +500,10 @@ Squeak
   
   print value: (C new hello).
 
+
 ::
 
   foobar
-
 
 
 How to do in Ruby?
@@ -476,6 +511,8 @@ How to do in Ruby?
 
 required trait(self type annotation of Scala)
 =============================================
+
+
 
 Scala
 -----
@@ -494,6 +531,7 @@ Scala
   // error: NeedFoo should be with HaveFoo
   class C extends NeedFoo{}
 
+
 ::
 
   ...tmp.scala:11: error: illegal inheritance;
@@ -501,6 +539,7 @@ Scala
   class C extends NeedFoo{}
                   ^
   one error found
+
 
 
 Scala
@@ -520,8 +559,8 @@ Scala
   class C extends NeedFoo with HaveFoo{}
   new C().hello
 
+
 ::
 
   foo
-
 

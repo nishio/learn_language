@@ -1,5 +1,7 @@
+
+
 Ruby
-====
+-----
 
 .. code-block:: ruby
 
@@ -9,13 +11,15 @@ Ruby
     print "false!"
   end
 
+
 ::
 
   true!
 
 
+
 C
-=
+-----
 
 .. code-block:: c
 
@@ -29,8 +33,8 @@ C
     }
   }
 
+
 ::
 
   false!
-
 

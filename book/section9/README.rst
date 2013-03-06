@@ -1,5 +1,7 @@
+
+
 Python2.7
-=========
+---------
 
 .. code-block:: python
 
@@ -16,6 +18,7 @@ Python2.7
   print "EUC"
   print_hex(x.encode('euc-jp'))
 
+
 ::
 
   JIS
@@ -26,8 +29,9 @@ Python2.7
   61 61 61 a4 a2 a4 a2 c7 bd 61 61 5c 24
 
 
+
 Python2.7
-=========
+---------
 
 .. code-block:: python
 
@@ -44,6 +48,7 @@ Python2.7
   print "EUC"
   print_hex(x.encode('euc-jp'))
 
+
 ::
 
   JIS
@@ -54,8 +59,9 @@ Python2.7
   61 61 61 a4 a2 a4 a2 a4 a2 61 61 61
 
 
+
 Python2.7
-=========
+---------
 
 .. code-block:: python
 
@@ -63,18 +69,21 @@ Python2.7
   print '$"$"$"'.decode('iso-2022-jp').encode('utf-8')
   print '\x1b$B$"$"$"'.decode('iso-2022-jp').encode('utf-8')
 
+
 ::
 
   $"$"$"
   あああ
 
 
+
 Python2.7
-=========
+---------
 
 .. code-block:: python
 
   # 日本語でコメントを書いただけ
+
 
 ::
 
@@ -82,8 +91,9 @@ Python2.7
   SyntaxError: Non-ASCII character '\xe6' in file tmp.py on line 1, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
 
 
+
 Python2.7
-=========
+---------
 
 .. code-block:: python
 
@@ -91,13 +101,15 @@ Python2.7
   
   # 日本語でコメントを書いただけ
 
+
 ::
 
   (no output)
 
 
+
 C
-=
+-----
 
 .. code-block:: c
 
@@ -111,14 +123,16 @@ C
     return 0;
   }
 
+
 ::
 
   abc
   3
 
 
+
 C++
-===
+-----
 
 .. code-block:: cpp
 
@@ -131,14 +145,16 @@ C++
     printf("3\n");
   }
 
+
 ::
 
   1
   3
 
 
+
 C
-=
+-----
 
 .. code-block:: c
 
@@ -154,14 +170,16 @@ C
     return 0;
   }
 
+
 ::
 
   defabc$$
   8
 
 
+
 C
-=
+-----
 
 .. code-block:: c
 
@@ -171,19 +189,22 @@ C
     printf("ドレミファソラシド\n");
   }
 
+
 ::
 
   ドレミファャ宴Vド
 
 
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
   print("ドレミファソラシド\n");
   print("表示\n");
   print("申し込む\n");
+
 
 ::
 
@@ -192,20 +213,23 @@ Perl
   垂ｵ込む
 
 
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
   print("図表");
+
 
 ::
 
   Can't find string terminator '"' anywhere before EOF at sjis2.pl line 1.
 
 
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
@@ -214,12 +238,12 @@ Perl
   print("2\n");
   print("3\n");
 
+
 ::
 
   1
   2
   3
-
 
 
 

@@ -1,5 +1,7 @@
+
+
 Python
-======
+------
 
 .. code-block:: python
 
@@ -13,14 +15,16 @@ Python
   
   print Child.x #-> A
 
+
 ::
 
   A
   A
 
 
+
 Python
-======
+------
 
 .. code-block:: python
 
@@ -35,13 +39,15 @@ Python
   
   print Child.x
 
+
 ::
 
   A
 
 
+
 Python
-======
+------
 
 .. code-block:: python
 
@@ -53,13 +59,15 @@ Python
   
   print Child.x
 
+
 ::
 
   B
 
 
+
 Python
-======
+------
 
 .. code-block:: python
 
@@ -77,13 +85,15 @@ Python
   
   print Multi.x
 
+
 ::
 
   A
 
 
+
 Python
-======
+------
 
 .. code-block:: python
 
@@ -101,13 +111,15 @@ Python
   
   print Multi.x
 
+
 ::
 
   B
 
 
+
 Ruby
-====
+-----
 
 .. code-block:: ruby
 
@@ -132,14 +144,16 @@ Ruby
   Greeting.new.hello  #-> hello!
   Greeting.new.bye    #-> bye!
 
+
 ::
 
   hello!
   bye!
 
 
+
 Ruby1.9
-=======
+-------
 
 .. code-block:: ruby
 
@@ -169,9 +183,9 @@ Ruby1.9
   Foobar.new.hello   #-> bar!
   Barfoo.new.hello   #-> foo!
 
+
 ::
 
   bar!
   foo!
-
 

@@ -1,5 +1,7 @@
+
+
 C
-=
+-----
 
 .. code-block:: c
 
@@ -30,6 +32,7 @@ C
     not_use_for();
   }
 
+
 ::
 
   use_for
@@ -46,8 +49,9 @@ C
   4
 
 
+
 C
-=
+-----
 
 .. code-block:: c
 
@@ -76,6 +80,7 @@ C
     not_use_while(5);
   }
 
+
 ::
 
   use_while
@@ -92,8 +97,9 @@ C
   1
 
 
+
 C
-=
+-----
 
 .. code-block:: c
 
@@ -131,6 +137,7 @@ C
     not_use_if(1);
   }
 
+
 ::
 
   負の数
@@ -141,8 +148,9 @@ C
   正の数
 
 
+
 Java
-====
+-----
 
 .. code-block:: java
 
@@ -175,6 +183,7 @@ Java
       }
   }
 
+
 ::
 
   C style for-loop
@@ -195,5 +204,4 @@ Java
   3
   4
   5
-
 

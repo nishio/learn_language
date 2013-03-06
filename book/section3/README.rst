@@ -1,10 +1,13 @@
+
+
 Python
-======
+------
 
 .. code-block:: python
 
   import dis
   dis.dis(lambda x, y, z: (x + y) * z)
+
 
 ::
 
@@ -16,34 +19,39 @@ Python
                11 RETURN_VALUE        
 
 
+
 Python
-======
+------
 
 .. code-block:: python
 
   import ast
   print ast.dump(ast.parse("1 + 2"))
 
+
 ::
 
   Module(body=[Expr(value=BinOp(left=Num(n=1), op=Add(), right=Num(n=2)))])
 
 
+
 Python
-======
+------
 
 .. code-block:: python
 
   import ast
   print ast.dump(ast.parse("(1 + 2) * 3"))
 
+
 ::
 
   Module(body=[Expr(value=BinOp(left=BinOp(left=Num(n=1), op=Add(), right=Num(n=2)), op=Mult(), right=Num(n=3)))])
 
 
+
 C++
-===
+-----
 
 .. code-block:: cpp
 
@@ -55,13 +63,15 @@ C++
     vector<vector<int> > x;
   }
 
+
 ::
 
   (no output)
 
 
+
 C++
-===
+-----
 
 .. code-block:: cpp
 
@@ -73,9 +83,9 @@ C++
     vector<vector<int>> x;
   }
 
+
 ::
 
   tmp.cpp: In function 'int main()':
   tmp.cpp:6: error: '>>' should be '> >' within a nested template argument list
-
 

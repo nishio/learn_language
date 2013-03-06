@@ -1,5 +1,7 @@
+
+
 C
-=
+-----
 
 .. code-block:: c
 
@@ -17,6 +19,7 @@ C
     printf("%d\n", foo());
   }
 
+
 ::
 
   1
@@ -24,8 +27,9 @@ C
   3
 
 
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
@@ -51,6 +55,7 @@ Perl
   Counter::reset; #-> スズメ: リセット
   Counter::push; #-> スズメ: 1匹
 
+
 ::
 
   スズメ: 1匹
@@ -60,8 +65,9 @@ Perl
   スズメ: 1匹
 
 
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
@@ -88,6 +94,7 @@ Perl
       Counter::push($c2);       #-> 2匹
   }
 
+
 ::
 
   1匹
@@ -97,8 +104,9 @@ Perl
   2匹
 
 
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
@@ -128,6 +136,7 @@ Perl
       Counter::push($c2);       #-> 2匹
   }
 
+
 ::
 
   1匹
@@ -137,8 +146,9 @@ Perl
   2匹
 
 
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
@@ -170,6 +180,7 @@ Perl
       $counter->push;  #-> 2匹
   }
 
+
 ::
 
   HASH(0x1008001f0)
@@ -178,11 +189,12 @@ Perl
   2匹
 
 
-
 0x1008001f0は実行のたびに変わる値
 
+
+
 Perl
-====
+-----
 
 .. code-block:: perl
 
@@ -214,6 +226,7 @@ Perl
       $c2->push;       #-> 2匹
   }
 
+
 ::
 
   1匹
@@ -223,8 +236,9 @@ Perl
   2匹
 
 
+
 Node.js
-=======
+-------
 
 .. code-block:: javascript
 
@@ -251,6 +265,7 @@ Node.js
   counter.reset();//-> スズメ: リセット
   counter.push(); //-> スズメ: 1匹
 
+
 ::
 
   スズメ: 1匹
@@ -260,8 +275,9 @@ Node.js
   スズメ: 1匹
 
 
+
 Node.js
-=======
+-------
 
 .. code-block:: javascript
 
@@ -282,6 +298,7 @@ Node.js
   c2.push(); //-> 1匹
   c1.push(); //-> 2匹
 
+
 ::
 
   1匹
@@ -289,8 +306,9 @@ Node.js
   2匹
 
 
+
 Node.js
-=======
+-------
 
 .. code-block:: javascript
 
@@ -309,13 +327,15 @@ Node.js
   var c2 = makeCounter();
   console.log(c1.push === c2.push); //-> false
 
+
 ::
 
   false
 
 
+
 Node.js
-=======
+-------
 
 .. code-block:: javascript
 
@@ -327,6 +347,7 @@ Node.js
   console.log(obj.__proto__); // -> { x: 1 }
   console.log(obj.x);         // -> 1
 
+
 ::
 
   {}
@@ -334,8 +355,9 @@ Node.js
   1
 
 
+
 Node.js
-=======
+-------
 
 .. code-block:: javascript
 
@@ -350,6 +372,7 @@ Node.js
   console.log(obj.x);         // -> 1
   console.log(obj.y);         // -> 2
 
+
 ::
 
   { x: 1 }
@@ -358,8 +381,9 @@ Node.js
   2
 
 
+
 Node.js
-=======
+-------
 
 .. code-block:: javascript
 
@@ -379,6 +403,7 @@ Node.js
   var c2 = new Counter();
   console.log(c1.push === c2.push) //-> true // 同じ物
 
+
 ::
 
   1匹
@@ -386,8 +411,9 @@ Node.js
   true
 
 
+
 Node.js
-=======
+-------
 
 .. code-block:: javascript
 
@@ -404,10 +430,10 @@ Node.js
   c = makeCounter();
   c(); c(); c();
 
+
 ::
 
   1
   2
   3
-
 
