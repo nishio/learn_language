@@ -2,9 +2,7 @@
 """
 Samples to cause error
 """
-import os, sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from coderunner.coderunner import test, Python, main
+from coderunner import test, Python, main
 
 test(Python, """
 if true:

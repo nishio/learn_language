@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import os, sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 from coderunner.coderunner import test, Perl, main
 
 #TODO: is_embedded_output=True

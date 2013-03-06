@@ -1,5 +1,3 @@
-import sys
-sys.path.insert(0, "../../coderunner")
 from coderunner import test, Cpp, main
 
 test(Cpp, "virtual.cpp", """

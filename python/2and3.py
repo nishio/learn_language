@@ -2,9 +2,7 @@
 """
 Different betwern Python2.* and Python3.*
 """
-import os, sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from coderunner.coderunner import test, Python27, Python30, main
+from coderunner import test, Python27, Python30, main
 
 """
 Print Is A Function

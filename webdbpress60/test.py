@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import sys
-sys.path.insert(0, "../coderunner")
 from coderunner import test, Perl, LangC, Python, Ruby, Cpp, main
 
 

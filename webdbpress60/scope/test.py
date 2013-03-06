@@ -1,5 +1,3 @@
-import sys
-sys.path.insert(0, "../../coderunner")
 from coderunner import test, Perl, main
 
 test(Perl, "dynamic.pl", """
