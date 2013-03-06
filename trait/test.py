@@ -320,7 +320,32 @@ print value: (C new hello).
 bar
 """)
 
-comment("How to do in Ruby?")
+test(Ruby,
+"""
+module Foo
+  def hello
+    puts "foo"
+  end
+end
+
+module Bar
+  def hello
+    puts "bar"
+  end
+end
+
+class C
+  include Bar
+  include Foo
+  def hello
+    Bar.instance_method(:hello).bind(self).call
+  end
+end
+
+C.new.hello
+""",  """
+bar
+""")
 
 
 header('Use both of the methods')
@@ -386,7 +411,34 @@ print value: (C new hello).
 foobar
 """)
 
-comment("How to do in Ruby?")
+test(Ruby,
+"""
+module Foo
+  def hello
+    puts "foo"
+  end
+end
+
+module Bar
+  def hello
+    puts "bar"
+  end
+end
+
+class C
+  include Foo
+  include Bar
+  def hello
+    Foo.instance_method(:hello).bind(self).call
+    Bar.instance_method(:hello).bind(self).call
+  end
+end
+
+C.new.hello
+""",  """
+foo
+bar
+""")
 
 
 header('required trait(self type annotation of Scala)')
