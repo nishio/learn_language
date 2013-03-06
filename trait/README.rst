@@ -26,28 +26,11 @@ Squeak
 
 .. code-block:: smalltalk
 
-  squeak := OSProcess thisOSProcess.
-  
-  print := [:value |
-      squeak stdOut
-          nextPutAll: (value asString);
-          nextPut: Character lf;
-          flush].
-  
-  printException := [:e |
-      squeak stdOut
-          nextPutAll: (e asString);
-          nextPut: Character lf;
-          flush].
-  
-  
   Trait named: #Foo
       uses: {}
       category: #MyCategory.
   
   print value:(Foo new).
-  
-  squeak sigkill: squeak.
 
 ::
 
@@ -97,21 +80,6 @@ Squeak
 
 .. code-block:: smalltalk
 
-  squeak := OSProcess thisOSProcess.
-  
-  print := [:value |
-      squeak stdOut
-          nextPutAll: (value asString);
-          nextPut: Character lf;
-          flush].
-  
-  printException := [:e |
-      squeak stdOut
-          nextPutAll: (e asString);
-          nextPut: Character lf;
-          flush].
-  
-  
   Trait named: #Foo
       uses: {}
       category: #MyCategory.
@@ -129,8 +97,6 @@ Squeak
       category: #MyCategory.
   
   print value: (C new foo).
-  
-  squeak sigkill: squeak.
 
 ::
 
@@ -191,21 +157,6 @@ Squeak
 
 .. code-block:: smalltalk
 
-  squeak := OSProcess thisOSProcess.
-  
-  print := [:value |
-      squeak stdOut
-          nextPutAll: (value asString);
-          nextPut: Character lf;
-          flush].
-  
-  printException := [:e |
-      squeak stdOut
-          nextPutAll: (e asString);
-          nextPut: Character lf;
-          flush].
-  
-  
   Trait named: #Foo
       uses: {}
       category: #MyCategory.
@@ -233,8 +184,6 @@ Squeak
   
   print value: (C new foo).
   print value: (C new bar).
-  
-  squeak sigkill: squeak.
 
 ::
 
@@ -308,21 +257,6 @@ Squeak
 
 .. code-block:: smalltalk
 
-  squeak := OSProcess thisOSProcess.
-  
-  print := [:value |
-      squeak stdOut
-          nextPutAll: (value asString);
-          nextPut: Character lf;
-          flush].
-  
-  printException := [:e |
-      squeak stdOut
-          nextPutAll: (e asString);
-          nextPut: Character lf;
-          flush].
-  
-  
   Trait named: #Foo
       uses: {}
       category: #MyCategory.
@@ -352,8 +286,6 @@ Squeak
       print value: (C new hello).
   ] on: Exception
     do: printException.
-  
-  squeak sigkill: squeak.
 
 ::
 
@@ -428,21 +360,6 @@ Squeak
 
 .. code-block:: smalltalk
 
-  squeak := OSProcess thisOSProcess.
-  
-  print := [:value |
-      squeak stdOut
-          nextPutAll: (value asString);
-          nextPut: Character lf;
-          flush].
-  
-  printException := [:e |
-      squeak stdOut
-          nextPutAll: (e asString);
-          nextPut: Character lf;
-          flush].
-  
-  
   Trait named: #Foo
       uses: {}
       category: #MyCategory.
@@ -469,8 +386,6 @@ Squeak
       category: #MyCategory.
   
   print value: (C new hello).
-  
-  squeak sigkill: squeak.
 
 ::
 
@@ -517,21 +432,6 @@ Squeak
 
 .. code-block:: smalltalk
 
-  squeak := OSProcess thisOSProcess.
-  
-  print := [:value |
-      squeak stdOut
-          nextPutAll: (value asString);
-          nextPut: Character lf;
-          flush].
-  
-  printException := [:e |
-      squeak stdOut
-          nextPutAll: (e asString);
-          nextPut: Character lf;
-          flush].
-  
-  
   Trait named: #Foo
       uses: {}
       category: #MyCategory.
@@ -564,8 +464,6 @@ Squeak
   '.
   
   print value: (C new hello).
-  
-  squeak sigkill: squeak.
 
 ::
 
