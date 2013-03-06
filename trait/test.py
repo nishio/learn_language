@@ -1,6 +1,6 @@
 from coderunner import *
 
-header("trait can't be instanciated")
+header("Instanciation")
 
 test(Scala,
 """
@@ -17,6 +17,23 @@ one error found
 """)
 
 
+test(Squeak,
+"""
+Trait named: #Foo
+    uses: {}
+    category: #MyCategory.
+
+print value:(Foo new).
+""",  """
+a Foo
+""")
+
+comment('Oops, trait in Squeak can be instanciated...')
+
+
+
+header('Single inheritance')
+
 test(Scala,
 """
 trait Foo{
@@ -29,6 +46,32 @@ new C().foo
 foo!
 """)
 
+
+test(Squeak,
+"""
+Trait named: #Foo
+    uses: {}
+    category: #MyCategory.
+
+Foo compile: '
+foo
+    ^''foo''
+'.
+
+Object subclass: #C
+    uses: Foo
+    instanceVariableNames: ''
+    classVariableNames: ''
+    poolDictionaries: ''
+    category: #MyCategory.
+
+print value: (C new foo).
+""",  """
+foo
+""")
+
+
+header('Multiple inheritance')
 
 test(Scala,
 """
@@ -48,7 +91,43 @@ foo!
 bar!
 """)
 
-header('conflicting name')
+
+test(Squeak,
+"""
+Trait named: #Foo
+    uses: {}
+    category: #MyCategory.
+
+Foo compile: '
+foo
+    ^''foo''
+'.
+
+Trait named: #Bar
+    uses: {}
+    category: #MyCategory.
+
+Bar compile: '
+bar
+    ^''bar''
+'.
+
+Object subclass: #C
+    uses: Foo + Bar
+    instanceVariableNames: ''
+    classVariableNames: ''
+    poolDictionaries: ''
+    category: #MyCategory.
+
+print value: (C new foo).
+print value: (C new bar).
+""",  """
+foo
+bar
+""")
+
+
+header('Conflicting name')
 
 test(Scala,
 """
@@ -71,6 +150,46 @@ class C extends Foo with Bar{}
 one error found
 """)
 
+
+test(Squeak,
+"""
+Trait named: #Foo
+    uses: {}
+    category: #MyCategory.
+
+Foo compile: '
+hello
+    ^''foo''
+'.
+
+Trait named: #Bar
+    uses: {}
+    category: #MyCategory.
+
+Bar compile: '
+hello
+    ^''bar''
+'.
+
+Object subclass: #C
+    uses: Foo + Bar
+    instanceVariableNames: ''
+    classVariableNames: ''
+    poolDictionaries: ''
+    category: #MyCategory.
+
+[
+    print value: (C new hello).
+] on: Exception
+  do: printException.
+""",  """
+Error: A class or trait does not properly resolve a conflict between multiple traits it uses.
+""")
+
+comment('error occurs when you send a message, not when you define a class')
+
+
+header('Choose one of the methods')
 test(Scala,
 """
 trait Foo{
@@ -82,13 +201,48 @@ trait Bar{
 }
 
 class C extends Foo with Bar{
-  override def hello() = super[Foo].hello
+  override def hello() = super[Bar].hello
 }
 
 new C().hello
 """,  """
-foo!
+bar!
 """)
+
+
+test(Squeak,
+"""
+Trait named: #Foo
+    uses: {}
+    category: #MyCategory.
+
+Foo compile: '
+hello
+    ^''foo''
+'.
+
+Trait named: #Bar
+    uses: {}
+    category: #MyCategory.
+
+Bar compile: '
+hello
+    ^''bar''
+'.
+
+Object subclass: #C
+    uses: Foo - {#hello} + Bar
+    instanceVariableNames: ''
+    classVariableNames: ''
+    poolDictionaries: ''
+    category: #MyCategory.
+
+print value: (C new hello).
+""",  """
+bar
+""")
+
+header('Use both of the methods')
 
 test(Scala,
 """
@@ -113,6 +267,43 @@ foo!
 bar!
 """)
 
+test(Squeak,
+"""
+Trait named: #Foo
+    uses: {}
+    category: #MyCategory.
+
+Foo compile: '
+hello
+    ^''foo''
+'.
+
+Trait named: #Bar
+    uses: {}
+    category: #MyCategory.
+
+Bar compile: '
+hello
+    ^''bar''
+'.
+
+Object subclass: #C
+    uses: (Foo @ {#foo -> #hello} - {#hello} +
+           Bar @ {#bar -> #hello} - {#hello})
+    instanceVariableNames: ''
+    classVariableNames: ''
+    poolDictionaries: ''
+    category: #MyCategory.
+
+C compile: '
+hello
+    ^(self foo , self bar)
+'.
+
+print value: (C new hello).
+""",  """
+foobar
+""")
 
 header('required trait(self type annotation)')
 

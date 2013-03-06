@@ -1,6 +1,6 @@
 
-trait can't be instanciated
-===========================
+Instanciation
+=============
 
 Scala
 =====
@@ -21,6 +21,46 @@ Scala
   one error found
 
 
+Squeak
+======
+
+.. code-block:: smalltalk
+
+  squeak := OSProcess thisOSProcess.
+  
+  print := [:value |
+      squeak stdOut
+          nextPutAll: (value asString);
+          nextPut: Character lf;
+          flush].
+  
+  printException := [:e |
+      squeak stdOut
+          nextPutAll: (e asString);
+          nextPut: Character lf;
+          flush].
+  
+  
+  Trait named: #Foo
+      uses: {}
+      category: #MyCategory.
+  
+  print value:(Foo new).
+  
+  squeak sigkill: squeak.
+
+::
+
+  a Foo
+
+
+
+Oops, trait in Squeak can be instanciated...
+
+
+Single inheritance
+==================
+
 Scala
 =====
 
@@ -37,6 +77,55 @@ Scala
 
   foo!
 
+
+Squeak
+======
+
+.. code-block:: smalltalk
+
+  squeak := OSProcess thisOSProcess.
+  
+  print := [:value |
+      squeak stdOut
+          nextPutAll: (value asString);
+          nextPut: Character lf;
+          flush].
+  
+  printException := [:e |
+      squeak stdOut
+          nextPutAll: (e asString);
+          nextPut: Character lf;
+          flush].
+  
+  
+  Trait named: #Foo
+      uses: {}
+      category: #MyCategory.
+  
+  Foo compile: '
+  foo
+      ^''foo''
+  '.
+  
+  Object subclass: #C
+      uses: Foo
+      instanceVariableNames: ''
+      classVariableNames: ''
+      poolDictionaries: ''
+      category: #MyCategory.
+  
+  print value: (C new foo).
+  
+  squeak sigkill: squeak.
+
+::
+
+  foo
+
+
+
+Multiple inheritance
+====================
 
 Scala
 =====
@@ -61,8 +150,64 @@ Scala
   bar!
 
 
+Squeak
+======
 
-conflicting name
+.. code-block:: smalltalk
+
+  squeak := OSProcess thisOSProcess.
+  
+  print := [:value |
+      squeak stdOut
+          nextPutAll: (value asString);
+          nextPut: Character lf;
+          flush].
+  
+  printException := [:e |
+      squeak stdOut
+          nextPutAll: (e asString);
+          nextPut: Character lf;
+          flush].
+  
+  
+  Trait named: #Foo
+      uses: {}
+      category: #MyCategory.
+  
+  Foo compile: '
+  foo
+      ^''foo''
+  '.
+  
+  Trait named: #Bar
+      uses: {}
+      category: #MyCategory.
+  
+  Bar compile: '
+  bar
+      ^''bar''
+  '.
+  
+  Object subclass: #C
+      uses: Foo + Bar
+      instanceVariableNames: ''
+      classVariableNames: ''
+      poolDictionaries: ''
+      category: #MyCategory.
+  
+  print value: (C new foo).
+  print value: (C new bar).
+  
+  squeak sigkill: squeak.
+
+::
+
+  foo
+  bar
+
+
+
+Conflicting name
 ================
 
 Scala
@@ -91,6 +236,70 @@ Scala
   one error found
 
 
+Squeak
+======
+
+.. code-block:: smalltalk
+
+  squeak := OSProcess thisOSProcess.
+  
+  print := [:value |
+      squeak stdOut
+          nextPutAll: (value asString);
+          nextPut: Character lf;
+          flush].
+  
+  printException := [:e |
+      squeak stdOut
+          nextPutAll: (e asString);
+          nextPut: Character lf;
+          flush].
+  
+  
+  Trait named: #Foo
+      uses: {}
+      category: #MyCategory.
+  
+  Foo compile: '
+  hello
+      ^''foo''
+  '.
+  
+  Trait named: #Bar
+      uses: {}
+      category: #MyCategory.
+  
+  Bar compile: '
+  hello
+      ^''bar''
+  '.
+  
+  Object subclass: #C
+      uses: Foo + Bar
+      instanceVariableNames: ''
+      classVariableNames: ''
+      poolDictionaries: ''
+      category: #MyCategory.
+  
+  [
+      print value: (C new hello).
+  ] on: Exception
+    do: printException.
+  
+  squeak sigkill: squeak.
+
+::
+
+  Error: A class or trait does not properly resolve a conflict between multiple traits it uses.
+
+
+
+error occurs when you send a message, not when you define a class
+
+
+Choose one of the methods
+=========================
+
 Scala
 =====
 
@@ -105,15 +314,73 @@ Scala
   }
   
   class C extends Foo with Bar{
-    override def hello() = super[Foo].hello
+    override def hello() = super[Bar].hello
   }
   
   new C().hello
 
 ::
 
-  foo!
+  bar!
 
+
+Squeak
+======
+
+.. code-block:: smalltalk
+
+  squeak := OSProcess thisOSProcess.
+  
+  print := [:value |
+      squeak stdOut
+          nextPutAll: (value asString);
+          nextPut: Character lf;
+          flush].
+  
+  printException := [:e |
+      squeak stdOut
+          nextPutAll: (e asString);
+          nextPut: Character lf;
+          flush].
+  
+  
+  Trait named: #Foo
+      uses: {}
+      category: #MyCategory.
+  
+  Foo compile: '
+  hello
+      ^''foo''
+  '.
+  
+  Trait named: #Bar
+      uses: {}
+      category: #MyCategory.
+  
+  Bar compile: '
+  hello
+      ^''bar''
+  '.
+  
+  Object subclass: #C
+      uses: Foo - {#hello} + Bar
+      instanceVariableNames: ''
+      classVariableNames: ''
+      poolDictionaries: ''
+      category: #MyCategory.
+  
+  print value: (C new hello).
+  
+  squeak sigkill: squeak.
+
+::
+
+  bar
+
+
+
+Use both of the methods
+=======================
 
 Scala
 =====
@@ -141,6 +408,66 @@ Scala
 
   foo!
   bar!
+
+
+Squeak
+======
+
+.. code-block:: smalltalk
+
+  squeak := OSProcess thisOSProcess.
+  
+  print := [:value |
+      squeak stdOut
+          nextPutAll: (value asString);
+          nextPut: Character lf;
+          flush].
+  
+  printException := [:e |
+      squeak stdOut
+          nextPutAll: (e asString);
+          nextPut: Character lf;
+          flush].
+  
+  
+  Trait named: #Foo
+      uses: {}
+      category: #MyCategory.
+  
+  Foo compile: '
+  hello
+      ^''foo''
+  '.
+  
+  Trait named: #Bar
+      uses: {}
+      category: #MyCategory.
+  
+  Bar compile: '
+  hello
+      ^''bar''
+  '.
+  
+  Object subclass: #C
+      uses: (Foo @ {#foo -> #hello} - {#hello} +
+             Bar @ {#bar -> #hello} - {#hello})
+      instanceVariableNames: ''
+      classVariableNames: ''
+      poolDictionaries: ''
+      category: #MyCategory.
+  
+  C compile: '
+  hello
+      ^(self foo , self bar)
+  '.
+  
+  print value: (C new hello).
+  
+  squeak sigkill: squeak.
+
+::
+
+  foobar
 
 
 
