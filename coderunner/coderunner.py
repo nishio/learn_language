@@ -280,11 +280,18 @@ class Test(object):
             pdb.set_trace()
         return ret
 
+    def get_code_to_run(self):
+        """
+        Some language (e.g. Squeak) requires extra code to run.
+        In such case, override this.
+        """
+        return self.code
+
 
 class TestScript(Test):
     def run(self):
         if not self.is_file:
-            file(self.filename, "w").write(self.code)
+            file(self.filename, "w").write(self.get_code_to_run())
 
         ret = _subproc(self.bin.split() + [self.filename])
         self.check_expect(ret)
@@ -431,15 +438,19 @@ class Squeak(_Smalltalk):
 
     def __init__(self, code, expect="", is_error=False, **kw):
         if is_error:
-            code = (langspec.squeak.PREFIX_CODE_CATCH_ERROR
-                    + code +
-                    langspec.squeak.SUFFIX_CODE_CATCH_ERROR)
+            c = (langspec.squeak.PREFIX_CODE_CATCH_ERROR
+                 + code +
+                 langspec.squeak.SUFFIX_CODE_CATCH_ERROR)
         else:
-            code = (langspec.squeak.PREFIX_CODE
-                    + code +
-                    langspec.squeak.SUFFIX_CODE)
+            c = (langspec.squeak.PREFIX_CODE
+                 + code +
+                 langspec.squeak.SUFFIX_CODE)
+        self.code_to_run = c
 
         super(_Smalltalk, self).__init__(code, expect, **kw)
+
+    def get_code_to_run(self):
+        return self.code_to_run
 
 
 class GNUSmalktalk(_Smalltalk):
