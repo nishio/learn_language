@@ -10,16 +10,21 @@ print := [:value |
 printException := [:e |
     squeak stdOut
         nextPutAll: (e asString);
-        nextPutAll: (e messageText);
         nextPut: Character lf;
         flush].
 
-[
 """
 
 SUFFIX_CODE = """
-] on: Exception
-  do: printException.
-
 squeak sigkill: squeak.
 """
+
+PREFIX_CODE_CATCH_ERROR = PREFIX_CODE + """
+[
+"""
+
+SUFFIX_CODE_CATCH_ERROR = """
+] on: Exception
+  do: printException.
+""" + SUFFIX_CODE
+

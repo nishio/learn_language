@@ -429,9 +429,17 @@ class Squeak(_Smalltalk):
     human_name = "Squeak"
     bin = "run_squeak.py"  # in 'bin' dir
 
-    def __init__(self, code, expect="", extra_option=[], **kw):
-        code = langspec.squeak.PREFIX_CODE + code + langspec.squeak.SUFFIX_CODE
-        super(Smalltalk, self).__init__(code, expect, **kw)
+    def __init__(self, code, expect="", is_error=False, **kw):
+        if is_error:
+            code = (langspec.squeak.PREFIX_CODE_CATCH_ERROR
+                    + code +
+                    langspec.squeak.SUFFIX_CODE_CATCH_ERROR)
+        else:
+            code = (langspec.squeak.PREFIX_CODE
+                    + code +
+                    langspec.squeak.SUFFIX_CODE)
+
+        super(_Smalltalk, self).__init__(code, expect, **kw)
 
 
 class GNUSmalktalk(_Smalltalk):
