@@ -1,6 +1,6 @@
 from coderunner import *
 
-header("Instanciation")
+header("Instantiation")
 
 test(Scala,
 """
@@ -30,6 +30,15 @@ a Foo
 
 comment('Oops, trait in Squeak can be instanciated...')
 
+
+test(Ruby,
+"""
+module Foo end
+
+Foo new
+""",  """
+tmp.rb:3:in `<main>': undefined local variable or method `new' for main:Object (NameError)
+""")
 
 
 header('Single inheritance')
@@ -66,6 +75,23 @@ Object subclass: #C
     category: #MyCategory.
 
 print value: (C new foo).
+""",  """
+foo
+""")
+
+test(Ruby,
+"""
+module Foo
+  def foo
+    puts "foo"
+  end
+end
+
+class C
+  include Foo
+end
+
+C.new.foo
 """,  """
 foo
 """)
@@ -126,6 +152,31 @@ foo
 bar
 """)
 
+test(Ruby,
+"""
+module Foo
+  def foo
+    puts "foo"
+  end
+end
+
+module Bar
+  def bar
+    puts "bar"
+  end
+end
+
+class C
+  include Foo
+  include Bar
+end
+
+C.new.foo
+C.new.bar
+""",  """
+foo
+bar
+""")
 
 header('Conflicting name')
 
@@ -189,6 +240,33 @@ Error: A class or trait does not properly resolve a conflict between multiple tr
 comment('error occurs when you send a message, not when you define a class')
 
 
+test(Ruby,
+"""
+module Foo
+  def hello
+    puts "foo"
+  end
+end
+
+module Bar
+  def hello
+    puts "bar"
+  end
+end
+
+class C
+  include Foo
+  include Bar
+end
+
+C.new.hello
+""",  """
+bar
+""")
+
+comment("Ruby silently overrides conflicting methods")
+
+
 header('Choose one of the methods')
 test(Scala,
 """
@@ -241,6 +319,9 @@ print value: (C new hello).
 """,  """
 bar
 """)
+
+comment("How to do in Ruby?")
+
 
 header('Use both of the methods')
 
@@ -305,7 +386,10 @@ print value: (C new hello).
 foobar
 """)
 
-header('required trait(self type annotation)')
+comment("How to do in Ruby?")
+
+
+header('required trait(self type annotation of Scala)')
 
 test(Scala,
 """
