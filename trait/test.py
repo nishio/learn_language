@@ -71,6 +71,48 @@ class C extends Foo with Bar{}
 one error found
 """)
 
+test(Scala,
+"""
+trait Foo{
+  def hello() = println("foo!")
+}
+
+trait Bar{
+  def hello() = println("bar!")
+}
+
+class C extends Foo with Bar{
+  override def hello() = super[Foo].hello
+}
+
+new C().hello
+""",  """
+foo!
+""")
+
+test(Scala,
+"""
+trait Foo{
+  def hello() = println("foo!")
+}
+
+trait Bar{
+  def hello() = println("bar!")
+}
+
+class C extends Foo with Bar{
+  override def hello() = {  // use both
+    super[Foo].hello
+    super[Bar].hello
+  }
+}
+
+new C().hello
+""",  """
+foo!
+bar!
+""")
+
 
 header('required trait(self type annotation)')
 

@@ -91,6 +91,58 @@ Scala
   one error found
 
 
+Scala
+=====
+
+.. code-block:: scala
+
+  trait Foo{
+    def hello() = println("foo!")
+  }
+  
+  trait Bar{
+    def hello() = println("bar!")
+  }
+  
+  class C extends Foo with Bar{
+    override def hello() = super[Foo].hello
+  }
+  
+  new C().hello
+
+::
+
+  foo!
+
+
+Scala
+=====
+
+.. code-block:: scala
+
+  trait Foo{
+    def hello() = println("foo!")
+  }
+  
+  trait Bar{
+    def hello() = println("bar!")
+  }
+  
+  class C extends Foo with Bar{
+    override def hello() = {  // use both
+      super[Foo].hello
+      super[Bar].hello
+    }
+  }
+  
+  new C().hello
+
+::
+
+  foo!
+  bar!
+
+
 
 required trait(self type annotation)
 ====================================
