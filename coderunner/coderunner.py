@@ -26,6 +26,7 @@ import re
 import interact
 from docwriter import header, comment
 import langspec
+import output_rst
 
 tests = []
 BIN_PATH = os.path.join(os.path.abspath(
@@ -173,7 +174,7 @@ class Test(object):
             pass # print nothing
         else: # default: "heading"
             print self.human_name
-            print "=" * len(self.human_name)
+            print "-" * len(self.human_name)
 
     def show_in_rest(self):
         """
@@ -744,6 +745,9 @@ def main():
         '--no-diff', dest='use_diff', action='store_false',
         help=(
             "show diff of expected and got outputs (default: True)"))
+    parser.add_argument(
+        '--print-contents', action='store_true',
+        help="print contents(format=rest only)")
 
     args = parser.parse_args()
 
@@ -756,6 +760,8 @@ def main():
                 print "can't run subprocess '%s', ignored" % " ".join(e.args[1])
         print "ok."
     else:
+        if args.print_contents:
+            output_rst.print_contents()
         for test in tests:
             test.show()
 
