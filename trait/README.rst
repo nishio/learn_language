@@ -1,5 +1,5 @@
 
-Instanciation
+Instantiation
 =============
 
 Scala
@@ -56,6 +56,20 @@ Squeak
 
 
 Oops, trait in Squeak can be instanciated...
+
+Ruby
+====
+
+.. code-block:: ruby
+
+  module Foo end
+  
+  Foo new
+
+::
+
+  tmp.rb:3:in `<main>': undefined local variable or method `new' for main:Object (NameError)
+
 
 
 Single inheritance
@@ -117,6 +131,28 @@ Squeak
   print value: (C new foo).
   
   squeak sigkill: squeak.
+
+::
+
+  foo
+
+
+Ruby
+====
+
+.. code-block:: ruby
+
+  module Foo
+    def foo
+      puts "foo"
+    end
+  end
+  
+  class C
+    include Foo
+  end
+  
+  C.new.foo
 
 ::
 
@@ -199,6 +235,37 @@ Squeak
   print value: (C new bar).
   
   squeak sigkill: squeak.
+
+::
+
+  foo
+  bar
+
+
+Ruby
+====
+
+.. code-block:: ruby
+
+  module Foo
+    def foo
+      puts "foo"
+    end
+  end
+  
+  module Bar
+    def bar
+      puts "bar"
+    end
+  end
+  
+  class C
+    include Foo
+    include Bar
+  end
+  
+  C.new.foo
+  C.new.bar
 
 ::
 
@@ -296,6 +363,38 @@ Squeak
 
 error occurs when you send a message, not when you define a class
 
+Ruby
+====
+
+.. code-block:: ruby
+
+  module Foo
+    def hello
+      puts "foo"
+    end
+  end
+  
+  module Bar
+    def hello
+      puts "bar"
+    end
+  end
+  
+  class C
+    include Foo
+    include Bar
+  end
+  
+  C.new.hello
+
+::
+
+  bar
+
+
+
+Ruby silently overrides conflicting methods
+
 
 Choose one of the methods
 =========================
@@ -377,6 +476,9 @@ Squeak
 
   bar
 
+
+
+How to do in Ruby?
 
 
 Use both of the methods
@@ -471,8 +573,11 @@ Squeak
 
 
 
-required trait(self type annotation)
-====================================
+How to do in Ruby?
+
+
+required trait(self type annotation of Scala)
+=============================================
 
 Scala
 =====
