@@ -35,16 +35,6 @@ PATH = ":".join([BIN_PATH] + os.environ.get('PATH', '').split(":"))
 
 EMBEDDED_OUTPUT_PATTERN_LIKE_C = r"/\* output \(checked by coderunner\)(.*[^ ]) ?\*/"
 
-def _indent(s):
-    r"""
-    >>> _indent("aaa")
-    '  aaa'
-    >>> _indent("aaa\nbbb")
-    '  aaa\n  bbb'
-    """
-    return "\n".join("  " + line for line in s.split("\n"))
-
-
 def _pattern(prefix, body, suffix):
     """
     generate regular pattern, which match with
@@ -167,33 +157,6 @@ class Test(object):
         else:
             raise NotImplementedError, args.format
 
-    def _show_header_in_rest(self):
-        if args.lang_format == "strong":
-            print "**%s**" % self.human_name
-        elif args.lang_format == "none":
-            pass # print nothing
-        else: # default: "heading"
-            print self.human_name
-            print "-" * len(self.human_name)
-
-    def show_in_rest(self):
-        """
-        show code. currently output ReST (for my book)
-        """
-        self._show_header_in_rest()
-        print
-        print ".. code-block:: %s" % self.pygments_name
-        print
-        print _indent(self._code_as_utf8().strip("\n"))
-        if not args.suppress_expected:
-            expected = self._expect_as_utf8().strip("\n")
-            if expected == "": expected = "(no output)"
-            print
-            print "::"
-            print
-            print _indent(expected)
-        print "\n"
-
     def _code_as_utf8(self):
         if self.source_encoding:
             return self.code.decode(self.source_encoding).encode('utf-8')
@@ -287,6 +250,17 @@ class Test(object):
         In such case, override this.
         """
         return self.code
+
+    def show_in_rest(self):
+        """
+        show code. currently output ReST (for my book)
+        """
+        output_rst.show_header(args.lang_format, self.human_name)
+        output_rst.show_pre(self._code_as_utf8().strip("\n"), self.pygments_name)
+        if not args.suppress_expected:
+            expected = self._expect_as_utf8().strip("\n")
+            if expected == "": expected = "(no output)"
+            output_rst.show_pre(expected)
 
 
 class TestScript(Test):
@@ -601,14 +575,10 @@ class TestInteractive(Test):
         in Interactive test, self.code is repeated in self.expect,
         so no need to print it.
         """
-        self._show_header_in_rest()
+        output_rst.show_header(args.lang_format, self.human_name)
         expected = self._expect_as_utf8().strip("\n")
         if expected == "": raise AssertionError('%s has no expected output')
-        print
-        print "::"
-        print
-        print _indent(expected)
-        print "\n"
+        output_rst.show_pre(expected)
 
 
 class GHCi(TestInteractive):
