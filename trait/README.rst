@@ -3,7 +3,7 @@ Instantiation
 =============
 
 Scala
-=====
+-----
 
 .. code-block:: scala
 
@@ -22,7 +22,7 @@ Scala
 
 
 Squeak
-======
+------
 
 .. code-block:: smalltalk
 
@@ -41,7 +41,7 @@ Squeak
 Oops, trait in Squeak can be instanciated...
 
 Ruby
-====
+----
 
 .. code-block:: ruby
 
@@ -59,7 +59,7 @@ Single inheritance
 ==================
 
 Scala
-=====
+-----
 
 .. code-block:: scala
 
@@ -76,7 +76,7 @@ Scala
 
 
 Squeak
-======
+------
 
 .. code-block:: smalltalk
 
@@ -104,7 +104,7 @@ Squeak
 
 
 Ruby
-====
+----
 
 .. code-block:: ruby
 
@@ -130,7 +130,7 @@ Multiple inheritance
 ====================
 
 Scala
-=====
+-----
 
 .. code-block:: scala
 
@@ -153,7 +153,7 @@ Scala
 
 
 Squeak
-======
+------
 
 .. code-block:: smalltalk
 
@@ -192,7 +192,7 @@ Squeak
 
 
 Ruby
-====
+----
 
 .. code-block:: ruby
 
@@ -227,7 +227,7 @@ Conflicting name
 ================
 
 Scala
-=====
+-----
 
 .. code-block:: scala
 
@@ -253,7 +253,7 @@ Scala
 
 
 Squeak
-======
+------
 
 .. code-block:: smalltalk
 
@@ -296,7 +296,7 @@ Squeak
 error occurs when you send a message, not when you define a class
 
 Ruby
-====
+----
 
 .. code-block:: ruby
 
@@ -332,7 +332,7 @@ Choose one of the methods
 =========================
 
 Scala
-=====
+-----
 
 .. code-block:: scala
 
@@ -356,7 +356,7 @@ Scala
 
 
 Squeak
-======
+------
 
 .. code-block:: smalltalk
 
@@ -400,7 +400,7 @@ Use both of the methods
 =======================
 
 Scala
-=====
+-----
 
 .. code-block:: scala
 
@@ -428,7 +428,7 @@ Scala
 
 
 Squeak
-======
+------
 
 .. code-block:: smalltalk
 
@@ -478,7 +478,7 @@ required trait(self type annotation of Scala)
 =============================================
 
 Scala
-=====
+-----
 
 .. code-block:: scala
 
@@ -504,7 +504,7 @@ Scala
 
 
 Scala
-=====
+-----
 
 .. code-block:: scala
 
