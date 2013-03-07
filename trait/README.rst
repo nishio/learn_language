@@ -628,3 +628,109 @@ Scala
 
   foo
 
+
+conflict between parent class and trait
+=======================================
+
+
+
+Scala
+-----
+
+.. code-block:: scala
+
+  trait Foo{
+    def hello() = println("foo!")
+  }
+  
+  class ParentClass{
+    def hello() = println("parent class!")
+  }
+  
+  class C extends ParentClass with Foo{}
+
+
+::
+
+  ...tmp.scala:9: error: class C inherits conflicting members:
+    method hello in class ParentClass of type ()Unit  and
+    method hello in trait Foo of type ()Unit
+  (Note: this can be resolved by declaring an override in class C.)
+  class C extends ParentClass with Foo{}
+        ^
+  one error found
+
+
+
+Squeak
+------
+
+.. code-block:: smalltalk
+
+  Trait named: #Foo
+      uses: {}
+      category: #MyCategory.
+  
+  Foo compile: '
+  hello
+      ^''foo''
+  '.
+  
+  Object subclass: #ParentClass
+      instanceVariableNames: ''
+      classVariableNames: ''
+      poolDictionaries: ''
+      category: #MyCategory.
+  
+  ParentClass compile: '
+  hello
+      ^''parent class''
+  '.
+  
+  ParentClass subclass: #C
+      uses: Foo
+      instanceVariableNames: ''
+      classVariableNames: ''
+      poolDictionaries: ''
+      category: #MyCategory.
+  
+  [
+      print value: (C new hello).
+  ] on: Exception
+    do: printException.
+
+
+::
+
+  foo
+
+
+
+Ruby
+-----
+
+.. code-block:: ruby
+
+  module Foo
+    def hello
+      puts "foo"
+    end
+  end
+  
+  class ParentClass
+    def hello
+      puts "parent class"
+    end
+  end
+  
+  class C < ParentClass
+    include Foo
+  end
+  
+  C.new.hello
+
+
+::
+
+  foo
+
