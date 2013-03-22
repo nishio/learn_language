@@ -534,10 +534,8 @@ ParentClass subclass: #C
     poolDictionaries: ''
     category: #MyCategory.
 
-[
-    print value: (C new hello).
-] on: Exception
-  do: printException.
+
+print value: (C new hello).
 """,  """
 foo
 """)
