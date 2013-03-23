@@ -27,6 +27,7 @@ import interact
 from docwriter import header, comment
 import langspec
 import output_rst
+import output_review
 
 tests = []
 BIN_PATH = os.path.join(os.path.abspath(
@@ -154,6 +155,8 @@ class Test(object):
     def show(self):
         if args.format == "rest":
             self.show_in_rest()
+        elif args.format == "review":
+            self.show_in_review()
         else:
             raise NotImplementedError, args.format
 
@@ -262,6 +265,15 @@ class Test(object):
             if expected == "": expected = "(no output)"
             output_rst.show_pre(expected)
 
+    def show_in_review(self):
+        """
+        show code. currently output ReST (for my book)
+        """
+        output_review.show_code(self._code_as_utf8().strip("\n"), self.pygments_name)
+        if not args.suppress_expected:
+            expected = self._expect_as_utf8().strip("\n")
+            if expected == "": expected = "(no output)"
+            output_review.show_output(expected)
 
 class TestScript(Test):
     def run(self):
@@ -580,6 +592,11 @@ class TestInteractive(Test):
         if expected == "": raise AssertionError('%s has no expected output')
         output_rst.show_pre(expected)
 
+    def show_in_review(self):
+        expected = self._expect_as_utf8().strip("\n")
+        if expected == "": raise AssertionError('%s has no expected output')
+        output_review.show_output(expected)
+
 
 class GHCi(TestInteractive):
     human_name = "Haskell"
@@ -685,7 +702,7 @@ def run_a_test(lang, code, expect='', *xs, **kw):
 
 
 def main():
-    global args
+    global args, tests
     parser = argparse.ArgumentParser(description='Run codes and check outputs are as expected.')
 
     parser.add_argument(
@@ -718,8 +735,13 @@ def main():
     parser.add_argument(
         '--print-contents', action='store_true',
         help="print contents(format=rest only)")
+    parser.add_argument(
+        '--index', action='store',
+        help="select a test(int as index of test)")
 
     args = parser.parse_args()
+    if args.index != None:
+        tests = [tests[int(args.index)]]
 
     if not args.format:
         print "%d tests..." % len(tests)

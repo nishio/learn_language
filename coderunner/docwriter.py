@@ -7,8 +7,10 @@ class _Base(object):
     def show(self):
         if coderunner.args.format == "rest":
             self.show_in_rest()
+        elif coderunner.args.format == "review":
+            pass
         else:
-            raise NotImplementedError, args.format
+            raise NotImplementedError, coderunner.args.format
 
     def run(self):
         pass
