@@ -1,16 +1,20 @@
-================
- サンプルコード
-================
+============================================
+ 「コーディングを支える技術」サンプルコード
+============================================
 
-このディレクトリは「〜」のサンプルコードを置く場所です。
+このディレクトリは「コーディングを支える技術」のサンプルコードなどを置く場所です。
 
-細かいコード片などはCodeRunnerを使ってひとつのスクリプトにまとめて、一括で挙動をテストする仕組みになっています。
-CodeRunnerの詳細はsection1にて。
+「コーディングを支える技術」についての詳細はこちら: http://nhiro.org/langbook/
+
+挙動の確認を手軽にするために、細かいコード片はCodeRunnerを使ってひとつのスクリプト(test.py)にまとめています。
+
+CodeRunnerについての詳細はこちら(詳細を知らなくても以下のサンプルを読む上での支障はありません): 
+
 
 section1
 ========
 
-test.pyの中に2件のテストがあります。たとえば下のように書かれています。言語と、入力と、期待している出力が並んでいて、
+test.pyの中に2件のテストが書かれています。下のように、言語と、入力と、期待している出力が並んでいます。
 この例では「Rubyで ``if 0 then〜end`` のコードを実行すると、 ``true!`` と出力される」と読みます。
 
 ::
@@ -25,7 +29,7 @@ test.pyの中に2件のテストがあります。たとえば下のように書
    true!
    """)
 
-また、test.pyの内容をReST形式で出力したものがREADME.rstという名前で置かれています。Github上で見るとシンタックスハイライトなどがついて読みやすいかと思います。
+また、test.pyの内容をReST形式で出力したものが各章ごとにREADME.rstという名前で置かれています。Github上で見るとシンタックスハイライトがついて読みやすいかと思います。
 
 https://github.com/nishio/learn_language/blob/master/book/section1/README.rst
 
@@ -61,19 +65,26 @@ section4
 実行する用
 ----------
 
+elseについて
+~~~~~~~~~~~~
+
 - if_elseif_else_goto.c: elseを使わずにgotoで実現したコード
 - if_elseif_else_wo_goto.c: 素直にelseを使って実装したコード
 - no_if.c: 2つのコードを両方、色々な引数で実行するコード
 
+
+whileについて
+~~~~~~~~~~~~~
 
 - while_goto.c: whileを使わずにgotoで実装したコード
 - while_wo_goto.c: 素直にwhileを使って実装したコード
 - no_wihle.c: 両方を試すコード
 
 
+forについて
+~~~~~~~~~~~
+
 - no_for.c: for文と、for文なしで同じ内容を実装したコード
-
-
 - ForLoopTest.java: Javaで3通りのfor文を試すコード
 
 test.pyはno_if.c, no_while.c, no_for.c, ForLoopTest.javaの4つのファイルが期待通りの出力を出すかを確認します。
@@ -84,7 +95,7 @@ section5
 
 - recursive.py: 再帰呼び出しのサンプルコード
 - recursive.py.txt: 再帰呼び出し解説用の「作成途中のコード」
-- func_call.c: 関数の呼び出しをアセンブリ言語にコンパイルして観察するためのコード(本文では使われていません)
+- func_call.c: 関数の呼び出しをアセンブリ言語にコンパイルして観察するためのコード(紙面からは割愛されました)
 
 
 section6
@@ -92,8 +103,9 @@ section6
 
 - exception.c: 返り値でエラーを返す例
 - exception_goto.c: goto outでエラー処理をまとめる例
-- exception_setjmp.c: 紙面からは割愛された、setjmp/longjmpでまとめる例
+- exception_setjmp.c: setjmp/longjmpでまとめる例(紙面からは割愛されました)
 - raii: RAIIのテスト、test.pyに期待する出力が書かれています
+- smalldisk: C言語でディスク容量不足でwriteが失敗した時に-1が返ってくることを確認する例(紙面からは割愛されました)
 - test.py: Python, Ruby, JSでの例外の違い
 - CheckedException.java: 検査例外のサンプル
 
@@ -137,4 +149,24 @@ test.py内では以下のテストをしています。
 - シフト命令を追加することで「$"」が「あ」に変わることの確認
 - Pythonでは非ASCIIバイトを含むファイルを実行するにはマジックコメントが必要なことの確認
 
+section10
+=========
 
+IgnoreLock.java
+---------------
+
+きちんとロックを確認せずにアクセスするメソッド(synchronizeをつけていないメソッド)があった場合に何が起こるかの検証用です。(紙面からは割愛されました)
+
+consistency_checkメソッドはメソッドの冒頭と末尾でvalueの値が変わっていないかどうかをチェックします。
+consistency_checkメソッドにはsynchronizedがついています。正しく同期化されていれば実行中にvalueの値が変わることはないはずです。
+しかしsynchronizedのついていないignore_lockメソッドがロックを無視してvalueを書き換えます。
+その結果「consistency check finished: false」というメッセージが時々表示されます。
+
+この現象はignore_lockにsynchronizeを付ければ起こらなくなります。みなさんの手元で確認してみましょう。
+
+section11
+=========
+
+test.py内では以下のテストをしています。
+
+- C言語でstaticを使って「状態を持つ関数」を作るサンプル(紙面からは割愛されました)
