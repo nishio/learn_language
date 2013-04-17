@@ -4,10 +4,20 @@ Samples to cause error
 """
 from coderunner import *
 
-test(Java, "TestDelegate.java", is_file=True, is_embedded_output=True)
 test(Java, "TestMultiImpl.java", is_file=True, to_run=False)
-test(Java, "TestMultiImpl2.java", is_file=True, to_run=False)
-drop_tests()
+test(Java, "TestMultiImpl2.java", """
+TestMultiImpl2.java:1: error: TestMultiImpl2 is not abstract and does not override abstract method hello() in Foo
+public class TestMultiImpl2 implements Foo, Bar {
+       ^
+1 error
+""", is_file=True, to_run=False)
+test(Java, "TestMultiImpl3.java", """
+TestMultiImpl3.java:1: error: '{' expected
+public class TestMultiImpl3 extends Foo, Bar {
+                                       ^
+1 error
+""", is_file=True, to_run=False)
+test(Java, "TestDelegate.java", is_file=True, is_embedded_output=True)
 
 test(Python, """
 class Parent:
