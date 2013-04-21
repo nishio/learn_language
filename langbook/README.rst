@@ -8,7 +8,7 @@
 
 挙動の確認を手軽にするために、細かいコード片はCodeRunnerを使ってひとつのスクリプト(test.py)にまとめています。
 
-CodeRunnerについての詳細はこちら(詳細を知らなくても以下のサンプルを読む上での支障はありません): https://github.com/nishio/learn_language/tree/master/coderunner
+CodeRunnerについての詳細はこちら(詳細を知らなくても以下のサンプルを読む上での支障はありません): `learn_language/coderunner </coderunner>`_
 
 
 section1
@@ -31,7 +31,7 @@ test.pyの中に2件のテストが書かれています。下のように、言
 
 また、test.pyの内容をReST形式で出力したものが各章ごとにREADME.rstという名前で置かれています。Github上で見るとシンタックスハイライトがついて読みやすいかと思います。
 
-https://github.com/nishio/learn_language/blob/master/book/section1/README.rst
+`chapter01/README.rst <chapter01/README.rst>`_
 
 section3
 ========
