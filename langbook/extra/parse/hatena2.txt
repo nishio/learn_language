@@ -1,0 +1,141 @@
+「<a href='http://d.hatena.ne.jp/nishiohirokazu/20130510/1368196109'>文字列の解析</a>」の続編です。今回は正規表現のところまで行きます。
+
+** 状態
+
+前回作ったのは、「0～9の文字」が続いているところを切り出すだけの、とても簡単な文字列解析でした。しかしそれでも、「0～9以外文字」の文字が現れた時に行う処理は、それが「0～9の文字が続いている範囲」の前なのか後なのかによって異なりました。
+
+今後もっと複雑な文字列解析をする前に、まず、前回作った処理を図にして整理してみましょう。
+
+[f:id:nishiohirokazu:20130526221750p:image]
+
+前回の処理には「0～9の文字が続いている範囲の前」と「0～9の文字が続いている範囲の後」の2通りの状態がありました。この図では「0～9の文字が続いている範囲の前」が「状態0」、「0～9の文字が続いている範囲の後」が「状態1」で表現されています。
+
+(脚注：この種のものを表現する言葉は、決定性有限オートマトン(Deterministic finite automaton, DFA)や有限状態機械(Finite state machine, FSM)など、色々ありますが、ここではイメージが湧きやすいだろうという理由で状態遷移図と呼んでいます。また、プログラムの流れと近くて理解しやすいだろうという理由で、始状態や終状態をUMLの記法を流用して表現しています。)
+
+** もっと複雑な文字列解析
+
+浮動小数点数を切り出す処理を書いてみましょう。今回、浮動小数点数は
+
+- 「0～9の文字」が1個以上続いて
+- それから「ピリオド」が来て
+- 「0～9の文字」が1個以上続く
+
+というパターンだという仕様にします。このパターンを切り出すプログラムを書いてみましょう。
+
+(脚注：プログラミング言語やロケールによっては「.123」が浮動小数点の表現としてOKだったり、「123.」がOKだったり、小数点がピリオドではなくカンマだったりしますが、ここでの話にはあまり関係がないので単純化しています。)
+
+まずは状態遷移図を書いてみましょう。今回は4通りの状態が必要になります。「0～9を探している(それ以外の文字を読み飛ばしている)状態」「0～9が1個以上見つかった状態」「その後にピリオドが来た状態」「その後に0～9が1個以上見つかった状態」の4つです。
+
+[f:id:nishiohirokazu:20130526221749p:image]
+
+これをソースコードに直すとこうなります。状態を表すのにstateという変数を導入しています。1文字読んで、いまのstateの値によって分岐して、それから文字の種類によって、結果(result)に追加したり、他の状態へ遷移したり、resultをリセットしたりしています。
+
+>|python|
+def find_float(string):
+    result = ''
+    state = 0
+    for char in string:
+        print 'state=%r, char=%r, result=%r' % (state, char, result)
+        if state == 0:
+            if char in '0123456789':
+                result += char
+                state = 1
+        elif state == 1:
+            if char == '.':
+                result += char
+                state = 2
+            elif char in '0123456789':
+                result += char
+            else:
+                result = ''
+                state = 0
+        elif state == 2:
+            if char in '0123456789':
+                result += char
+                state = 3
+            else:
+                result = ''
+                state = 0
+        elif state == 3:
+            if char in '0123456789':
+                result += char
+            else:
+                return result
+
+
+print find_float("a0b12.c34.56d")
+||<
+
+実行結果はこうなります。
+
+>||
+state=0, char='a', result=''
+state=0, char='0', result=''
+state=1, char='b', result='0'
+state=0, char='1', result=''
+state=1, char='2', result='1'
+state=1, char='.', result='12'
+state=2, char='c', result='12.'
+state=0, char='3', result=''
+state=1, char='4', result='3'
+state=1, char='.', result='34'
+state=2, char='5', result='34.'
+state=3, char='6', result='34.5'
+state=3, char='d', result='34.56'
+34.56
+||<
+
+ちゃんと期待通りに切り出せていることがわかりますね。
+
+** 正規表現
+
+こんな簡単なパターンを切り出すだけなのに、実装は結構大変ですね。もっと楽にならないのでしょうか？どういうパターンを切り出したいのかを宣言したら、コンピュータがうまいことやってくれないかな？
+
+実はPythonの正規表現ライブラリre(*)を使うと先ほどのコードはこんなに短くなります。このコード中の「\d+\.\d+」の部分が「数字が1個以上続いて、それからピリオドが来て、その後数字が1個以上続く」というパターンを表現しています。これが正規表現です。
+
+(脚注：reはRegular Expressionの略)
+
+>|python|
+import re
+
+def find_float(string):
+    return re.search('\d+\.\d+', string).group()
+
+print find_float("123a.b.314.159c25d")
+||<
+
+与えられた文字列から「正規表現で表現されたパターン」の文字列を探し出すようなプログラムのことを、これ以降は正規表現エンジンと呼ぶことにします。
+
+現代では多くの言語が正規表現エンジンを搭載しています。PythonやJavaのように文字列で正規表現を記述する言語も、PerlやJavaScriptのように言語処理系に正規表現を記述するための文法が用意されている言語もあります。
+
+>||
+JavaScript(Node.js)
+
+> /\d+/.exec('abc123def')[0]
+'123'
+
+Python
+
+>>> import re
+>>> re.search('\d+', 'abc123def').group()
+'123'
+||<
+
+<hr>
+
+拙著「<a href="http://www.amazon.co.jp/gp/product/477415654X/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=477415654X&linkCode=as2&tag=nishiohirokaz-22">コーディングを支える技術</a>」の読者から頂いた質問など対して、こんな感じで補足記事を書いて行きたいと思っています。質問・感想はおきがねなくどうぞ。
+
+この解説は拙著の第3章と第4章の間に新しい章として入るのが適当かなと思います。その章のこの後の話の流れとしては
+
+- 正規表現の歴史
+- 正規言語の話、和集合、結合、クリーネ閉包を図で表現
+- ネストしたカッコを正規表現で切り出せるか？
+- PCREの話, 正規言語の範囲を踏み出している話
+- 文脈自由文法
+- どうやる？(再帰下降パーサ, yacc)
+- どう表現する？(BNF)
+
+という感じかな。
+
+拙著に関する他のエントリーは「<a href='http://nhiro.org/langbook/'>「コーディングを支える技術」著者公式ページ</a>」からたどれるようにします。
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=AAFFAA&fc1=000000&lc1=0000FF&t=nishiohirokaz-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=477415654X" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
