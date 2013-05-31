@@ -83,10 +83,11 @@ int total2(const many& xs){
   return result;
 }
 
-
+// ローカル変数を保存するためのスタック
 typedef std::tuple<many, int, boost::any, int> frame_t;
 std::stack<frame_t> stack;
 
+// 返り値を保存するための変数
 int function_result;
 
 int total3(many& xs){
