@@ -33,12 +33,14 @@ def total2(xs):
 
 def total3(xs):
     stack = []
-    # 初期化
-    result = 0
-    i = 0
-
-    # 再帰呼び出しでの「関数冒頭へのジャンプ」に相当
+    is_function_call = True
+    # gotoのない言語で「関数冒頭へのジャンプ」に相当することを実現するためにwhileを使う
     while True:
+        if is_function_call: # 関数呼び出し時だけTrueになるフラグ
+            # 初期化
+            result = 0
+            i = 0
+            is_function_call = False
 
         # for文に相当
         while i < len(xs):
@@ -47,26 +49,39 @@ def total3(xs):
             if is_integer(x):
                 result += x
             else:
+                ## 関数呼び出しに相当することをやる
                 # 今の状態をスタックに積む
                 stack.append((xs, i, result))
                 # xsを変える(xを引数としてtotalを呼ぶことに相当)
                 xs = x
-                # 初期化
-                result = 0
-                i = 0
+                # ここで関数冒頭へgotoしたいところだがPythonにはgotoがないので
+                # フラグを立ててbreakする
+                is_function_call = True
                 break
 
-        if i == len(xs):
-            # ループが完了した
-            if stack: # スタックが空でないなら
-                # 積んでおいた値を取り出す
-                old_xs, old_i, old_result = stack.pop()
-                # 値を元に戻す
-                xs = old_xs
-                i = old_i
-                result = old_result + result # result += total(x)で返り値を足していることに相当
-            else:
-                break
+        # whileを抜けた際、ループが普通に終了した場合と、関数呼び出しのためにbreakしたのを区別する必要がある
+        if is_function_call:
+            # 関数呼び出しの場合、何もせずにcontinueすることでwhile冒頭へのジャンプを行う
+            continue
+        else:
+            # 関数呼び出しでない場合
+
+            # 元の関数のループの後に何らかの処理があるならばここに入るが、今回はたまたま
+            # 何もせずにreturn resultで抜けているのでここに入る処理はない。
+
+            # 関数を抜けた後の処理
+            if not stack: # スタックが空なら
+                return result # すべての計算が完了したのでこの関数から抜ける
+
+            # スタックが積まれている場合、中断していた処理を再開する必要がある。
+            # 積んでおいた値を取り出す
+            old_xs, old_i, old_result = stack.pop()
+            # 値を元に戻す
+            xs = old_xs
+            i = old_i
+            result = old_result + result # result += total(x)で返り値を足していることに相当
+            # この後、while冒頭に戻って、 is_function_call == False なので初期化処理を飛ばして
+            # 2つ目のwhileに戻るので結果的に「再開」ができる。
 
     return result
 
