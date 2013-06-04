@@ -12,12 +12,12 @@ P.53の簡単な再帰呼び出しの例(total関数)をターゲットにしま
 
 ** C++への移植
 
-まずはP.50のサンプルコードを、なるべく逐語訳でC++に移植してみました。
+まずはP.50のサンプルコードを、なるべく逐語訳でC++11に移植してみました。
 
 >|cpp|
 int total(const many& xs){
   int result = 0;
-  BOOST_FOREACH( const boost::any& x, xs ){
+  for(const boost::any& x : xs){
     if(is_integer(x)){
       result += any_cast<int>(x);
     }else{
@@ -28,7 +28,7 @@ int total(const many& xs){
 }
 ||<
 
-is_integerの定義、C++でPythonのリストと同様の「型を気にしないリスト」を作るために使われているboost/any.hpp、Python風のfor文(BOOST_FOREACH)を実現するために使われているboost/foreach.hppについては今回の記事のスコープではないので割愛します。要望があればまた別途。
+is_integerの定義、C++でPythonのリストと同様の「型を気にしないリスト」を作るために使われているboost/any.hppについては今回の記事のスコープではないので割愛します。要望があればまた別途。
 
 ** foreachの除去
 
