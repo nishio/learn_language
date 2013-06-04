@@ -39,7 +39,7 @@ void show_many(const many& xs){
 
 int total(const many& xs){
   int result = 0;
-  BOOST_FOREACH( const boost::any& x, xs ){
+  for(const boost::any& x : xs){
     #ifdef VERBOSE
     std::cout << "xs:";
     show_many(xs);
