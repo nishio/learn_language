@@ -1,5 +1,134 @@
 
 
+Java
+-----
+
+.. code-block:: java
+
+  public class TestMultiImpl implements Foo, Bar {
+      public static void main(String[] args){
+      }
+  
+      public void hello(){
+          System.out.println("hello!");
+      }
+  }
+  
+  interface Foo {
+      public void hello();
+  }
+  
+  interface Bar {
+      public void hello();
+  }
+
+
+::
+
+  (no output)
+
+
+
+Java
+-----
+
+.. code-block:: java
+
+  public class TestMultiImpl2 implements Foo, Bar {
+      public static void main(String[] args){
+      }
+  
+      // 'public void hello()' is not implemented
+  }
+  
+  interface Foo {
+      public void hello();
+  }
+  
+  interface Bar {
+      public void hello();
+  }
+
+
+::
+
+  TestMultiImpl2.java:1: error: TestMultiImpl2 is not abstract and does not override abstract method hello() in Foo
+  public class TestMultiImpl2 implements Foo, Bar {
+         ^
+  1 error
+
+
+
+Java
+-----
+
+.. code-block:: java
+
+  public class TestMultiImpl3 extends Foo, Bar {
+      public static void main(String[] args){
+      }
+  
+      // 'public void hello()' is not implemented
+  }
+  
+  class Foo {
+      public void hello();
+  }
+  
+  class Bar {
+      public void hello();
+  }
+
+
+::
+
+  TestMultiImpl3.java:1: error: '{' expected
+  public class TestMultiImpl3 extends Foo, Bar {
+                                         ^
+  1 error
+
+
+
+Java
+-----
+
+.. code-block:: java
+
+  public class TestDelegate {
+      public static void main(String[] args){
+          new UseInheritance().useHello();
+          new UseDelegate().useHello();
+      }
+  }
+  
+  
+  class Hello{
+      public void hello(){
+          System.out.println("hello!");
+      }
+  }
+  
+  class UseInheritance extends Hello {
+      public void useHello(){
+          hello();
+      }
+  }
+  
+  class UseDelegate {
+      Hello h = new Hello();
+      public void useHello(){
+          h.hello();
+      }
+  }
+
+
+::
+
+  hello!
+  hello!
+
+
+
 Python
 ------
 
