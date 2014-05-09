@@ -199,7 +199,6 @@ class Test(object):
             self.is_file = False
 
         if is_embedded_output:
-            assert is_file
             if not self.embedded_output_pattern:
                 raise NotImplementedError
             self.expect = self.get_embedded_output()
@@ -218,7 +217,11 @@ class Test(object):
                 self.dontcare_pattern = extra_dontcare
 
     def get_embedded_output(self):
-        data = file(self.filename).read()
+        if self.is_file:
+            data = file(self.filename).read()
+        else:
+            data = self.code
+
         pat = re.compile(self.embedded_output_pattern, re.DOTALL)
         buf = []
         for match in re.findall(pat, data):
