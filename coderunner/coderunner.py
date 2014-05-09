@@ -294,7 +294,10 @@ class _Python(TestScript):
     pygments_name = "python"
     temp_filename = "tmp.py"
     dontcare_pattern = _pattern(r" at ", "0x[0-9a-fX]+", r">")
-    embedded_output_pattern = r'"""output \(checked by coderunner\)(.*)"""'
+    embedded_output_pattern = _multi_pattern(
+        r'"""output \(checked by coderunner\)(.*)"""',
+        r"# ?-> ([^\n]+)")
+
     version_option = ["-V"]
 
 
@@ -507,6 +510,10 @@ class Java(TestTwoPhase):
     human_name = "Java"
     temp_filename = "Tmp.java"
     embedded_output_pattern = EMBEDDED_OUTPUT_PATTERN_LIKE_C
+    embedded_output_pattern = _multi_pattern(
+        EMBEDDED_OUTPUT_PATTERN_LIKE_C,
+        r"// ?-> ([^\n]+)\n")
+
     pygments_name = "java"
     bin = "env LC_ALL=en javac -J-Duser.language=en"
     runtime = "env LC_ALL=en java -Duser.language=en -cp ."
@@ -538,7 +545,7 @@ class Cpp(TestTwoPhase):
     temp_filename = "tmp.cpp"
     embedded_output_pattern = _multi_pattern(
         EMBEDDED_OUTPUT_PATTERN_LIKE_C,
-        r"//-> ([^\n]+)\n")
+        r"// ?-> ([^\n]+)\n")
     pygments_name = "cpp"
     bin = ("env LC_ALL=en g++ -Wall -W -Wformat=2 -Wcast-qual -Wcast-align "
            "-Wwrite-strings -Wconversion -Wfloat-equal "
