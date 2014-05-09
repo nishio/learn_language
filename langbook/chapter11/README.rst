@@ -237,6 +237,138 @@ Perl
 
 
 
+Perl
+-----
+
+.. code-block:: perl
+
+  # Perl
+  # 本書にないサンプルコード。p.196とp.198の間に相当。
+  {
+      package Counter;
+      sub new{
+          my $values = {count => 0};
+          bless $values, "Counter";
+      }
+      sub push{
+          my $values = shift;
+          $values->{count}++;
+          print "$values->{count}匹\n";
+      }
+  }
+  
+  {
+      # 初期化の処理をパッケージに入れた
+      my $counter = Counter::new;
+      my $c2 = Counter::new;
+  
+      # 引数にハッシュを渡す
+      $counter->push;  #-> 1匹
+      $counter->push;  #-> 2匹
+      $c2->push;       #-> 1匹
+      $counter->push;  #-> 3匹
+      $c2->push;       #-> 2匹
+  }
+
+
+::
+
+  1匹
+  2匹
+  1匹
+  3匹
+  2匹
+
+
+
+C++
+-----
+
+.. code-block:: cpp
+
+  #include<iostream>
+  
+  class MyClass {
+  public:
+    static void my_static_method(){
+      std::cout << "I'm static method!" << std::endl;
+    }
+    void my_instance_method(){
+      std::cout << "I'm instance method!" << std::endl;
+    }
+  };
+  
+  int main(){
+    MyClass::my_static_method();
+    
+    MyClass x;
+    x.my_instance_method();
+    }
+
+
+::
+
+  I'm static method!
+  I'm instance method!
+
+
+
+Java
+-----
+
+.. code-block:: java
+
+  class MyClass {
+      static void my_static_method(){
+          System.out.println("I'm static method!");
+      }
+      void my_instance_method(){
+          System.out.println("I'm instance method!");
+      }
+  
+      public static void main(String[] args){
+          MyClass.my_static_method();
+          
+          MyClass x = new MyClass();
+          x.my_instance_method();
+              }
+  };
+
+
+::
+
+  I'm static method!
+  I'm instance method!
+
+
+
+Python
+------
+
+.. code-block:: python
+
+  class MyClass(object):
+      @staticmethod
+      def my_static_method():
+          print "I'm static method!";
+  
+      def my_instance_method(self):
+          print "I'm instance method!";
+  
+  MyClass.my_static_method()
+  
+  
+  x = MyClass()
+  x.my_instance_method()
+
+
+::
+
+  I'm static method!
+  I'm instance method!
+
+
+
 Node.js
 -------
 

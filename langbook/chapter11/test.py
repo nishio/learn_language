@@ -195,6 +195,64 @@ test(Perl, r"""
 2匹
 """)
 
+test(Perl, r"""
+# Perl
+# 本書にないサンプルコード。p.196とp.198の間に相当。
+{
+    package Counter;
+    sub new{
+        my $values = {count => 0};
+        bless $values, "Counter";
+    }
+    sub push{
+        my $values = shift;
+        $values->{count}++;
+        print "$values->{count}匹\n";
+    }
+}
+
+{
+    # 初期化の処理をパッケージに入れた
+    my $counter = Counter::new;
+    my $c2 = Counter::new;
+
+    # 引数にハッシュを渡す
+    $counter->push;  #-> 1匹
+    $counter->push;  #-> 2匹
+    $c2->push;       #-> 1匹
+    $counter->push;  #-> 3匹
+    $c2->push;       #-> 2匹
+}
+""", """
+1匹
+2匹
+1匹
+3匹
+2匹
+""")
+
+test(Cpp, "MyClass.cpp", is_file=True, is_embedded_output=True)
+
+test(Java, "MyClass.java", is_file=True, is_embedded_output=True)
+
+test(Python, """
+class MyClass(object):
+    @staticmethod
+    def my_static_method():
+        print "I'm static method!";
+
+    def my_instance_method(self):
+        print "I'm instance method!";
+
+MyClass.my_static_method()
+# -> I'm static method!
+
+x = MyClass()
+x.my_instance_method()
+# -> I'm instance method!
+""", is_embedded_output=True)
+
+
 test(JS, """
 // JavaScript
 var counter = {
