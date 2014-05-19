@@ -9,7 +9,6 @@ C++
   #include <signal.h>
   #include <setjmp.h>
   
-  int err;
   jmp_buf env;
   
   void handler(int x){
@@ -19,7 +18,7 @@ C++
   
   void division(int denom){
     int result;
-    if((err=setjmp(env))){
+    if(setjmp(env)){
       result = 12345;
     }else{
       result = 1 / denom;
@@ -33,7 +32,8 @@ C++
     division(argc);
     
     division(argc - 1);
-      }
+      
+  }
 
 
 ::

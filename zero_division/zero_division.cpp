@@ -2,7 +2,6 @@
 #include <signal.h>
 #include <setjmp.h>
 
-int err;
 jmp_buf env;
 
 void handler(int x){
@@ -12,7 +11,7 @@ void handler(int x){
 
 void division(int denom){
   int result;
-  if((err=setjmp(env))){
+  if(setjmp(env)){
     result = 12345;
   }else{
     result = 1 / denom;
@@ -29,4 +28,5 @@ int main(int argc, char** argv){
   division(argc - 1);
   // -> Signal 8
   // -> 1/0=12345
+
 }
