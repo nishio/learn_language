@@ -22,7 +22,10 @@ void division(int denom){
 
 int main(int argc, char** argv){
   signal(SIGFPE, handler);
-  division(argc); // -> 1/1=1
+
+  division(argc);
+  // -> 1/1=1
+
   division(argc - 1);
   // -> Signal 8
   // -> 1/0=12345

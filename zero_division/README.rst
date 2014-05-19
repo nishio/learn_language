@@ -29,7 +29,10 @@ C++
   
   int main(int argc, char** argv){
     signal(SIGFPE, handler);
-    division(argc);   division(argc - 1);
+  
+    division(argc);
+    
+    division(argc - 1);
       }
 
 
